@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { min-height: 100vh; }
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.prose-ludic h2 { @apply text-2xl font-bold text-brand-800 mt-6 mb-2; font-family: 'Fraunces', serif; }
+.prose-ludic h3 { @apply text-xl font-semibold text-brand-700 mt-5 mb-2; }
+.prose-ludic p { @apply my-3 leading-relaxed; }
+.prose-ludic ul { @apply list-disc pl-6 space-y-1 my-3; }
+.prose-ludic ol { @apply list-decimal pl-6 space-y-1 my-3; }
+.prose-ludic strong { @apply text-slate-900 font-semibold; }
+.prose-ludic table { @apply my-4 w-full text-left border-collapse text-sm; }
+.prose-ludic th { @apply bg-brand-700 text-white font-semibold px-3 py-2; }
+.prose-ludic td { @apply border border-slate-200 px-3 py-2 align-top; }
+.prose-ludic tr:nth-child(even) td { @apply bg-slate-50; }
+.prose-ludic blockquote { @apply border-l-4 border-sun-500 bg-sun-400/10 px-4 py-2 my-3 italic; }
+.prose-ludic code { @apply bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-sm font-mono; }
+
+.katex { font-size: 1.05em; }
+.katex-display { @apply my-2; }
+
+/* Card hover */
+.card-tilt { transition: transform .15s ease, box-shadow .15s ease; }
+.card-tilt:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c7cdd9; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Focus ring */
+*:focus-visible { @apply outline-none ring-2 ring-brand-500 ring-offset-2 rounded-md; }
