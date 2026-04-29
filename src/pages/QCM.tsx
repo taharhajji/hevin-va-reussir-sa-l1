@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { qcmByChapter } from "../data/qcm";
+import { qcmByChapterByLang } from "../data/qcm";
+import { useLang } from "../i18n/context";
 
 const colors = [
   "from-rose-400 to-orange-400",
@@ -10,17 +11,18 @@ const colors = [
 ];
 
 export default function QCM() {
+  const { lang, t } = useLang();
+  const sets = qcmByChapterByLang[lang];
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <h1 className="font-display text-3xl sm:text-4xl font-bold text-slate-900 mb-2">
-        🧠 QCM par chapitre
+        {t("qcmTitle")}
       </h1>
-      <p className="text-slate-600 mb-8">
-        Mode entraînement : tu cliques, tu vois immédiatement la bonne réponse et l'explication.
-      </p>
+      <p className="text-slate-600 mb-8">{t("qcmIntro")}</p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {qcmByChapter.map((q, i) => (
+        {sets.map((q, i) => (
           <Link
             key={q.chapter}
             to={`/qcm/ch${q.chapter}`}
@@ -28,11 +30,11 @@ export default function QCM() {
           >
             <div className="text-5xl">{q.emoji}</div>
             <p className="text-sm font-semibold uppercase tracking-wider opacity-90 mt-3">
-              Chapitre {q.chapter}
+              {t("chapterLabel")} {q.chapter}
             </p>
             <h2 className="font-display text-xl font-bold">{q.title}</h2>
             <p className="text-white/90 mt-1 text-sm">
-              {q.questions.length} questions · feedback immédiat
+              {q.questions.length} {t("qcmCardSubtitle")}
             </p>
           </Link>
         ))}

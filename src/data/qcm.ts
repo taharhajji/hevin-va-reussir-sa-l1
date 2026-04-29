@@ -721,3 +721,6 @@ export const qcmByChapter: QCMChapter[] = [
     ],
   },
 ];
+
+import { qcmByChapterTr } from "./qcm.tr";
+export const qcmByChapterByLang = { fr: qcmByChapter, tr: qcmByChapterTr } as const;

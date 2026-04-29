@@ -18,6 +18,8 @@ export type Chapter = {
   pieges: string[];
 };
 
+import { chaptersTr } from "./chapters.tr";
+
 export const chapters: Chapter[] = [
   {
     slug: "ch1",
@@ -310,3 +312,5 @@ export const chapters: Chapter[] = [
     ],
   },
 ];
+
+export const chaptersByLang = { fr: chapters, tr: chaptersTr } as const;

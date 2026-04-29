@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Question } from "../data/exams";
+import { useLang } from "../i18n/context";
 
 type Mode = "exam" | "practice"; // exam: grade only at end ; practice: instant feedback per Q
 
@@ -37,6 +38,7 @@ export default function QuizRunner({
   passingScore,
   storageKey,
 }: Props) {
+  const { t } = useLang();
   const [started, setStarted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [answers, setAnswers] = useState<Record<number, number | null>>({});
@@ -113,9 +115,7 @@ export default function QuizRunner({
       const unanswered = questions.filter((q) => answers[q.id] == null).length;
       if (
         unanswered > 0 &&
-        !confirm(
-          `Tu n'as pas répondu à ${unanswered} question${unanswered > 1 ? "s" : ""}. Soumettre quand même ?`
-        )
+        !confirm(t("quizUnansweredConfirm").replace("{n}", String(unanswered)))
       ) {
         return;
       }
@@ -144,25 +144,25 @@ export default function QuizRunner({
           {subtitle && <p className="text-brand-50 mt-2">{subtitle}</p>}
           <div className="mt-6 grid sm:grid-cols-3 gap-3">
             <div className="bg-white/15 backdrop-blur rounded-xl p-3">
-              <p className="text-xs uppercase tracking-wider text-brand-100">Questions</p>
+              <p className="text-xs uppercase tracking-wider text-brand-100">{t("quizQuestionsLabel")}</p>
               <p className="text-2xl font-bold">{questions.length}</p>
             </div>
             <div className="bg-white/15 backdrop-blur rounded-xl p-3">
-              <p className="text-xs uppercase tracking-wider text-brand-100">Durée</p>
-              <p className="text-2xl font-bold">{durationMin ? `${durationMin} min` : "Libre"}</p>
+              <p className="text-xs uppercase tracking-wider text-brand-100">{t("quizDuration")}</p>
+              <p className="text-2xl font-bold">{durationMin ? `${durationMin} ${t("durationLabel")}` : t("quizFreeDuration")}</p>
             </div>
             <div className="bg-white/15 backdrop-blur rounded-xl p-3">
-              <p className="text-xs uppercase tracking-wider text-brand-100">Note de passage</p>
+              <p className="text-xs uppercase tracking-wider text-brand-100">{t("quizPassing")}</p>
               <p className="text-2xl font-bold">
                 {passingScore ? `${passingScore}/${questions.length}` : "10/20"}
               </p>
             </div>
           </div>
           <ul className="mt-6 text-brand-50 space-y-1 text-sm">
-            <li>✅ 1 seule bonne réponse par question.</li>
-            <li>⏱️ Le chrono démarre quand tu cliques.</li>
-            <li>💾 Tes réponses sont sauvegardées si tu rafraîchis.</li>
-            <li>🎯 La correction et la notation s'affichent à la fin.</li>
+            <li>{t("quizRule1")}</li>
+            <li>{t("quizRule2")}</li>
+            <li>{t("quizRule3")}</li>
+            <li>{t("quizRule4")}</li>
           </ul>
           <button
             onClick={() => {
@@ -172,7 +172,7 @@ export default function QuizRunner({
             }}
             className="mt-6 bg-sun-400 text-slate-900 hover:bg-sun-500 font-semibold px-6 py-3 rounded-full shadow"
           >
-            🚀 Démarrer l'examen
+            {t("quizStart")}
           </button>
         </div>
       </div>
@@ -191,24 +191,24 @@ export default function QuizRunner({
           }`}
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-white/80">
-            Résultat
+            {t("resultBadge")}
           </p>
           <h1 className="font-display text-4xl sm:text-5xl font-bold">
-            {passed ? "🎉 Bravo, c'est validé !" : "💪 On reprend, tu vas y arriver."}
+            {passed ? t("resultPass") : t("resultFail")}
           </h1>
           <div className="mt-6 grid sm:grid-cols-3 gap-3">
             <div className="bg-white/15 backdrop-blur rounded-xl p-4">
-              <p className="text-xs uppercase tracking-wider opacity-80">Bonnes réponses</p>
+              <p className="text-xs uppercase tracking-wider opacity-80">{t("resultGood")}</p>
               <p className="text-3xl font-bold">
                 {score}/{questions.length}
               </p>
             </div>
             <div className="bg-white/15 backdrop-blur rounded-xl p-4">
-              <p className="text-xs uppercase tracking-wider opacity-80">Note /20</p>
+              <p className="text-xs uppercase tracking-wider opacity-80">{t("resultGrade")}</p>
               <p className="text-3xl font-bold">{note20}</p>
             </div>
             <div className="bg-white/15 backdrop-blur rounded-xl p-4">
-              <p className="text-xs uppercase tracking-wider opacity-80">Temps</p>
+              <p className="text-xs uppercase tracking-wider opacity-80">{t("resultTime")}</p>
               <p className="text-3xl font-bold">{startedAt ? fmtTime(elapsed) : "—"}</p>
             </div>
           </div>
@@ -216,7 +216,7 @@ export default function QuizRunner({
 
         <section className="mt-8 bg-white rounded-2xl border border-slate-200 p-6">
           <h2 className="font-display text-xl font-bold text-slate-900 mb-3">
-            📊 Détail par chapitre
+            {t("resultByChapter")}
           </h2>
           <div className="space-y-2">
             {Object.entries(byChapter)
@@ -227,7 +227,7 @@ export default function QuizRunner({
                   <div key={ch}>
                     <div className="flex justify-between text-sm">
                       <span>
-                        {chapterEmoji[Number(ch)]} Chapitre {ch}
+                        {chapterEmoji[Number(ch)]} {t("chapterLabel")} {ch}
                       </span>
                       <span className="font-semibold">
                         {v.ok}/{v.total}
@@ -253,7 +253,7 @@ export default function QuizRunner({
 
         <section className="mt-8">
           <h2 className="font-display text-xl font-bold text-slate-900 mb-3">
-            📝 Correction détaillée
+            {t("resultCorrections")}
           </h2>
           <div className="space-y-4">
             {questions.map((q, idx) => {
@@ -302,10 +302,10 @@ export default function QuizRunner({
                         ))}
                       </ul>
                       <div className="mt-2 text-sm text-slate-700 bg-white rounded-lg px-3 py-2 border border-slate-200">
-                        💡 <strong>Explication :</strong> {q.explanation}
+                        💡 <strong>{t("resultExplanation")} :</strong> {q.explanation}
                       </div>
                       <div className="mt-2 text-xs text-slate-500 flex gap-2 flex-wrap">
-                        <span>{chapterEmoji[q.chapter]} CH {q.chapter}</span>
+                        <span>{chapterEmoji[q.chapter]} {t("chapterLabel")} {q.chapter}</span>
                         <span>· {q.category}</span>
                         <span>· {q.difficulty}</span>
                       </div>
@@ -322,13 +322,13 @@ export default function QuizRunner({
             onClick={reset}
             className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-semibold"
           >
-            🔁 Refaire
+            {t("resultRetry")}
           </button>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-full"
           >
-            ⬆️ Haut de page
+            {t("resultTop")}
           </button>
         </div>
       </div>
@@ -348,7 +348,7 @@ export default function QuizRunner({
             <div>
               <p className="text-sm text-slate-500">{title}</p>
               <p className="font-semibold text-slate-900">
-                Question {current + 1} / {questions.length}
+                {t("quizQuestion")} {current + 1} / {questions.length}
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -366,7 +366,7 @@ export default function QuizRunner({
                 </div>
               )}
               <span className="text-xs text-slate-500">
-                Répondues : <strong>{answered}</strong>/{questions.length}
+                {t("quizAnswered")} : <strong>{answered}</strong>/{questions.length}
               </span>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function QuizRunner({
 
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm animate-fade-up">
           <div className="text-xs text-slate-500 flex gap-2 mb-2">
-            <span>{chapterEmoji[q.chapter]} CH {q.chapter}</span>
+            <span>{chapterEmoji[q.chapter]} {t("chapterLabel")} {q.chapter}</span>
             <span>· {q.category}</span>
             <span>· {q.difficulty}</span>
           </div>
@@ -421,27 +421,27 @@ export default function QuizRunner({
             disabled={current === 0}
             className="px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            ← Précédent
+            {t("quizPrev")}
           </button>
           <button
             onClick={() => setShowOverviewAfter(true)}
             className="text-sm text-slate-500 underline"
           >
-            Voir la grille
+            {t("quizGrid")}
           </button>
           {current === questions.length - 1 ? (
             <button
               onClick={submit}
               className="px-5 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold"
             >
-              ✅ Soumettre
+              {t("quizSubmit")}
             </button>
           ) : (
             <button
               onClick={() => setCurrent((c) => Math.min(questions.length - 1, c + 1))}
               className="px-4 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold"
             >
-              Suivant →
+              {t("quizNext")}
             </button>
           )}
         </div>
@@ -456,7 +456,7 @@ export default function QuizRunner({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-3">
-                <h3 className="font-bold text-lg">Grille de questions</h3>
+                <h3 className="font-bold text-lg">{t("quizGridTitle")}</h3>
                 <button
                   onClick={() => setShowOverviewAfter(false)}
                   className="text-slate-500 hover:text-slate-900"
@@ -485,15 +485,15 @@ export default function QuizRunner({
                 ))}
               </div>
               <div className="mt-4 flex gap-3 text-xs text-slate-500">
-                <span><span className="inline-block w-3 h-3 bg-emerald-100 rounded mr-1" />répondue</span>
-                <span><span className="inline-block w-3 h-3 bg-slate-100 rounded mr-1" />vide</span>
+                <span><span className="inline-block w-3 h-3 bg-emerald-100 rounded mr-1" />{t("quizAnsweredLegend")}</span>
+                <span><span className="inline-block w-3 h-3 bg-slate-100 rounded mr-1" />{t("quizEmptyLegend")}</span>
               </div>
               <div className="mt-4 flex justify-end">
                 <button
                   onClick={submit}
                   className="px-5 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold"
                 >
-                  ✅ Soumettre maintenant
+                  {t("quizSubmitNow")}
                 </button>
               </div>
             </div>
@@ -509,9 +509,7 @@ export default function QuizRunner({
       <div className="rounded-2xl bg-gradient-to-br from-brand-500 to-violet-500 text-white p-6 mb-6 shadow-md">
         <h1 className="font-display text-2xl font-bold">{title}</h1>
         {subtitle && <p className="text-brand-50 mt-1">{subtitle}</p>}
-        <p className="text-sm text-brand-100 mt-2">
-          Mode entraînement : feedback immédiat à chaque réponse.
-        </p>
+        <p className="text-sm text-brand-100 mt-2">{t("practiceMode")}</p>
       </div>
 
       <div className="space-y-4">
@@ -570,7 +568,7 @@ export default function QuizRunner({
               </ul>
               {answered && (
                 <div className="mt-3 text-sm text-slate-700 bg-slate-50 rounded-lg p-3 border border-slate-200">
-                  💡 <strong>Explication :</strong> {q.explanation}
+                  💡 <strong>{t("resultExplanation")} :</strong> {q.explanation}
                 </div>
               )}
             </div>
@@ -580,7 +578,7 @@ export default function QuizRunner({
 
       <div className="mt-8 sticky bottom-4 z-20 bg-white border border-slate-200 rounded-2xl shadow-lg p-4 flex items-center justify-between">
         <div>
-          <p className="text-sm text-slate-500">Score actuel</p>
+          <p className="text-sm text-slate-500">{t("currentScore")}</p>
           <p className="font-bold text-lg">
             {score}/{questions.length} ({((score / questions.length) * 20).toFixed(1)}/20)
           </p>
@@ -589,7 +587,7 @@ export default function QuizRunner({
           onClick={reset}
           className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-full text-sm"
         >
-          🔁 Reset
+          {t("reset")}
         </button>
       </div>
     </div>

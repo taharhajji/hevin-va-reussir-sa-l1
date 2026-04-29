@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { exerciseSections } from "../data/exercises";
+import { exerciseSectionsByLang } from "../data/exercises";
 import Markdown from "../components/Markdown";
+import { useLang } from "../i18n/context";
 
 export default function Exercises() {
+  const { lang, t } = useLang();
+  const sections = exerciseSectionsByLang[lang];
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <h1 className="font-display text-3xl sm:text-4xl font-bold text-slate-900 mb-2">
-        ✍️ Exercices guidés
+        {t("exercisesTitle")}
       </h1>
-      <p className="text-slate-600 mb-8">
-        Cherche d'abord, puis ouvre le corrigé étape par étape. Méthode <strong>pas-à-pas</strong>.
-      </p>
+      <p className="text-slate-600 mb-8">{t("exercisesIntro")}</p>
 
       <div className="space-y-10">
-        {exerciseSections.map((section) => (
+        {sections.map((section) => (
           <section key={section.slug} className="bg-white border border-slate-200 rounded-2xl p-6">
             <div className="flex items-center gap-3">
               <span className="text-4xl">{section.emoji}</span>
@@ -44,6 +46,7 @@ function ExerciseCard({
 }: {
   exercise: import("../data/exercises").Exercise;
 }) {
+  const { t } = useLang();
   const [showHint, setShowHint] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -69,20 +72,20 @@ function ExerciseCard({
             onClick={() => setShowHint((s) => !s)}
             className="px-3 py-1.5 rounded-full text-sm bg-sun-400/20 hover:bg-sun-400/30 text-amber-900 font-medium"
           >
-            💡 {showHint ? "Masquer l'indice" : "Indice"}
+            {showHint ? t("hideHint") : t("showHint")}
           </button>
         )}
         <button
           onClick={() => setShowSteps((s) => !s)}
           className="px-3 py-1.5 rounded-full text-sm bg-brand-100 hover:bg-brand-200 text-brand-800 font-medium"
         >
-          🪜 {showSteps ? "Masquer la méthode" : "Voir la méthode"}
+          {showSteps ? t("hideMethod") : t("showMethod")}
         </button>
         <button
           onClick={() => setShowAnswer((s) => !s)}
           className="px-3 py-1.5 rounded-full text-sm bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-medium"
         >
-          ✅ {showAnswer ? "Masquer la réponse" : "Voir la réponse"}
+          {showAnswer ? t("hideAnswer") : t("showAnswer")}
         </button>
       </div>
 
@@ -95,7 +98,7 @@ function ExerciseCard({
       {showSteps && (
         <div className="mt-3 p-4 rounded-xl bg-brand-50 border border-brand-200">
           <p className="text-xs uppercase tracking-wider text-brand-700 font-semibold mb-2">
-            Méthode pas-à-pas
+            {t("stepByStepLabel")}
           </p>
           <ol className="space-y-2 text-sm">
             {exercise.steps.map((step, i) => (
@@ -114,7 +117,7 @@ function ExerciseCard({
 
       {showAnswer && (
         <div className="mt-3 p-3 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold">
-          ✅ Réponse : {exercise.answer}
+          {t("answerLabel")} {exercise.answer}
         </div>
       )}
     </article>

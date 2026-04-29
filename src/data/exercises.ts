@@ -389,3 +389,6 @@ export const exerciseSections: ExerciseSection[] = [
     ],
   },
 ];
+
+import { exerciseSectionsTr } from "./exercises.tr";
+export const exerciseSectionsByLang = { fr: exerciseSections, tr: exerciseSectionsTr } as const;

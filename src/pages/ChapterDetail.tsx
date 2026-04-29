@@ -1,9 +1,12 @@
 import { Link, useParams, Navigate } from "react-router-dom";
-import { chapters } from "../data/chapters";
+import { chaptersByLang } from "../data/chapters";
 import Markdown from "../components/Markdown";
+import { useLang } from "../i18n/context";
 
 export default function ChapterDetail() {
   const { slug } = useParams();
+  const { lang, t } = useLang();
+  const chapters = chaptersByLang[lang];
   const idx = chapters.findIndex((c) => c.slug === slug);
   if (idx === -1) return <Navigate to="/chapitres" replace />;
   const c = chapters[idx];
@@ -17,7 +20,7 @@ export default function ChapterDetail() {
           <span className="text-6xl">{c.emoji}</span>
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider opacity-90">
-              Chapitre {c.number} · {c.duration}
+              {t("chapterLabel")} {c.number} · {c.duration}
             </p>
             <h1 className="font-display text-3xl sm:text-4xl font-bold leading-tight">
               {c.title}
@@ -49,7 +52,7 @@ export default function ChapterDetail() {
       <div className="grid sm:grid-cols-2 gap-5 mt-8">
         <section className="rounded-2xl bg-emerald-50 border-2 border-emerald-200 p-6">
           <h2 className="font-display text-xl font-bold text-emerald-800 mb-3">
-            ✅ À mémoriser
+            {t("toMemorize")}
           </h2>
           <ul className="space-y-2 text-emerald-900">
             {c.keyPoints.map((k, i) => (
@@ -62,7 +65,7 @@ export default function ChapterDetail() {
         </section>
         <section className="rounded-2xl bg-rose-50 border-2 border-rose-200 p-6">
           <h2 className="font-display text-xl font-bold text-rose-800 mb-3">
-            ⚠️ Pièges classiques
+            {t("classicTraps")}
           </h2>
           <ul className="space-y-2 text-rose-900">
             {c.pieges.map((p, i) => (
@@ -90,7 +93,7 @@ export default function ChapterDetail() {
           to={`/qcm/${c.slug}`}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold"
         >
-          🧠 QCM du chapitre {c.number}
+          {t("chapterQCMCta")} {c.number}
         </Link>
         <div>
           {next && (

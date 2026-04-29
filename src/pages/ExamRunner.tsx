@@ -1,9 +1,12 @@
 import { useParams, Navigate } from "react-router-dom";
-import { exams } from "../data/exams";
+import { examsByLang } from "../data/exams";
 import QuizRunner from "../components/QuizRunner";
+import { useLang } from "../i18n/context";
 
 export default function ExamRunner() {
   const { slug } = useParams();
+  const { lang } = useLang();
+  const exams = examsByLang[lang];
   const exam = exams.find((e) => e.slug === slug);
   if (!exam) return <Navigate to="/examens" replace />;
   return (
