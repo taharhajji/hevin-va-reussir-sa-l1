@@ -1,7 +1,7 @@
 import type { Question } from "./exams";
 
 export type QCMChapter = {
-  chapter: 1 | 2 | 3 | 4 | 5;
+  chapter: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   title: string;
   emoji: string;
   questions: Question[];

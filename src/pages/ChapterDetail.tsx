@@ -1,14 +1,17 @@
 import { Link, useParams, Navigate } from "react-router-dom";
-import { chaptersByLang } from "../data/chapters";
+import { useChapters } from "../data/useSubjectData";
 import Markdown from "../components/Markdown";
 import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 export default function ChapterDetail() {
   const { slug } = useParams();
-  const { lang, t } = useLang();
-  const chapters = chaptersByLang[lang];
+  const { t } = useLang();
+  const { subject } = useSubject();
+  const chapters = useChapters();
+  const base = `/${subject ?? "macro"}`;
   const idx = chapters.findIndex((c) => c.slug === slug);
-  if (idx === -1) return <Navigate to="/chapitres" replace />;
+  if (idx === -1) return <Navigate to={`${base}/chapitres`} replace />;
   const c = chapters[idx];
   const prev = chapters[idx - 1];
   const next = chapters[idx + 1];
@@ -82,7 +85,7 @@ export default function ChapterDetail() {
         <div>
           {prev && (
             <Link
-              to={`/chapitres/${prev.slug}`}
+              to={`${base}/chapitres/${prev.slug}`}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700"
             >
               ← {prev.emoji} {prev.title}
@@ -90,7 +93,7 @@ export default function ChapterDetail() {
           )}
         </div>
         <Link
-          to={`/qcm/${c.slug}`}
+          to={`${base}/qcm/${c.slug}`}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold"
         >
           {t("chapterQCMCta")} {c.number}
@@ -98,7 +101,7 @@ export default function ChapterDetail() {
         <div>
           {next && (
             <Link
-              to={`/chapitres/${next.slug}`}
+              to={`${base}/chapitres/${next.slug}`}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700"
             >
               {next.emoji} {next.title} →

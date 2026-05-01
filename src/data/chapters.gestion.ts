@@ -1,0 +1,350 @@
+import type { Chapter } from "./chapters";
+
+export const chaptersGestion: Chapter[] = [
+  {
+    slug: "ch1",
+    number: 1,
+    title: "L'entreprise en France",
+    emoji: "🏢",
+    hook: "Définitions, formes juridiques et chiffres clés.",
+    color: "from-emerald-400 to-teal-500",
+    duration: "20 min",
+    intro:
+      "L'entreprise est une **unité organisationnelle de production** de biens et services, dotée d'une **autonomie de décision**. La France compte ~4,75 millions d'entreprises (INSEE 2022), réparties en différents secteurs et tailles.",
+    sections: [
+      {
+        emoji: "📖",
+        title: "Définition INSEE",
+        body: "**\"L'entreprise est une unité organisationnelle de production de biens et de services jouissant d'une certaine autonomie de décision, notamment pour l'affectation de ses ressources courantes.\"**\n\nUne entreprise peut être :\n\n- **Une unité légale indépendante** (non rattachée à un groupe) :\n  - **Entreprise individuelle** : pas de personnalité juridique distincte de l'exploitant. Patrimoine de l'entreprise = patrimoine personnel.\n  - **Personne morale** : a sa propre personnalité juridique. Le plus souvent une **société** (SA, SARL, SAS, SASU, EURL…).\n- **Une unité rattachée à un groupe** (filiale).",
+      },
+      {
+        emoji: "⚖️",
+        title: "Formes juridiques principales",
+        body: "| Forme | Personnalité morale | Capital min | Particularité |\n|---|---|---|---|\n| **Entreprise individuelle (EI)** | ❌ | 0 € | Patrimoine confondu (sauf EIRL) |\n| **EURL** | ✅ | 1 € | SARL à un seul associé |\n| **SARL** | ✅ | 1 € | 2 à 100 associés. Responsabilité limitée aux apports |\n| **SAS / SASU** | ✅ | 1 € | Très flexible. Très utilisée pour les start-ups |\n| **SA** | ✅ | 37 000 € | Au moins 2 actionnaires (7 si cotée). Lourde |\n\n💡 **Responsabilité limitée** = en cas de faillite, tu perds au maximum ton apport (pas ta maison).",
+      },
+      {
+        emoji: "📊",
+        title: "Statistiques (INSEE 2022)",
+        body: "France : **~4,75 millions** d'entreprises dans les secteurs marchands non agricoles non financiers.\n\n**Répartition par secteur** :\n- Services marchands hors commerce/transport : ≈ **63 %** des entreprises\n- Commerce : ≈ 15 %\n- Construction : ≈ 12 %\n- Industrie : ≈ 6 %\n- Transports/entreposage : ≈ 4 %\n\n**Tailles (par nombre de salariés)** :\n- **TPE** : < 10 salariés (la grande majorité)\n- **PME** : 10 à 249 salariés\n- **ETI** : 250 à 4 999 salariés\n- **GE** : ≥ 5 000 salariés\n\nLes **secteurs marchands** emploient ~15,4 M de salariés en EQTP (équivalent temps plein).",
+      },
+      {
+        emoji: "🎯",
+        title: "Le tertiaire domine",
+        body: "Plus de **75 %** des entreprises françaises sont **tertiaires** (services).\n\nCela explique pourquoi :\n- Les bilans sont souvent **plus légers** en immobilisations corporelles (pas de grandes usines).\n- Les **charges de personnel** y représentent une part majeure du compte de résultat.\n- L'investissement en R&D, brevets, logiciels (immatériel) est plus important.",
+      },
+    ],
+    keyPoints: [
+      "Entreprise = unité organisationnelle de production avec autonomie de décision",
+      "EI ≠ société : pas de personnalité morale distincte",
+      "Société = personne morale (SA, SARL, SAS, EURL, SASU…)",
+      "France : ≈ 4,75 M entreprises (2022)",
+      "Tertiaire (services) ≈ 75 % des entreprises",
+      "TPE < 10 / PME 10-249 / ETI 250-4999 / GE ≥ 5000",
+    ],
+    pieges: [
+      "EI ≠ société : en EI, ton patrimoine personnel répond des dettes",
+      "« Entreprise » est un terme économique, « société » est juridique",
+      "Une grande entreprise est rare : 99 % des entreprises ont < 250 salariés",
+    ],
+  },
+  {
+    slug: "ch2",
+    number: 2,
+    title: "Comptabilité & gestion financière",
+    emoji: "📚",
+    hook: "Le langage commun de l'entreprise.",
+    color: "from-blue-400 to-cyan-500",
+    duration: "15 min",
+    intro:
+      "La **comptabilité** est un système d'organisation de l'information financière. Elle est **obligatoire** (Code de commerce 1807). Elle sert à enregistrer, prouver, dégager le résultat, informer les partenaires et préparer la **gestion financière**.",
+    sections: [
+      {
+        emoji: "📜",
+        title: "5 rôles de la comptabilité",
+        body: "1. **Enregistrer** les opérations (preuve : conserve la trace).\n2. **Dégager le résultat** annuel (Compte de Résultat) et l'état des biens/dettes (Bilan).\n3. **Informer** les utilisateurs externes : administration fiscale, banquiers, salariés, fournisseurs, clients, associés…\n4. **Comparer** dans le temps → outil de gestion (prévisions, décisions).\n5. **Servir de base** à la gestion financière (besoins de financement, rentabilité).",
+      },
+      {
+        emoji: "🔀",
+        title: "Comptabilité générale vs analytique",
+        body: "**Comptabilité générale** : aboutit au **bilan** et au **compte de résultat** annuels. **Obligatoire**, normalisée par le PCG.\n\n**Comptabilité analytique d'exploitation** : calcule les **coûts** par produit, par activité ou par service. Valorise les stocks. Optionnelle, à usage interne.\n\n💡 La générale dit *combien on a gagné en tout*. L'analytique dit *grâce à quel produit, à quelle activité*.",
+      },
+      {
+        emoji: "💼",
+        title: "Gestion financière",
+        body: "La gestion financière regroupe les moyens mis en place pour organiser les **décisions financières** :\n\n- **Identification** et **mesure** des besoins de financement.\n- **Évaluation** et **renforcement** des possibilités internes (autofinancement) et externes (emprunts, augmentation de capital) de financement.\n- **Pilotage** : rentabilité, solvabilité, trésorerie.\n\nLes gestionnaires financiers ont aujourd'hui une influence majeure sur la stratégie d'entreprise.",
+      },
+      {
+        emoji: "🏛️",
+        title: "Obligations légales",
+        body: "**Code de commerce de 1807** :\n- *Article 8* : tout commerçant doit tenir un **livre-journal** enregistrant jour par jour les opérations.\n- *Article 9* : il doit aussi faire chaque année un **inventaire** et arrêter ses comptes pour établir le **bilan** et le **compte de profits et pertes**.\n\n**Conservation** : pièces justificatives à garder **10 ans** minimum.",
+      },
+    ],
+    keyPoints: [
+      "5 rôles : enregistrer, dégager le résultat, informer, comparer, gérer",
+      "Comptabilité = obligation légale (Code de commerce 1807)",
+      "Conservation des pièces : 10 ans",
+      "Comptabilité générale → bilan + compte de résultat",
+      "Comptabilité analytique → coûts par produit/activité",
+      "Le PCG (Plan Comptable Général) normalise tout",
+    ],
+    pieges: [
+      "Comptabilité générale ≠ analytique (la 1ʳᵉ est obligatoire, la 2ᵉ optionnelle)",
+      "La comptabilité n'est pas un luxe : c'est une obligation légale",
+      "Les pièces se gardent 10 ans, pas 5",
+    ],
+  },
+  {
+    slug: "ch3",
+    number: 3,
+    title: "Bilan & compte de résultat",
+    emoji: "⚖️",
+    hook: "Les 2 documents qui résument tout.",
+    color: "from-violet-400 to-purple-500",
+    duration: "30 min",
+    intro:
+      "Les **états financiers** sont la principale source d'information comptable. Deux documents centraux : le **Compte de Résultat** (CR) qui montre la **performance** d'un exercice, et le **Bilan** qui montre le **patrimoine** à une date donnée.",
+    sections: [
+      {
+        emoji: "📈",
+        title: "Compte de Résultat (CR)",
+        body: "Le CR regroupe les **charges** et les **produits** d'un exercice (= 1 an, en général du 1ᵉʳ janvier au 31 décembre).\n\n**Charges** = ce qui est consommé (dépenses) :\n- *Exploitation* : achats, salaires, loyers, électricité…\n- *Financières* : intérêts d'emprunts.\n- *Exceptionnelles* : moins-value sur cession d'actif.\n\n**Produits** = ce qui rentre (ressources) :\n- *Exploitation* : ventes, prestations.\n- *Financiers* : intérêts perçus, revenus de placements.\n- *Exceptionnels* : plus-value sur cession.\n\n$$ \\boxed{\\text{Résultat} = \\text{Total Produits} - \\text{Total Charges}} $$\n\n- Si > 0 → **Bénéfice**\n- Si < 0 → **Perte**",
+      },
+      {
+        emoji: "🏦",
+        title: "Bilan : actif et passif",
+        body: "Le bilan présente la **situation patrimoniale** à une date donnée. Toujours :\n\n$$ \\boxed{\\text{TOTAL ACTIF} = \\text{TOTAL PASSIF}} $$\n\n**ACTIF (Emplois)** = ce que l'entreprise possède :\n- **Actif immobilisé** : ce qui sert > 1 an.\n  - Immobilisations **incorporelles** (brevets, logiciels, fonds de commerce)\n  - Immobilisations **corporelles** (terrains, bâtiments, machines, véhicules)\n  - Immobilisations **financières** (titres durables, prêts, dépôts)\n- **Actif circulant** : ce qui se transforme rapidement.\n  - Stocks (matières premières, marchandises, produits finis)\n  - Créances clients\n  - Valeurs mobilières de placement (placements spéculatifs)\n  - Disponibilités (banque, caisse)\n\n**PASSIF (Ressources)** = ce que l'entreprise doit :\n- **Capitaux propres** : ressources internes.\n  - Capital social, Réserves, Résultat de l'exercice.\n- **Dettes** :\n  - Emprunts bancaires.\n  - Dettes fournisseurs.\n  - Dettes fiscales et sociales (TVA, URSSAF, IS).",
+      },
+      {
+        emoji: "🔗",
+        title: "Lien Bilan ↔ Compte de Résultat",
+        body: "Le **résultat** du compte de résultat se retrouve **dans les capitaux propres** du bilan.\n\n- **Bénéfice** → **augmente** les capitaux propres (s'ajoute aux réserves si non distribué).\n- **Perte** → **diminue** les capitaux propres.\n\nLe CR mesure la **performance d'une période**. Le bilan capture l'**état du patrimoine à un instant**. Le résultat est l'effet du flux (CR) sur le stock (Bilan).",
+      },
+      {
+        emoji: "🧮",
+        title: "Présentation normalisée du bilan",
+        body: "**ACTIF** (à gauche) :\n```\nACTIF IMMOBILISÉ\n  Immobilisations incorporelles\n  Immobilisations corporelles\n  Immobilisations financières\n  TOTAL I\nACTIF CIRCULANT\n  Stocks\n  Créances\n  Valeurs mobilières de placement\n  Disponibilités\n  TOTAL II\nTOTAL ACTIF (I + II)\n```\n\n**PASSIF** (à droite) :\n```\nCAPITAUX PROPRES\n  Capital\n  Réserves\n  Résultat de l'exercice\n  TOTAL I\nDETTES\n  Emprunts et dettes financières\n  Fournisseurs (biens, services, immobilisations)\n  Dettes fiscales et sociales\n  TOTAL II\nTOTAL PASSIF (I + II)\n```",
+      },
+    ],
+    keyPoints: [
+      "Compte de Résultat = Produits − Charges sur un exercice",
+      "Bilan = Actif (emplois) = Passif (ressources)",
+      "Actif immobilisé > 1 an / Actif circulant < 1 an",
+      "Capitaux propres = Capital + Réserves + Résultat",
+      "Bénéfice ↑ capitaux propres ; Perte ↓ capitaux propres",
+      "Total Actif = Total Passif (toujours)",
+      "Résultat d'exploitation, financier, exceptionnel : 3 niveaux",
+    ],
+    pieges: [
+      "Disponibilités (caisse, banque) sont à l'ACTIF, pas au passif",
+      "Un emprunt est au PASSIF (dette), pas à l'actif",
+      "Le « capital » au bilan ≠ « capital social » de l'INSEE = même chose",
+      "Les créances clients sont à l'ACTIF (on attend de l'argent)",
+      "Les dettes fournisseurs sont au PASSIF (on doit de l'argent)",
+    ],
+  },
+  {
+    slug: "ch4",
+    number: 4,
+    title: "Enregistrement comptable & PCG",
+    emoji: "✏️",
+    hook: "Débit, crédit, partie double.",
+    color: "from-amber-400 to-orange-500",
+    duration: "30 min",
+    intro:
+      "Toute opération est enregistrée selon le **principe de la partie double** : chaque flux a une **origine** (ressource, crédit) et une **destination** (emploi, débit). Le **PCG** (Plan Comptable Général) classe tous les comptes en 10 classes.",
+    sections: [
+      {
+        emoji: "🔄",
+        title: "Principe de la partie double",
+        body: "**Toute opération comptable** mobilise au moins **2 comptes** qui s'équilibrent :\n\n- **DÉBIT** = colonne de gauche = **EMPLOI** (destination du flux)\n- **CRÉDIT** = colonne de droite = **RESSOURCE** (origine du flux)\n\n$$ \\boxed{\\text{EMPLOIS} = \\text{RESSOURCES}} $$\n\n**Exemple** : achat d'un ordinateur 1 800 € payé par chèque.\n- Emploi : compte **Matériel informatique** débité de 1 800.\n- Ressource : compte **Banque** crédité de 1 800.\n\n💡 Le solde d'un compte = **Total débit − Total crédit**.\n- Solde **débiteur** si débit > crédit (typique d'un actif).\n- Solde **créditeur** si crédit > débit (typique d'un passif ou d'un produit).",
+      },
+      {
+        emoji: "📋",
+        title: "Comptes de bilan vs comptes de gestion",
+        body: "**Comptes de bilan** (situation patrimoniale) :\n- Classes **1** (capitaux), **2** (immobilisations), **3** (stocks), **4** (tiers : clients, fournisseurs, État…), **5** (financiers : banque, caisse).\n\n**Comptes de gestion** (charges et produits, vidés à chaque fin d'exercice) :\n- Classe **6** : **Charges** (achats, salaires, impôts, intérêts…)\n- Classe **7** : **Produits** (ventes, prestations, intérêts perçus…)\n\n**Sens des mouvements** :\n| Type | Augmente | Diminue |\n|---|---|---|\n| Actif (Cl. 2, 3, 4 client, 5 banque) | Débit | Crédit |\n| Passif (Cl. 1, 4 fournisseur, dettes) | Crédit | Débit |\n| Charge (Cl. 6) | Débit | Crédit |\n| Produit (Cl. 7) | Crédit | Débit |",
+      },
+      {
+        emoji: "🔢",
+        title: "Les 10 classes du PCG",
+        body: "| Classe | Type | Exemples |\n|---|---|---|\n| **1** | Capitaux | Capital, Réserves, Emprunts |\n| **2** | Immobilisations | Terrains, Constructions, Brevets |\n| **3** | Stocks | Matières premières, Marchandises |\n| **4** | Tiers | Clients (411), Fournisseurs (401), État (44) |\n| **5** | Financiers | Banque (512), Caisse (530) |\n| **6** | Charges | Achats (60), Personnel (64), Impôts (63) |\n| **7** | Produits | Ventes (70), Produits financiers (76) |\n| 8 | Comptes spéciaux | (peu utilisés) |\n| 9 | Comptabilité analytique | (interne) |\n| 0 | Libre | — |\n\n💡 **Mnemo** : *Capitaux, Immobilisations, Stocks, Tiers, Financiers, Charges, Produits* (1-2-3-4-5-6-7).",
+      },
+      {
+        emoji: "📜",
+        title: "Les 7 principes du PCG",
+        body: "Le PCG garantit une **image fidèle** par 7 principes :\n\n1. **Comparabilité et continuité d'activité** (on suppose que l'entreprise continuera).\n2. **Sincérité** des responsables.\n3. **Prudence** dans les appréciations (ne pas surestimer les actifs ni les produits).\n4. **Permanence des méthodes** (mêmes règles d'un exercice à l'autre).\n5. **Coûts historiques** (on enregistre au prix d'achat, pas à la valeur actuelle).\n6. **Non-compensation** entre actif et passif (on ne fait pas la différence).\n7. **Indépendance des exercices** (chaque charge dans l'exercice où elle est consommée).",
+      },
+      {
+        emoji: "📚",
+        title: "Organisation comptable",
+        body: "**Du document à l'état de synthèse :**\n\n1. **Pièce comptable** = document de base (facture, ticket, ordre de virement). Doit être conservée 10 ans.\n2. **Journal des écritures** = tous les enregistrements **dans l'ordre chronologique**.\n3. **Grand livre** = tous les comptes ouverts, classés par numéro. Permet de suivre l'évolution d'un compte.\n4. **Balance** = liste des comptes avec total débit, total crédit et solde. Permet de vérifier l'équilibre des écritures.\n5. **Documents de synthèse** : Bilan + Compte de Résultat + Annexe.\n\n💡 La balance est **vérification** : Total débits = Total crédits, toujours.",
+      },
+    ],
+    keyPoints: [
+      "Partie double : Emplois = Ressources",
+      "Débit = gauche = emploi ; Crédit = droite = ressource",
+      "Actif et Charges augmentent au débit",
+      "Passif et Produits augmentent au crédit",
+      "10 classes du PCG ; 1 à 7 sont les principales",
+      "Classe 6 = Charges ; Classe 7 = Produits",
+      "Pièce → Journal → Grand livre → Balance → Bilan + CR",
+    ],
+    pieges: [
+      "Une charge n'est pas une dette : la charge va au CR (cl. 6), la dette au bilan (cl. 4)",
+      "Crédit ≠ « avoir des sous » en comptabilité — ça dépend du compte",
+      "Le compte « Banque » à solde débiteur signifie qu'on a de l'argent ! (côté entreprise)",
+      "Salaires bruts ≠ rémunération du personnel : on enregistre les primes et charges sociales séparément",
+    ],
+  },
+  {
+    slug: "ch5",
+    number: 5,
+    title: "Partenaires & TVA",
+    emoji: "🤝",
+    hook: "Achats, ventes, paie, TVA, banque.",
+    color: "from-rose-400 to-pink-500",
+    duration: "35 min",
+    intro:
+      "L'entreprise interagit avec **fournisseurs, clients, salariés, État, banques**. Chaque opération a son écriture comptable type. La **TVA** est centrale : elle est collectée sur les ventes, déductible sur les achats, et la différence est versée à l'État.",
+    sections: [
+      {
+        emoji: "📦",
+        title: "Achats : facture fournisseur",
+        body: "Une facture d'achat se décompose :\n\n```\nBrut HT\n− Réductions commerciales (rabais, remise, ristourne)\n= Net commercial HT\n− Réduction financière (escompte)\n= Net financier HT\n+ TVA (en général 20 %)\n= Net à payer (TTC)\n```\n\n**Écriture type d'un achat à crédit** :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 60_ Achats (charge) | Net HT | |\n| 44566 TVA déductible | TVA | |\n| 401 Fournisseur | | Net à payer TTC |\n\n**Si paiement comptant** : remplace `401 Fournisseur` par `512 Banque` ou `530 Caisse`.\n\n💡 *Réductions* :\n- **Rabais** : non-conformité ou retard.\n- **Remise** : importance ou qualité du client.\n- **Ristourne** : fidélité (en fin d'année).\n- **Escompte** : paiement comptant ou anticipé.",
+      },
+      {
+        emoji: "💰",
+        title: "Ventes : facture client",
+        body: "**Écriture type d'une vente à crédit** :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 411 Client | Net à payer TTC | |\n| 70_ Ventes (produit) | | Net HT |\n| 44571 TVA collectée | | TVA |\n\n**Si paiement comptant** : remplace `411 Client` par `512 Banque` ou `530 Caisse`.\n\n💡 Le client doit l'argent → c'est une **créance** → ACTIF.\nLa TVA collectée n'appartient pas à l'entreprise → c'est une **dette** envers l'État → PASSIF.",
+      },
+      {
+        emoji: "💸",
+        title: "TVA : principe",
+        body: "**Taxe sur la Valeur Ajoutée** : impôt **indirect** à la charge du **consommateur final**, mais **collecté par les entreprises**.\n\n**Mécanisme** :\n- L'entreprise **collecte** la TVA sur ses ventes (44571 TVA collectée → passif).\n- Elle **déduit** la TVA sur ses achats (44566 TVA déductible → actif).\n- Elle verse à l'État : **TVA à payer = TVA collectée − TVA déductible**.\n\n$$ \\boxed{\\text{TVA à décaisser} = \\text{TVA collectée} - \\text{TVA déductible}} $$\n\n**Taux principaux en France (2024)** :\n| Taux | Application |\n|---|---|\n| **20 %** | Taux **normal** (la plupart des biens et services) |\n| **10 %** | Restauration, transport, travaux de rénovation |\n| **5,5 %** | Produits alimentaires, livres, énergies, gaz |\n| **2,1 %** | Médicaments remboursés, presse, redevance TV |\n\n💡 La TVA est **neutre** pour l'entreprise : elle ne fait que la transmettre. Mais une TVA **mal gérée** peut bloquer la trésorerie.",
+      },
+      {
+        emoji: "👷",
+        title: "Salariés et organismes sociaux",
+        body: "**Bulletin de salaire** :\n```\nSalaire brut\n− Cotisations salariales (sécu, retraite, chômage côté salarié) ≈ 22 %\n= Salaire net\n```\n\nL'entreprise paie en plus les **cotisations patronales** (≈ 25 à 42 % du brut).\n\n**Coût total employeur** = Salaire brut + cotisations patronales.\n\n**Écriture type de la paie** (en 2-3 temps) :\n\n*1. Comptabilisation du salaire (brut)* :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 641 Rémunération du personnel | Brut | |\n| 421 Personnel — rémunérations dues | | Net |\n| 43 Sécurité sociale et autres organismes | | Cotisations salariales |\n\n*2. Charges patronales* :\n| 645 Charges de sécurité sociale | Cotisations patronales | |\n| 43 Sécurité sociale et autres organismes | | Cotisations patronales |\n\n*3. Paiement des cotisations à l'URSSAF (le 10 du mois suivant)* :\n| 43 Sécurité sociale et autres organismes | Cotisations totales | |\n| 512 Banque | | Cotisations totales |",
+      },
+      {
+        emoji: "🏛️",
+        title: "État et banque",
+        body: "**État** :\n- Compte **44** = Tiers État.\n- 44566 TVA déductible (sur achats), 44571 TVA collectée (sur ventes), 44551 TVA à décaisser.\n- **IS** (Impôt sur les sociétés) : compte 695, calculé sur le bénéfice fiscal.\n\n**Banque** :\n- Compte **512** Banque.\n- Compte **530** Caisse (espèces).\n- Compte **514** Chèques postaux.\n- Solde **débiteur** = on a de l'argent. Solde **créditeur** = découvert.\n\n**Opérations courantes** :\n- Encaissement de chèque client : 512 Banque (D) / 411 Client (C).\n- Paiement fournisseur : 401 Fournisseur (D) / 512 Banque (C).\n- Versement d'espèces en banque : 512 Banque (D) / 530 Caisse (C).",
+      },
+    ],
+    keyPoints: [
+      "Achat à crédit : 60_ + 44566 TVA déd. au débit, 401 Fournisseur au crédit",
+      "Vente à crédit : 411 Client au débit, 70_ + 44571 TVA col. au crédit",
+      "TVA à payer = TVA collectée − TVA déductible",
+      "Taux TVA principaux : 20 % / 10 % / 5,5 % / 2,1 %",
+      "Salaire net = brut − cotisations salariales",
+      "Coût employeur = brut + cotisations patronales",
+      "Réductions : rabais (défaut), remise (client), ristourne (fidélité), escompte (paiement)",
+    ],
+    pieges: [
+      "TVA déductible (acheté) ≠ TVA collectée (vendu) ≠ TVA à décaisser (différence)",
+      "L'escompte est une réduction FINANCIÈRE (pour paiement comptant), pas commerciale",
+      "Achats stockés (607) ≠ Achats non stockés (606) — fournitures, eau, électricité",
+      "Salaire brut ≠ coût employeur — il faut ajouter les cotisations patronales (~25-42 %)",
+      "La TVA collectée est une DETTE envers l'État, pas un produit",
+    ],
+  },
+  {
+    slug: "ch6",
+    number: 6,
+    title: "Investissement & financement",
+    emoji: "🏗️",
+    hook: "Acheter du durable, financer le projet.",
+    color: "from-cyan-400 to-blue-500",
+    duration: "20 min",
+    intro:
+      "Un **investissement** = achat d'un actif **durable** (> 1 an). Comptablement, c'est une **immobilisation** (classe 2). Pour le financer, l'entreprise dispose de plusieurs leviers : autofinancement, augmentation de capital, emprunt, crédit-bail.",
+    sections: [
+      {
+        emoji: "🛠️",
+        title: "Charge ou immobilisation ?",
+        body: "**Critère** : durée d'utilisation.\n\n- **Charge (classe 6)** : utilisée et **consommée** dans l'exercice.\n  - Ex : ramettes de papier, produits d'entretien, électricité, billet d'avion.\n- **Immobilisation (classe 2)** : utilisée plus d'**1 an**.\n  - Ex : ordinateur, imprimante, vitrine, fauteuil de bureau, alarme, véhicule.\n\n**Seuil pratique** : un bien de faible valeur (< 500 € HT en général) peut être passé en charge même s'il dure > 1 an, par simplification.\n\n**3 catégories d'immobilisations** :\n- **Incorporelles** (cl. 20-21) : brevets, logiciels, fonds de commerce.\n- **Corporelles** (cl. 21) : terrains, constructions, matériel, mobilier.\n- **Financières** (cl. 26-27) : titres durables, prêts, dépôts.",
+      },
+      {
+        emoji: "📝",
+        title: "Écriture d'achat d'immobilisation",
+        body: "**Achat à crédit d'une immobilisation** :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 21_ Immobilisations corporelles (ou 20_) | HT | |\n| 44562 TVA déductible sur immobilisations | TVA | |\n| **404 Fournisseur d'immobilisation** | | Net TTC |\n\n💡 **Attention** : on utilise **404 Fournisseur d'immobilisation** (et non 401 Fournisseur classique). De même, **44562** (et non 44566) pour la TVA déductible sur immobilisations.\n\n**Si paiement comptant** : remplace 404 par 512 Banque.",
+      },
+      {
+        emoji: "💼",
+        title: "4 modes de financement",
+        body: "**1. Autofinancement (interne)**\n- Bénéfices non distribués → mis en **réserves**.\n- **Dotations aux amortissements** (charge non décaissée).\n- Cession d'actifs.\n\n**2. Augmentation de capital (interne / mixte)**\n- Émission de nouvelles actions/parts sociales.\n- Renforce les capitaux propres.\n\n**3. Emprunt bancaire (externe)**\n- Crédit à moyen ou long terme.\n- Charges financières (intérêts).\n- Garanties demandées par la banque.\n\n**4. Crédit-bail / leasing (externe)**\n- L'entreprise loue le bien, sans en être propriétaire.\n- Option d'achat à la fin (valeur résiduelle).\n- N'apparaît PAS au bilan (mais en engagement hors-bilan ou en immobilisation selon les normes).",
+      },
+      {
+        emoji: "🎯",
+        title: "Critères de choix",
+        body: "**Choisir un financement** dépend de :\n\n- **Capacité d'autofinancement (CAF)** = Bénéfice + Amortissements (ressources internes générées).\n- **Coût** : taux d'intérêt vs taux de rentabilité interne (TRI) du projet.\n- **Effet sur le bilan** : un emprunt augmente les dettes ; une augmentation de capital dilue le contrôle.\n- **Délai** : autofinancement = lent ; emprunt = rapide.\n- **Solvabilité actuelle** : ratio dette/capitaux propres < 1 idéalement.\n\n💡 **Effet de levier** : si le rendement du projet > taux d'intérêt, l'emprunt amplifie la rentabilité des capitaux propres. Sinon, il l'écrase (effet massue).",
+      },
+    ],
+    keyPoints: [
+      "Charge (cl. 6) si consommé dans l'exercice ; Immo (cl. 2) si > 1 an",
+      "404 Fournisseur d'immo (≠ 401 Fournisseur exploitation)",
+      "44562 TVA déductible sur immo (≠ 44566 sur achats)",
+      "3 catégories : incorporelles, corporelles, financières",
+      "4 modes de financement : autofinancement, augmentation de capital, emprunt, crédit-bail",
+      "CAF = Bénéfice + Dotations aux amortissements",
+      "Effet de levier : emprunt amplifie la rentabilité si rendement > taux",
+    ],
+    pieges: [
+      "404 ≠ 401 : c'est important à l'examen",
+      "Une voiture pour usage > 1 an = immo, pas charge",
+      "Un logiciel utilisé > 1 an = immo INCORPORELLE",
+      "Le crédit-bail : on n'est pas propriétaire pendant la location",
+      "L'amortissement n'est pas un décaissement, c'est juste comptable",
+    ],
+  },
+  {
+    slug: "ch7",
+    number: 7,
+    title: "Inventaire & clôture",
+    emoji: "📅",
+    hook: "Amortissements, provisions, comptes annuels.",
+    color: "from-yellow-400 to-amber-500",
+    duration: "25 min",
+    intro:
+      "À la fin de chaque exercice, l'entreprise fait l'**inventaire** : comptage physique des stocks, vérification des comptes, calcul des **amortissements** et **provisions**. C'est le moment où l'on prépare les **documents de synthèse** (bilan + compte de résultat + annexe).",
+    sections: [
+      {
+        emoji: "📋",
+        title: "Notion d'inventaire",
+        body: "**Inventaire** (Code de commerce, art. 9) = recensement annuel des éléments d'actif et de passif.\n\n**Étapes** :\n1. **Inventaire physique** des stocks (comptage).\n2. **Vérification** des soldes (rapprochement bancaire, créances, dettes).\n3. **Régularisation** : amortissements, provisions, charges constatées d'avance, produits à recevoir…\n4. **Production** des comptes annuels.\n\n💡 L'inventaire est l'occasion de rapprocher la **réalité** (physique) avec les **livres comptables**.",
+      },
+      {
+        emoji: "📉",
+        title: "Amortissements",
+        body: "**Définition** : constatation comptable de la **dépréciation** subie par une immobilisation due à l'**usage** ou au **temps**.\n\nUne immobilisation **se déprécie** chaque année → on enregistre une **dotation aux amortissements** (charge).\n\n**Amortissement linéaire** :\n$$ \\text{Annuité} = \\frac{\\text{Valeur d'origine}}{\\text{Durée de vie}} $$\n\n**Exemple** : Camion acheté 30 000 € HT, durée 5 ans.\n- Annuité = 30 000 / 5 = **6 000 €/an**.\n- Au bout de 3 ans : amortissements cumulés = 18 000 €. Valeur nette comptable (VNC) = 30 000 − 18 000 = **12 000 €**.\n\n**Écriture annuelle** :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 681 Dotations aux amortissements (charge) | Annuité | |\n| 281 Amortissements des immo (passif soustractif d'actif) | | Annuité |\n\n💡 L'amortissement n'est **pas un décaissement** : il diminue le résultat sans sortir de la trésorerie. Il génère donc une **capacité d'autofinancement**.\n\n**Durées indicatives** :\n| Bien | Durée |\n|---|---|\n| Bâtiment | 20-50 ans |\n| Matériel industriel | 5-10 ans |\n| Véhicule | 4-5 ans |\n| Matériel informatique | 3 ans |\n| Logiciel | 1-3 ans |",
+      },
+      {
+        emoji: "⚠️",
+        title: "Provisions",
+        body: "**Provision** = constatation d'un **risque** ou d'une **charge probable** mais incertaine.\n\nApplique le **principe de prudence** : on enregistre les pertes probables, mais pas les gains probables.\n\n**Types** :\n- **Provisions pour dépréciation** : créance douteuse, stock obsolète, baisse de valeur d'un titre.\n- **Provisions pour risques et charges** : litige en cours, garantie produit, restructuration.\n\n**Écriture type** :\n| Compte | Débit | Crédit |\n|---|---|---|\n| 68_ Dotations aux provisions (charge) | Montant | |\n| 49_ Provisions pour dépréciation (ou 15) | | Montant |\n\nÀ la résolution :\n- Si la perte se réalise : on solde la provision et on enregistre la charge réelle.\n- Si finalement pas de perte : on **reprend** la provision (compte 78_ Reprises sur provisions, en produit).",
+      },
+      {
+        emoji: "📑",
+        title: "Documents de synthèse",
+        body: "**3 documents annuels obligatoires** :\n\n1. **Bilan** : situation patrimoniale au dernier jour de l'exercice.\n2. **Compte de Résultat** : performance de l'exercice (charges/produits).\n3. **Annexe** : informations complémentaires (méthodes comptables, détails d'immobilisations, engagements hors-bilan…).\n\nDoivent être :\n- **Réguliers** : conformes aux règles comptables.\n- **Sincères** : reflètent la réalité.\n- **Donner une image fidèle** de la situation financière, de la performance et de la trésorerie.\n\n💡 Pour les sociétés, ces documents sont déposés au **greffe du tribunal de commerce** chaque année et accessibles publiquement (Infogreffe).",
+      },
+    ],
+    keyPoints: [
+      "Inventaire = recensement annuel obligatoire (Code de commerce art. 9)",
+      "Amortissement linéaire = Valeur d'origine / Durée de vie",
+      "VNC = Valeur d'origine − Amortissements cumulés",
+      "Amortissement = charge non décaissée → CAF",
+      "Provisions = principe de prudence (risques probables)",
+      "3 documents : Bilan + Compte de Résultat + Annexe",
+      "Durée informatique 3 ans, véhicule 5 ans, bâtiment 20-50 ans",
+    ],
+    pieges: [
+      "Amortissement n'est PAS un décaissement (juste un coût comptable)",
+      "On amortit les corporelles et incorporelles, pas les terrains (durée illimitée)",
+      "Provision ≠ amortissement : provision pour risque incertain ; amortissement pour usure certaine",
+      "VNC peut tomber à 0 mais le bien continue d'exister physiquement",
+      "Les annexes sont obligatoires : ce ne sont pas du « bonus »",
+    ],
+  },
+];

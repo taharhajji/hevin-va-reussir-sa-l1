@@ -1,14 +1,15 @@
 import { useParams, Navigate } from "react-router-dom";
-import { examsByLang } from "../data/exams";
+import { useExams } from "../data/useSubjectData";
 import QuizRunner from "../components/QuizRunner";
-import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 export default function ExamRunner() {
   const { slug } = useParams();
-  const { lang } = useLang();
-  const exams = examsByLang[lang];
+  const { subject } = useSubject();
+  const exams = useExams();
+  const base = `/${subject ?? "macro"}`;
   const exam = exams.find((e) => e.slug === slug);
-  if (!exam) return <Navigate to="/examens" replace />;
+  if (!exam) return <Navigate to={`${base}/examens`} replace />;
   return (
     <QuizRunner
       title={exam.title}
@@ -17,7 +18,7 @@ export default function ExamRunner() {
       mode="exam"
       durationMin={exam.durationMin}
       passingScore={exam.passingScore}
-      storageKey={`exam-${exam.slug}`}
+      storageKey={`exam-${subject ?? "macro"}-${exam.slug}`}
     />
   );
 }

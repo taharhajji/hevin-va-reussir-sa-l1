@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { chaptersByLang } from "../data/chapters";
+import { useChapters } from "../data/useSubjectData";
 import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 export default function Chapters() {
-  const { lang, t } = useLang();
-  const chapters = chaptersByLang[lang];
+  const { t } = useLang();
+  const { subject } = useSubject();
+  const chapters = useChapters();
+  const base = `/${subject ?? "macro"}`;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -17,7 +20,7 @@ export default function Chapters() {
         {chapters.map((c) => (
           <Link
             key={c.slug}
-            to={`/chapitres/${c.slug}`}
+            to={`${base}/chapitres/${c.slug}`}
             className={`card-tilt block rounded-2xl p-6 bg-gradient-to-br ${c.color} text-white shadow-md`}
           >
             <div className="flex items-center justify-between">

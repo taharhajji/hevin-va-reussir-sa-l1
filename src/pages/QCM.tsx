@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { qcmByChapterByLang } from "../data/qcm";
+import { useQCMSets } from "../data/useSubjectData";
 import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 const colors = [
   "from-rose-400 to-orange-400",
@@ -11,8 +12,10 @@ const colors = [
 ];
 
 export default function QCM() {
-  const { lang, t } = useLang();
-  const sets = qcmByChapterByLang[lang];
+  const { t } = useLang();
+  const { subject } = useSubject();
+  const sets = useQCMSets();
+  const base = `/${subject ?? "macro"}`;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
@@ -25,7 +28,7 @@ export default function QCM() {
         {sets.map((q, i) => (
           <Link
             key={q.chapter}
-            to={`/qcm/ch${q.chapter}`}
+            to={`${base}/qcm/ch${q.chapter}`}
             className={`card-tilt block rounded-2xl p-6 text-white shadow-md bg-gradient-to-br ${colors[i]}`}
           >
             <div className="text-5xl">{q.emoji}</div>

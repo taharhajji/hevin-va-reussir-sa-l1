@@ -190,6 +190,51 @@ export const ui = {
   },
   mnemoTitle: { fr: "🎒 Mémo-techniques", tr: "🎒 Hafıza teknikleri" },
   numbersTitle: { fr: "🔢 Chiffres à retenir", tr: "🔢 Hatırlanacak rakamlar" },
+
+  // Splash / subject picker
+  splashKicker: { fr: "L1 LEA · AMU", tr: "L1 LEA · AMU" },
+  splashTitle: { fr: "Salut Hevin 👋", tr: "Selam Hevin 👋" },
+  splashSubtitle: {
+    fr: "Choisis ta matière pour démarrer.",
+    tr: "Başlamak için bir ders seç.",
+  },
+  splashMacroTitle: { fr: "Macroéconomie", tr: "Makroekonomi" },
+  splashMacroDesc: {
+    fr: "5 chapitres, 50 QCM, 2 examens blancs, exercices guidés. 100% prêt.",
+    tr: "5 bölüm, 50 soru, 2 deneme sınavı, rehberli alıştırmalar. %100 hazır.",
+  },
+  splashGestionTitle: { fr: "Gestion", tr: "Yönetim" },
+  splashGestionDesc: {
+    fr: "Cours simplifié, QCM par chapitre, examens blancs notés.",
+    tr: "Sadeleştirilmiş ders, bölüm bazlı testler, notlandırılmış deneme sınavları.",
+  },
+  splashGestionStatus: {
+    fr: "✨ 7 chapitres, 65 QCM, 2 examens blancs, exercices guidés.",
+    tr: "✨ 7 bölüm, 65 soru, 2 deneme sınavı, rehberli alıştırmalar.",
+  },
+  splashEnter: { fr: "Entrer →", tr: "Giriş →" },
+  splashHint: {
+    fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
+    tr: "Üst menüden istediğin zaman ders değiştirebilirsin.",
+  },
+
+  changeSubject: { fr: "← Changer de matière", tr: "← Ders değiştir" },
+  subjectMacro: { fr: "Macro", tr: "Makro" },
+  subjectGestion: { fr: "Gestion", tr: "Yönetim" },
+
+  // Gestion placeholder
+  gestionPlaceholderTitle: {
+    fr: "📦 Cours de gestion — bientôt disponible",
+    tr: "📦 Yönetim dersi — yakında",
+  },
+  gestionPlaceholderBody: {
+    fr: "Hevin, envoie-moi ton cours complet de gestion (PDF, photos, texte, peu importe) et je le transforme en :\n\n- Fiches simplifiées par chapitre avec mémo-techniques\n- QCM par chapitre avec correction immédiate\n- Examens blancs interactifs notés sur 20\n- Exercices guidés pas-à-pas\n- Formulaire récap\n\nLe tout en français **et** en turc, avec le même bouton de bascule.",
+    tr: "Hevin, tüm yönetim dersini bana gönder (PDF, fotoğraf, metin, ne olursa) ve şuna dönüştüreyim:\n\n- Hafıza tekniklerile bölüm bazlı sade fişler\n- Anında düzeltmeli bölüm testleri\n- 20 üzerinden notlandırılmış interaktif deneme sınavları\n- Adım adım rehberli alıştırmalar\n- Özet formül kâğıdı\n\nHepsi Fransızca **ve** Türkçe, aynı dil değiştirme butonuyla.",
+  },
+  gestionBackToMacro: {
+    fr: "En attendant, retourne sur la macro →",
+    tr: "Bu arada makroya geri dön →",
+  },
 };
 
 export type UIKey = keyof typeof ui;

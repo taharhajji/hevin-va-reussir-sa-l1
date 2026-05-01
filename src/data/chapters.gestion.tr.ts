@@ -1,0 +1,350 @@
+import type { Chapter } from "./chapters";
+
+export const chaptersGestionTr: Chapter[] = [
+  {
+    slug: "ch1",
+    number: 1,
+    title: "Fransa'da işletme",
+    emoji: "🏢",
+    hook: "Tanımlar, hukuki biçimler ve anahtar rakamlar.",
+    color: "from-emerald-400 to-teal-500",
+    duration: "20 dk",
+    intro:
+      "İşletme = **karar alma özerkliğine sahip** mal ve hizmet üretim **örgütsel birimi**. Fransa'da yaklaşık 4,75 milyon işletme var (INSEE 2022), farklı sektör ve büyüklüklerde.",
+    sections: [
+      {
+        emoji: "📖",
+        title: "INSEE tanımı",
+        body: '**"İşletme, kaynaklarının cari kullanımı için belirli bir karar verme özerkliğine sahip mal ve hizmet üretiminin örgütsel birimidir."**\n\nBir işletme şunlardan biri olabilir:\n\n- **Bağımsız hukuki birim** (gruba bağlı değil):\n  - **Bireysel işletme**: işletmecinin ayrı tüzel kişiliği yok. İşletme malvarlığı = kişisel malvarlığı.\n  - **Tüzel kişi**: kendi tüzel kişiliği var. Genellikle bir **şirket** (SA, SARL, SAS, SASU, EURL…).\n- **Bir gruba bağlı birim** (yan kuruluş).',
+      },
+      {
+        emoji: "⚖️",
+        title: "Ana hukuki biçimler",
+        body: "| Biçim | Tüzel kişilik | Min sermaye | Özellik |\n|---|---|---|---|\n| **Bireysel İşletme (EI)** | ❌ | 0 € | Malvarlığı karışmış (EIRL hariç) |\n| **EURL** | ✅ | 1 € | Tek ortaklı SARL |\n| **SARL** | ✅ | 1 € | 2-100 ortak. Sınırlı sorumluluk |\n| **SAS / SASU** | ✅ | 1 € | Çok esnek. Start-up'lar için tercih edilir |\n| **SA** | ✅ | 37 000 € | En az 2 hissedar (kotedeyse 7). Ağır yapı |\n\n💡 **Sınırlı sorumluluk** = iflas durumunda en fazla katkını kaybedersin (evini değil).",
+      },
+      {
+        emoji: "📊",
+        title: "İstatistikler (INSEE 2022)",
+        body: "Fransa: ticari, tarım dışı, finans dışı sektörlerde **~4,75 milyon** işletme.\n\n**Sektöre göre dağılım**:\n- Hizmetler (ticaret/ulaşım hariç): işletmelerin ≈ **%63**'ü\n- Ticaret: ≈ %15\n- İnşaat: ≈ %12\n- Sanayi: ≈ %6\n- Ulaştırma/depolama: ≈ %4\n\n**Büyüklük (çalışan sayısına göre)**:\n- **TPE**: < 10 çalışan (büyük çoğunluk)\n- **PME (KOBİ)**: 10-249 çalışan\n- **ETI**: 250-4 999 çalışan\n- **GE (büyük işletme)**: ≥ 5 000 çalışan\n\nTicari sektörler EQTP olarak yaklaşık 15,4 M çalışan istihdam ediyor.",
+      },
+      {
+        emoji: "🎯",
+        title: "Hizmet sektörü ağırlıkta",
+        body: "Fransız işletmelerinin **%75'inden fazlası** hizmet sektöründe (tertiaire).\n\nBu durum şunu açıklar:\n- Bilançolar maddi sabit varlık olarak genellikle **daha hafif** (büyük fabrikalar yok).\n- **Personel giderleri** gelir tablosunda büyük yer tutar.\n- Ar-Ge, patent, yazılım (gayri maddi) yatırımlar daha önemli.",
+      },
+    ],
+    keyPoints: [
+      "İşletme = karar özerkliğine sahip üretim birimi",
+      "EI ≠ şirket: ayrı tüzel kişiliği yok",
+      "Şirket = tüzel kişi (SA, SARL, SAS, EURL, SASU…)",
+      "Fransa: ≈ 4,75 M işletme (2022)",
+      "Hizmet sektörü ≈ işletmelerin %75'i",
+      "TPE < 10 / PME 10-249 / ETI 250-4999 / GE ≥ 5000",
+    ],
+    pieges: [
+      "EI ≠ şirket: EI'de kişisel malvarlığın borçlardan sorumlu",
+      "« Entreprise » ekonomik bir terim, « société » hukuki",
+      "Büyük işletme nadir: işletmelerin %99'unda < 250 çalışan var",
+    ],
+  },
+  {
+    slug: "ch2",
+    number: 2,
+    title: "Muhasebe ve mali yönetim",
+    emoji: "📚",
+    hook: "İşletmenin ortak dili.",
+    color: "from-blue-400 to-cyan-500",
+    duration: "15 dk",
+    intro:
+      "**Muhasebe** mali bilgi düzenleme sistemidir. **Zorunludur** (Ticaret Kanunu 1807). Kayıt tutmaya, kanıtlamaya, sonucu belirlemeye, paydaşları bilgilendirmeye ve **mali yönetimi** hazırlamaya yarar.",
+    sections: [
+      {
+        emoji: "📜",
+        title: "Muhasebenin 5 rolü",
+        body: "1. **Kaydetmek** (kanıt: işlem izini saklar).\n2. **Yıllık sonucu belirlemek** (Gelir Tablosu) ve mal/borç durumunu (Bilanço) çıkarmak.\n3. **Bilgilendirmek**: vergi idaresi, bankacılar, çalışanlar, tedarikçi, müşteri, ortaklar…\n4. **Karşılaştırmak**: zaman içinde → yönetim aracı (öngörü, karar).\n5. **Mali yönetime temel oluşturmak** (finansman ihtiyaçları, kârlılık).",
+      },
+      {
+        emoji: "🔀",
+        title: "Genel muhasebe vs analitik muhasebe",
+        body: "**Genel muhasebe**: yıllık **bilanço** ve **gelir tablosuna** ulaşır. **Zorunlu**, PCG ile standartlaştırılmış.\n\n**İşletme analitik muhasebesi**: ürün, faaliyet veya hizmet bazında **maliyetleri** hesaplar. Stokları değerler. İsteğe bağlı, dahili kullanım.\n\n💡 Genel muhasebe *toplam ne kazandık* der. Analitik muhasebe *hangi ürün, hangi faaliyet sayesinde* der.",
+      },
+      {
+        emoji: "💼",
+        title: "Mali yönetim",
+        body: "Mali yönetim, **mali kararlar** almak için kullanılan yöntemleri kapsar:\n\n- Finansman ihtiyaçlarının **belirlenmesi** ve **ölçülmesi**.\n- İç (öz finansman) ve dış (kredi, sermaye artırımı) finansman olanaklarının **değerlendirilmesi** ve **güçlendirilmesi**.\n- **Yönlendirme**: kârlılık, ödeme gücü, nakit.\n\nMali yöneticiler bugün şirket stratejisi üzerinde büyük etkiye sahip.",
+      },
+      {
+        emoji: "🏛️",
+        title: "Yasal yükümlülükler",
+        body: "**1807 Ticaret Kanunu**:\n- *Madde 8*: tüm tüccarlar **günlük defter** tutmalı.\n- *Madde 9*: yıllık **envanter** yapmalı, hesapları kapatıp **bilanço** ve **kâr-zarar hesabı** çıkarmalı.\n\n**Saklama**: kanıt belgeleri en az **10 yıl** tutulmalı.",
+      },
+    ],
+    keyPoints: [
+      "5 rol: kaydet, sonuç çıkar, bilgilendir, karşılaştır, yönet",
+      "Muhasebe = yasal zorunluluk (Ticaret Kanunu 1807)",
+      "Belge saklama: 10 yıl",
+      "Genel muhasebe → bilanço + gelir tablosu",
+      "Analitik muhasebe → ürün/faaliyet maliyetleri",
+      "PCG (Genel Muhasebe Planı) her şeyi standartlaştırır",
+    ],
+    pieges: [
+      "Genel ≠ analitik (1.si zorunlu, 2.si isteğe bağlı)",
+      "Muhasebe lüks değil: yasal zorunluluk",
+      "Belgeler 10 yıl saklanır, 5 değil",
+    ],
+  },
+  {
+    slug: "ch3",
+    number: 3,
+    title: "Bilanço & gelir tablosu",
+    emoji: "⚖️",
+    hook: "Her şeyi özetleyen 2 belge.",
+    color: "from-violet-400 to-purple-500",
+    duration: "30 dk",
+    intro:
+      "**Mali tablolar** muhasebe bilgisinin temel kaynağıdır. İki ana belge: bir dönemin **performansını** gösteren **Gelir Tablosu** (CR) ve belirli bir tarihteki **malvarlığını** gösteren **Bilanço**.",
+    sections: [
+      {
+        emoji: "📈",
+        title: "Gelir Tablosu (CR)",
+        body: "CR bir dönemin (= 1 yıl, genellikle 1 Ocak - 31 Aralık) **giderlerini** ve **gelirlerini** birleştirir.\n\n**Giderler** = tüketilen (harcama):\n- *İşletme*: alımlar, maaşlar, kiralar, elektrik…\n- *Mali*: kredi faizleri.\n- *Olağandışı*: varlık satışında zarar.\n\n**Gelirler** = giren (kaynak):\n- *İşletme*: satışlar, hizmetler.\n- *Mali*: alınan faiz, yatırım gelirleri.\n- *Olağandışı*: satıştan kâr.\n\n$$ \\boxed{\\text{Sonuç} = \\text{Toplam Gelir} - \\text{Toplam Gider}} $$\n\n- > 0 → **Kâr**\n- < 0 → **Zarar**",
+      },
+      {
+        emoji: "🏦",
+        title: "Bilanço: aktif ve pasif",
+        body: "Bilanço belirli bir tarihteki **malvarlığı durumunu** gösterir. Her zaman:\n\n$$ \\boxed{\\text{TOPLAM AKTİF} = \\text{TOPLAM PASİF}} $$\n\n**AKTİF (Kullanım)** = işletmenin sahip olduğu:\n- **Sabit varlıklar**: 1 yıldan fazla kullanılan.\n  - **Gayri maddi** (patent, yazılım, şerefiye)\n  - **Maddi** (arsa, bina, makine, araç)\n  - **Mali** (uzun vadeli menkul, kredi, depozito)\n- **Dönen varlıklar**: hızla dönüşen.\n  - Stoklar (hammadde, ticari mal, mamul)\n  - Müşteri alacakları\n  - Spekülatif menkul kıymetler\n  - Hazır değerler (banka, kasa)\n\n**PASİF (Kaynak)** = işletmenin borçlu olduğu:\n- **Özsermaye**: iç kaynaklar.\n  - Sermaye, Yedekler, Dönem sonucu.\n- **Borçlar**:\n  - Banka kredileri.\n  - Tedarikçi borçları.\n  - Vergi ve sosyal güvenlik borçları (KDV, URSSAF, IS).",
+      },
+      {
+        emoji: "🔗",
+        title: "Bilanço ↔ Gelir Tablosu bağlantısı",
+        body: "Gelir tablosundaki **sonuç**, bilançoda **özsermayede** yer alır.\n\n- **Kâr** → özsermayeyi **artırır** (dağıtılmazsa yedeklere eklenir).\n- **Zarar** → özsermayeyi **azaltır**.\n\nCR bir **dönemin performansını** ölçer. Bilanço bir **andaki durumu** kaydeder. Sonuç, akışın (CR) stoktaki (Bilanço) etkisidir.",
+      },
+      {
+        emoji: "🧮",
+        title: "Bilançonun standart sunumu",
+        body: "**AKTİF** (sol):\n```\nSABİT VARLIKLAR\n  Gayri maddi sabit varlıklar\n  Maddi sabit varlıklar\n  Mali sabit varlıklar\n  TOPLAM I\nDÖNEN VARLIKLAR\n  Stoklar\n  Alacaklar\n  Menkul değerler\n  Hazır değerler\n  TOPLAM II\nTOPLAM AKTİF (I + II)\n```\n\n**PASİF** (sağ):\n```\nÖZSERMAYE\n  Sermaye\n  Yedekler\n  Dönem sonucu\n  TOPLAM I\nBORÇLAR\n  Krediler ve mali borçlar\n  Tedarikçiler\n  Vergi ve sosyal güv. borçları\n  TOPLAM II\nTOPLAM PASİF (I + II)\n```",
+      },
+    ],
+    keyPoints: [
+      "Gelir Tablosu = Gelir − Gider, dönem boyunca",
+      "Bilanço: Aktif (kullanım) = Pasif (kaynak)",
+      "Sabit varlık > 1 yıl / Dönen varlık < 1 yıl",
+      "Özsermaye = Sermaye + Yedekler + Sonuç",
+      "Kâr ↑ özsermaye; Zarar ↓ özsermaye",
+      "Toplam Aktif = Toplam Pasif (her zaman)",
+      "İşletme, mali, olağandışı sonuç: 3 seviye",
+    ],
+    pieges: [
+      "Hazır değerler (kasa, banka) AKTİFte, pasifte değil",
+      "Bir kredi PASİFte (borç), aktifte değil",
+      "Bilançodaki « sermaye » = INSEE'nin « sosyal sermayesi »",
+      "Müşteri alacakları AKTİFte (para bekliyoruz)",
+      "Tedarikçi borçları PASİFte (para borçluyuz)",
+    ],
+  },
+  {
+    slug: "ch4",
+    number: 4,
+    title: "Muhasebe kaydı ve PCG",
+    emoji: "✏️",
+    hook: "Borç, alacak, çift taraflı kayıt.",
+    color: "from-amber-400 to-orange-500",
+    duration: "30 dk",
+    intro:
+      "Tüm işlemler **çift taraflı kayıt ilkesine** göre kaydedilir: her akışın bir **kaynağı** (alacak) ve bir **kullanım yeri** (borç) vardır. **PCG** (Genel Muhasebe Planı) tüm hesapları 10 sınıfa ayırır.",
+    sections: [
+      {
+        emoji: "🔄",
+        title: "Çift taraflı kayıt ilkesi",
+        body: "**Her muhasebe işlemi** en az **2 hesabı** dengede tutar:\n\n- **BORÇ (Débit)** = sol = **KULLANIM** (akışın yönü)\n- **ALACAK (Crédit)** = sağ = **KAYNAK** (akışın çıkışı)\n\n$$ \\boxed{\\text{KULLANIMLAR} = \\text{KAYNAKLAR}} $$\n\n**Örnek**: 1 800 € bilgisayar alımı çekle ödendi.\n- Kullanım: **Bilişim malzemesi** hesabı 1 800 borçlanır.\n- Kaynak: **Banka** hesabı 1 800 alacaklanır.\n\n💡 Bir hesabın bakiyesi = **Toplam borç − Toplam alacak**.\n- **Borç bakiye** if borç > alacak (aktif tipik).\n- **Alacak bakiye** if alacak > borç (pasif veya gelir tipik).",
+      },
+      {
+        emoji: "📋",
+        title: "Bilanço hesapları vs gelir hesapları",
+        body: "**Bilanço hesapları** (malvarlığı):\n- Sınıflar **1** (sermaye), **2** (sabit varlık), **3** (stok), **4** (üçüncü kişiler), **5** (mali).\n\n**Gelir hesapları** (her dönem sonunda boşaltılır):\n- Sınıf **6**: **Giderler** (alım, maaş, vergi, faiz…)\n- Sınıf **7**: **Gelirler** (satış, hizmet, alınan faiz…)\n\n**Hareket yönleri**:\n| Tip | Artar | Azalır |\n|---|---|---|\n| Aktif (Sn. 2, 3, 4 müşteri, 5 banka) | Borç | Alacak |\n| Pasif (Sn. 1, 4 tedarikçi, borç) | Alacak | Borç |\n| Gider (Sn. 6) | Borç | Alacak |\n| Gelir (Sn. 7) | Alacak | Borç |",
+      },
+      {
+        emoji: "🔢",
+        title: "PCG'nin 10 sınıfı",
+        body: "| Sınıf | Tip | Örnekler |\n|---|---|---|\n| **1** | Sermaye | Sermaye, Yedekler, Krediler |\n| **2** | Sabit varlıklar | Arsa, Bina, Patent |\n| **3** | Stoklar | Hammadde, Ticari mal |\n| **4** | Üçüncü kişiler | Müşteri (411), Tedarikçi (401), Devlet (44) |\n| **5** | Mali | Banka (512), Kasa (530) |\n| **6** | Giderler | Alım (60), Personel (64), Vergi (63) |\n| **7** | Gelirler | Satış (70), Mali gelir (76) |\n| 8 | Özel hesaplar | (az kullanılır) |\n| 9 | Analitik muhasebe | (dahili) |\n| 0 | Serbest | — |\n\n💡 **Mnemo**: *Sermaye, Sabit, Stok, Üçüncü kişi, Mali, Gider, Gelir* (1-2-3-4-5-6-7).",
+      },
+      {
+        emoji: "📜",
+        title: "PCG'nin 7 ilkesi",
+        body: "PCG **gerçek imaj**ı 7 ilkeyle garanti eder:\n\n1. **Karşılaştırılabilirlik ve faaliyetin sürekliliği** (işletme devam edecek varsayılır).\n2. **Sorumluların samimiyeti**.\n3. **Değerlemede ihtiyat** (varlık ve gelirleri abartmamak).\n4. **Yöntemlerin sürekliliği** (her dönem aynı kurallar).\n5. **Tarihi maliyet** (alış fiyatından kaydet, güncel değerinden değil).\n6. **Aktif-pasif denkleştirme yasağı**.\n7. **Dönemsel bağımsızlık** (her gider tüketildiği dönemde).",
+      },
+      {
+        emoji: "📚",
+        title: "Muhasebe organizasyonu",
+        body: "**Belgeden sentez tablosuna**:\n\n1. **Muhasebe belgesi** = temel belge (fatura, fiş, transfer emri). 10 yıl saklanmalı.\n2. **Yevmiye defteri** = tüm kayıtlar **kronolojik sırayla**.\n3. **Defteri kebir** = açılan tüm hesaplar, numaraya göre sınıflandırılmış.\n4. **Mizan** = tüm hesaplar borç/alacak/bakiye ile. Denetim için.\n5. **Sentez belgeleri**: Bilanço + Gelir Tablosu + Ek.\n\n💡 Mizan **denetim**dir: Toplam borç = Toplam alacak, her zaman.",
+      },
+    ],
+    keyPoints: [
+      "Çift taraflı: Kullanımlar = Kaynaklar",
+      "Borç = sol = kullanım; Alacak = sağ = kaynak",
+      "Aktif ve Giderler borçta artar",
+      "Pasif ve Gelirler alacakta artar",
+      "PCG'nin 10 sınıfı; 1-7 esas",
+      "Sınıf 6 = Gider; Sınıf 7 = Gelir",
+      "Belge → Yevmiye → Defteri kebir → Mizan → Bilanço + CR",
+    ],
+    pieges: [
+      "Gider borç değil: gider CR'de (sn. 6), borç bilançoda (sn. 4)",
+      "Alacak ≠ « para sahibi olmak » — hesaba bağlı",
+      "« Banka » hesabında borç bakiye = paramız var (işletme tarafı)",
+      "Brüt maaş ≠ personel ücreti: primler ve sosyal güvenlik ayrı",
+    ],
+  },
+  {
+    slug: "ch5",
+    number: 5,
+    title: "Paydaşlar ve KDV",
+    emoji: "🤝",
+    hook: "Alımlar, satışlar, maaş, KDV, banka.",
+    color: "from-rose-400 to-pink-500",
+    duration: "35 dk",
+    intro:
+      "İşletme **tedarikçiler, müşteriler, çalışanlar, devlet, bankalarla** etkileşir. Her işlemin tipik bir muhasebe kaydı vardır. **KDV** merkezi: satışlardan toplanır, alımlardan düşülür, fark devlete ödenir.",
+    sections: [
+      {
+        emoji: "📦",
+        title: "Alımlar: tedarikçi faturası",
+        body: "Alım faturası şöyle ayrılır:\n\n```\nBrüt KDV hariç\n− Ticari indirimler (rabat, indirim, ciro primi)\n= Net ticari KDV hariç\n− Mali indirim (peşin ödeme indirimi)\n= Net mali KDV hariç\n+ KDV (genelde %20)\n= Net ödenecek (KDV dahil)\n```\n\n**Kredili alım kaydı**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 60_ Alımlar (gider) | Net KDV harç | |\n| 44566 İndirilebilir KDV | KDV | |\n| 401 Tedarikçi | | Net ödenecek KDV dahil |\n\n**Peşin ödemeli ise**: 401 yerine 512 Banka veya 530 Kasa.\n\n💡 *İndirimler*:\n- **Rabat**: uygunsuzluk veya gecikme.\n- **İndirim (Remise)**: önemli müşteri/sipariş.\n- **Ciro primi (Ristourne)**: yıl sonu sadakat.\n- **Peşin ödeme indirimi (Escompte)**: peşin veya erken ödeme.",
+      },
+      {
+        emoji: "💰",
+        title: "Satışlar: müşteri faturası",
+        body: "**Kredili satış kaydı**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 411 Müşteri | Net ödenecek KDV dahil | |\n| 70_ Satışlar (gelir) | | Net KDV harç |\n| 44571 Tahsil edilen KDV | | KDV |\n\n**Peşin ödemeli ise**: 411 yerine 512 Banka veya 530 Kasa.\n\n💡 Müşteri para borçlu → **alacak** → AKTİF.\nTahsil edilen KDV işletmenin değil → Devlete **borç** → PASİF.",
+      },
+      {
+        emoji: "💸",
+        title: "KDV: ilke",
+        body: "**Katma Değer Vergisi**: **dolaylı** vergi, **son tüketicinin** üzerinde ama **işletmeler tarafından toplanır**.\n\n**Mekanizma**:\n- İşletme satışlardan KDV **toplar** (44571 - pasif).\n- Alımlardan KDV **düşer** (44566 - aktif).\n- Devlete öder: **Ödenecek KDV = Toplanan KDV − İndirilebilir KDV**.\n\n$$ \\boxed{\\text{Ödenecek KDV} = \\text{Toplanan KDV} - \\text{İndirilebilir KDV}} $$\n\n**Fransa'da ana oranlar (2024)**:\n| Oran | Uygulama |\n|---|---|\n| **%20** | **Normal** oran (mal ve hizmetlerin çoğu) |\n| **%10** | Restoran, ulaşım, tadilat |\n| **%5,5** | Gıda, kitap, enerji |\n| **%2,1** | Geri ödenen ilaçlar, basın, TV royalti |\n\n💡 KDV işletme için **nötrdür**: sadece geçer. Ama kötü yönetimde nakdi tıkar.",
+      },
+      {
+        emoji: "👷",
+        title: "Çalışanlar ve sosyal kuruluşlar",
+        body: "**Maaş bordrosu**:\n```\nBrüt maaş\n− Çalışan primleri (sosyal güvenlik vs) ≈ %22\n= Net maaş\n```\n\nİşletme ayrıca **işveren primlerini** öder (brütün ≈ %25-42).\n\n**Toplam işveren maliyeti** = Brüt + işveren primleri.\n\n**Maaş kaydı** (2-3 aşamada):\n\n*1. Maaş kaydı (brüt)*:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 641 Personel ücreti | Brüt | |\n| 421 Personel — ödenecek ücretler | | Net |\n| 43 Sosyal güv. kuruluşları | | Çalışan primleri |\n\n*2. İşveren ücretleri*:\n| 645 Sosyal güv. ücreti | İşveren primleri | |\n| 43 Sosyal güv. kuruluşları | | İşveren primleri |\n\n*3. URSSAF'a prim ödemesi (sonraki ayın 10'unda)*:\n| 43 Sosyal güv. kuruluşları | Toplam primler | |\n| 512 Banka | | Toplam primler |",
+      },
+      {
+        emoji: "🏛️",
+        title: "Devlet ve banka",
+        body: "**Devlet**:\n- Hesap **44** = Üçüncü kişi Devlet.\n- 44566 İndirilebilir KDV (alımda), 44571 Tahsil KDV (satışta), 44551 Ödenecek KDV.\n- **IS** (Kurumlar vergisi): hesap 695, mali kâr üzerinden.\n\n**Banka**:\n- Hesap **512** Banka.\n- Hesap **530** Kasa (nakit).\n- Hesap **514** Posta çeki.\n- **Borç bakiye** = paramız var. **Alacak bakiye** = açıkta.\n\n**Günlük işlemler**:\n- Müşteri çek tahsili: 512 Banka (B) / 411 Müşteri (A).\n- Tedarikçi ödemesi: 401 Tedarikçi (B) / 512 Banka (A).\n- Kasaya banka yatırışı: 512 Banka (B) / 530 Kasa (A).",
+      },
+    ],
+    keyPoints: [
+      "Kredili alım: 60_ + 44566 KDV ind. borç, 401 Tedarikçi alacak",
+      "Kredili satış: 411 Müşteri borç, 70_ + 44571 KDV tah. alacak",
+      "Ödenecek KDV = Toplanan KDV − İndirilebilir KDV",
+      "Ana KDV oranları: %20 / %10 / %5,5 / %2,1",
+      "Net maaş = brüt − çalışan primleri",
+      "İşveren maliyeti = brüt + işveren primleri",
+      "İndirimler: rabat (kusur), indirim (müşteri), ciro primi (sadakat), peşin ödeme",
+    ],
+    pieges: [
+      "İndirilebilir KDV (alınan) ≠ Tahsil KDV (satılan) ≠ Ödenecek KDV (fark)",
+      "Peşin ödeme indirimi MALİ (peşin için), ticari değil",
+      "Stoklanan alımlar (607) ≠ Stoklanmayan alımlar (606) — kırtasiye, su, elektrik",
+      "Brüt maaş ≠ işveren maliyeti — işveren primlerini ekle (~%25-42)",
+      "Tahsil edilen KDV Devlete BORÇtur, gelir değil",
+    ],
+  },
+  {
+    slug: "ch6",
+    number: 6,
+    title: "Yatırım ve finansman",
+    emoji: "🏗️",
+    hook: "Dayanıklı satın al, projeyi finanse et.",
+    color: "from-cyan-400 to-blue-500",
+    duration: "20 dk",
+    intro:
+      "**Yatırım** = **dayanıklı** bir varlık alımı (> 1 yıl). Muhasebede **sabit varlık** (sınıf 2). Finanse etmek için: öz finansman, sermaye artırımı, kredi, finansal kiralama.",
+    sections: [
+      {
+        emoji: "🛠️",
+        title: "Gider mi sabit varlık mı?",
+        body: "**Kriter**: kullanım süresi.\n\n- **Gider (sınıf 6)**: dönemde **tüketilen**.\n  - Ör: kağıt, temizlik, elektrik, uçak bileti.\n- **Sabit varlık (sınıf 2)**: > **1 yıl** kullanılan.\n  - Ör: bilgisayar, yazıcı, vitrin, koltuk, alarm, araç.\n\n**Pratik eşik**: düşük değerli (< 500 € KDV harç) bir mal > 1 yıl bile dayansa gider sayılabilir, basitleştirme için.\n\n**3 sabit varlık kategorisi**:\n- **Gayri maddi** (sn. 20-21): patent, yazılım, şerefiye.\n- **Maddi** (sn. 21): arsa, bina, makine, mobilya.\n- **Mali** (sn. 26-27): uzun vadeli hisse, kredi, depozito.",
+      },
+      {
+        emoji: "📝",
+        title: "Sabit varlık alım kaydı",
+        body: "**Kredili sabit varlık alımı**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 21_ Maddi sabit varlıklar (veya 20_) | KDV harç | |\n| 44562 Sabit varlık üzerinde indirilebilir KDV | KDV | |\n| **404 Sabit varlık tedarikçisi** | | Net KDV dahil |\n\n💡 **Dikkat**: **404 Sabit varlık tedarikçisi** kullanılır (klasik 401 değil). Aynı şekilde sabit varlık KDV'si için **44562** (44566 değil).\n\n**Peşin ödeme**: 404 yerine 512 Banka.",
+      },
+      {
+        emoji: "💼",
+        title: "4 finansman yolu",
+        body: "**1. Öz finansman (iç)**\n- Dağıtılmamış kâr → **yedeklere**.\n- **Amortisman karşılıkları** (kasadan çıkmayan gider).\n- Varlık satışı.\n\n**2. Sermaye artırımı (iç / karma)**\n- Yeni hisse / pay senedi ihracı.\n- Özsermayeyi güçlendirir.\n\n**3. Banka kredisi (dış)**\n- Orta veya uzun vadeli.\n- Mali giderler (faizler).\n- Banka teminat ister.\n\n**4. Finansal kiralama (dış)**\n- İşletme malı kiralar, sahibi olmadan.\n- Sonunda satın alma opsiyonu (kalıntı değer).\n- Bilançoda görünmez (veya bilanço dışı taahhütte).",
+      },
+      {
+        emoji: "🎯",
+        title: "Seçim kriterleri",
+        body: "**Finansman seçimi** şuna bağlı:\n\n- **Öz Finansman Kapasitesi (CAF)** = Kâr + Amortismanlar.\n- **Maliyet**: faiz oranı vs projenin iç kârlılık oranı (TRI).\n- **Bilanço etkisi**: kredi borcu artırır; sermaye artırımı kontrolü dilüe eder.\n- **Süre**: öz finansman = yavaş; kredi = hızlı.\n- **Ödeme gücü**: borç/özsermaye oranı < 1 ideal.\n\n💡 **Kaldıraç etkisi**: proje getirisi > faiz oranıysa, kredi özsermaye kârlılığını büyütür. Aksi halde ezer (sopa etkisi).",
+      },
+    ],
+    keyPoints: [
+      "Gider (sn. 6) dönemde tüketilirse; Sabit varlık (sn. 2) > 1 yıl",
+      "404 Sabit varlık tedarikçisi (≠ 401 İşletme tedarikçisi)",
+      "44562 Sabit varlık KDV (≠ 44566 Alım KDV)",
+      "3 kategori: gayri maddi, maddi, mali",
+      "4 finansman: öz finansman, sermaye artırımı, kredi, finansal kiralama",
+      "CAF = Kâr + Amortisman karşılıkları",
+      "Kaldıraç: getiri > faiz ise kredi kârlılığı büyütür",
+    ],
+    pieges: [
+      "404 ≠ 401: sınavda önemli",
+      "1 yıldan fazla kullanılan araba = sabit varlık, gider değil",
+      "1 yıldan fazla kullanılan yazılım = GAYRİ MADDİ sabit varlık",
+      "Finansal kiralamada: kira süresi boyunca sahip değiliz",
+      "Amortisman ödemesizdir, sadece muhasebe",
+    ],
+  },
+  {
+    slug: "ch7",
+    number: 7,
+    title: "Envanter ve kapanış",
+    emoji: "📅",
+    hook: "Amortisman, karşılık, yıllık hesap.",
+    color: "from-yellow-400 to-amber-500",
+    duration: "25 dk",
+    intro:
+      "Her dönem sonunda işletme **envanter** yapar: stok sayımı, hesap doğrulama, **amortisman** ve **karşılık** hesapları. **Sentez belgelerinin** (bilanço + gelir tablosu + ek) hazırlandığı andır.",
+    sections: [
+      {
+        emoji: "📋",
+        title: "Envanter kavramı",
+        body: "**Envanter** (Ticaret Kanunu m. 9) = aktif ve pasif unsurların yıllık sayımı.\n\n**Adımlar**:\n1. **Fiziksel envanter** (sayım).\n2. **Bakiye doğrulama** (banka mutabakatı, alacak, borç).\n3. **Düzenleme**: amortisman, karşılık, peşin ödenmiş gider, gerçekleşmemiş gelir…\n4. **Yıllık hesap üretimi**.\n\n💡 Envanter, **gerçeği** (fiziksel) muhasebe **defteriyle** uzlaştırma fırsatıdır.",
+      },
+      {
+        emoji: "📉",
+        title: "Amortismanlar",
+        body: "**Tanım**: bir sabit varlığın **kullanım** veya **zaman** nedeniyle uğradığı **değer kaybı**nın muhasebe kaydı.\n\nBir sabit varlık her yıl **değer kaybeder** → **amortisman karşılığı** kaydedilir (gider).\n\n**Doğrusal amortisman**:\n$$ \\text{Yıllık tutar} = \\frac{\\text{Edinim değeri}}{\\text{Yararlı ömür}} $$\n\n**Örnek**: 30 000 € KDV harç kamyon, 5 yıl ömür.\n- Yıllık = 30 000 / 5 = **6 000 €/yıl**.\n- 3 yıl sonra: birikmiş amortisman = 18 000 €. Net Defter Değeri (VNC) = 30 000 − 18 000 = **12 000 €**.\n\n**Yıllık kayıt**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 681 Amortisman karşılıkları (gider) | Yıllık | |\n| 281 Sabit varlıkların amortismanı | | Yıllık |\n\n💡 Amortisman **ödeme değildir**: sonuca etki eder ama nakit çıkmaz. **Öz finansman kapasitesi** üretir.\n\n**Tipik süreler**:\n| Mal | Süre |\n|---|---|\n| Bina | 20-50 yıl |\n| Sanayi malzemesi | 5-10 yıl |\n| Araç | 4-5 yıl |\n| Bilişim malzemesi | 3 yıl |\n| Yazılım | 1-3 yıl |",
+      },
+      {
+        emoji: "⚠️",
+        title: "Karşılıklar",
+        body: "**Karşılık** = belirsiz ama muhtemel bir **risk** veya **gider** kaydı.\n\n**İhtiyat ilkesini** uygular: muhtemel zararları kaydet, muhtemel kazançları kaydetme.\n\n**Tipler**:\n- **Değer düşüklüğü karşılıkları**: şüpheli alacak, eski stok, hisse değer kaybı.\n- **Risk ve gider karşılıkları**: dava, ürün garantisi, yeniden yapılandırma.\n\n**Tipik kayıt**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 68_ Karşılık ayırma (gider) | Tutar | |\n| 49_ Değer düşüklüğü karşılığı (veya 15) | | Tutar |\n\nÇözüldüğünde:\n- Zarar gerçekleşirse: karşılık kapatılır, gerçek gider kaydedilir.\n- Zarar olmazsa: karşılık **iptal edilir** (78_ Karşılık iptalleri, gelir).",
+      },
+      {
+        emoji: "📑",
+        title: "Sentez belgeleri",
+        body: "**3 yıllık zorunlu belge**:\n\n1. **Bilanço**: dönem son günündeki malvarlığı.\n2. **Gelir Tablosu**: dönemin performansı.\n3. **Ek (Annexe)**: tamamlayıcı bilgiler (muhasebe yöntemleri, sabit varlık detayları, bilanço dışı taahhütler…).\n\nOlmaları gereken:\n- **Düzenli**: muhasebe kurallarına uygun.\n- **Samimi**: gerçeği yansıtan.\n- **Gerçek imaj** veren: mali durum, performans ve nakit.\n\n💡 Şirketler için bu belgeler her yıl **ticaret mahkemesi siciline** depozito edilir, kamuya açık (Infogreffe).",
+      },
+    ],
+    keyPoints: [
+      "Envanter = zorunlu yıllık sayım (Ticaret Kanunu m. 9)",
+      "Doğrusal amortisman = Edinim değeri / Yararlı ömür",
+      "VNC = Edinim değeri − Birikmiş amortisman",
+      "Amortisman = nakit çıkmayan gider → CAF",
+      "Karşılıklar = ihtiyat ilkesi (muhtemel riskler)",
+      "3 belge: Bilanço + Gelir Tablosu + Ek",
+      "Bilişim 3 yıl, araç 5 yıl, bina 20-50 yıl",
+    ],
+    pieges: [
+      "Amortisman ödeme DEĞİLDİR (sadece muhasebe maliyeti)",
+      "Maddi ve gayri maddi amortisman edilir, arsa amortise olmaz (sınırsız ömür)",
+      "Karşılık ≠ amortisman: karşılık belirsiz risk için; amortisman kesin aşınma için",
+      "VNC 0'a düşebilir ama mal fiziksel olarak var olmaya devam eder",
+      "Ekler zorunludur: « bonus » değildir",
+    ],
+  },
+];

@@ -1,0 +1,382 @@
+import type { ExerciseSection } from "./exercises";
+
+export const exerciseSectionsGestionTr: ExerciseSection[] = [
+  {
+    slug: "compte-resultat",
+    title: "Gelir Tablosu",
+    emoji: "📈",
+    intro: "Sonuç = Toplam Gelir − Toplam Gider. **3 seviye**: işletme, mali, olağandışı.",
+    formula: "\\text{Sonuç} = \\text{Toplam Gelir} - \\text{Toplam Gider}",
+    exercises: [
+      {
+        id: "cr-1",
+        title: "EURL Moulay (ders örneği)",
+        emoji: "🏫",
+        category: "Hizmet CR'si",
+        prompt:
+          "EURL Moulay (sürücü kursu) — Dönem N:\n- Yakıt alımı: 24 000\n- Kırtasiye: 6 000\n- Kira: 16 000\n- Vergi: 900\n- Maaş: 76 000\n- Araç amortismanı: 7 000\n- Kredi faizi: 900\n- Hizmet geliri: 122 000\n\nGelir tablosunu sun ve sonucu hesapla.",
+        hint: "İşletme, mali, olağandışı giderler. Tek mali unsur kredi faizi.",
+        steps: [
+          "İşletme giderleri = 24 000 + 6 000 + 16 000 + 900 + 76 000 + 7 000 = **129 900**",
+          "Mali gider = 900 (kredi faizi)",
+          "Olağandışı gider = 0",
+          "Toplam Gider = 129 900 + 900 = **130 800**",
+          "İşletme gelirleri = 122 000",
+          "Toplam Gelir = **122 000**",
+          "Sonuç = 122 000 − 130 800 = **−8 800 (zarar)**",
+        ],
+        answer: "8 800 € zarar",
+      },
+      {
+        id: "cr-2",
+        title: "Kârlı profil",
+        emoji: "💰",
+        category: "Sonuç hesabı",
+        prompt:
+          "Danışmanlık şirketi: CA = 250 000; Alım = 30 000; Maaş+prim = 120 000; Kira = 24 000; Vergi = 6 000; Kredi faizi = 4 000; Mali gelir = 1 500.\n\nİşletme sonucunu ve net sonucu (IS öncesi) hesapla.",
+        steps: [
+          "İşletme giderleri = 30 000 + 120 000 + 24 000 + 6 000 = **180 000**",
+          "İşletme sonucu = 250 000 − 180 000 = **70 000**",
+          "Mali sonuç = 1 500 − 4 000 = **−2 500**",
+          "Net sonuç (IS öncesi) = 70 000 − 2 500 = **67 500**",
+        ],
+        answer: "İşletme sonucu: 70 000. Net sonuç IS öncesi: 67 500.",
+      },
+      {
+        id: "cr-3",
+        title: "3 seviye ayrımı",
+        emoji: "🎯",
+        category: "Sınıflandırma",
+        prompt:
+          "Bu işlemleri 3 kategoriye sınıfla (işletme / mali / olağandışı):\n\n1. Mal satışı: 100 000\n2. Hammadde alımı: 40 000\n3. Yatırım faiz geliri: 2 000\n4. Araç satışı kazancı: 5 000\n5. Maaş: 30 000\n6. Kredi faizi: 3 000\n7. Vergi cezası: 800\n8. Kira: 12 000",
+        steps: [
+          "**İşletme**: 1 (gelir), 2, 5, 8 (gider)",
+          "**Mali**: 3 (gelir), 6 (gider)",
+          "**Olağandışı**: 4 (gelir), 7 (gider)",
+        ],
+        answer: "İşl.: 1, 2, 5, 8 / Mali: 3, 6 / Olağ.: 4, 7.",
+      },
+    ],
+  },
+  {
+    slug: "bilan",
+    title: "Bilanço",
+    emoji: "⚖️",
+    intro: "Toplam Aktif = Toplam Pasif. Her unsuru doğru yere koy.",
+    formula: "\\text{Toplam Aktif} = \\text{Toplam Pasif}",
+    exercises: [
+      {
+        id: "bil-1",
+        title: "SAS Raoul (ders örneği)",
+        emoji: "🏗️",
+        category: "Açılış + Kapanış bilançosu",
+        prompt:
+          "SAS Raoul 1 Temmuz N'de kuruldu:\n- Bina: 240 000\n- Malzeme: 25 000\n- Hammadde: 14 000\n- Banka: 21 000\n- Kredi: 50 000\n\n31 Aralık N'de: Bina 228 000; Malzeme 22 500; Kamyonet 26 000; Hammadde 8 000; Mamul 7 000; Alacak 5 000; Banka 3 500; Sermaye değişmedi; Kredi 45 000; Tedarikçi 12 000; Vergi borcu 4 000.\n\n1) Sosyal sermayeyi hesapla. 2) Dönem sonucunu hesapla.",
+        hint: "Sermaye = Apport (kredi düşülmüş). Sonuç şöyle ki Toplam Aktif = Toplam Pasif.",
+        steps: [
+          "Apportlar: 240 000 + 25 000 + 14 000 + 21 000 = **300 000**",
+          "Düşülecek kredi: 50 000",
+          "**Sermaye = 300 000 − 50 000 = 250 000**",
+          "Toplam Aktif (31/12) = 228 000 + 22 500 + 26 000 + 8 000 + 7 000 + 5 000 + 3 500 = **300 000**",
+          "Özsermaye = Toplam Aktif − Borç = 300 000 − (45 000 + 12 000 + 4 000) = 300 000 − 61 000 = **239 000**",
+          "Sonuç = Özsermaye − Sermaye − Yedek = 239 000 − 250 000 − 0 = **−11 000 (zarar)**",
+        ],
+        answer: "Sermaye = 250 000. Sonuç = −11 000 (zarar).",
+      },
+      {
+        id: "bil-2",
+        title: "Sermaye hesabı",
+        emoji: "💼",
+        category: "Sosyal sermaye",
+        prompt:
+          "M. Dupont SARL kurar:\n- Aynı katkılar: araç 12 000 + malzeme 8 000\n- Nakdi katkılar: 30 000 banka hesabında\n- Araç kısmen 5 000 kredi ile finanse edildi\n\nSosyal sermaye?",
+        steps: [
+          "Aynı katkılar = 12 000 + 8 000 = **20 000**",
+          "Nakdi katkılar = **30 000**",
+          "Toplam katkı = 50 000",
+          "− Kredi = 5 000",
+          "**Sosyal sermaye = 50 000 − 5 000 = 45 000 €**",
+        ],
+        answer: "45 000 €",
+      },
+      {
+        id: "bil-3",
+        title: "Her unsuru yerleştir",
+        emoji: "🧩",
+        category: "Aktif vs pasif",
+        prompt:
+          "Her unsurun **aktife** mi **pasife** mi gittiğini ve alt kategoriyi belirt:\n\n1. Patent\n2. Ticari mal stoğu\n3. Banka kredisi\n4. Sosyal sermaye\n5. Banka (pozitif)\n6. Müşteri alacağı\n7. Tedarikçi borcu\n8. Bina\n9. Yedekler\n10. Kasa",
+        steps: [
+          "1. **Gayri maddi sabit aktif** (patent)",
+          "2. **Dönen aktif** (stok)",
+          "3. **Pasif — Borç** (kredi)",
+          "4. **Pasif — Özsermaye** (sermaye)",
+          "5. **Dönen aktif** (hazır değer)",
+          "6. **Dönen aktif** (alacak)",
+          "7. **Pasif — Borç** (tedarikçi)",
+          "8. **Maddi sabit aktif** (bina)",
+          "9. **Pasif — Özsermaye** (yedek)",
+          "10. **Dönen aktif** (hazır değer)",
+        ],
+        answer: "Detay yöntemde.",
+      },
+    ],
+  },
+  {
+    slug: "ecritures",
+    title: "Muhasebe kayıtları",
+    emoji: "✏️",
+    intro:
+      "Her işlem için: borçlandırılacak ve alacaklandırılacak hesaplar. Hatırla: KULLANIMLAR = KAYNAKLAR.",
+    formula: "\\text{KULLANIMLAR (borç)} = \\text{KAYNAKLAR (alacak)}",
+    exercises: [
+      {
+        id: "ec-1",
+        title: "Yöneticinin katkıları",
+        emoji: "💼",
+        category: "Kuruluş",
+        prompt:
+          "M. Vincent EURL kurmak için:\n- Banka hesabına 4 000 € nakit\n- 6 000 € değerinde araç (ikinci el)\n\nMuhasebe kaydı?",
+        steps: [
+          "Nakit katkı: 512 Banka borç 4 000",
+          "Aynı katkı: 2182 Ulaşım malzemesi borç 6 000",
+          "Sermaye toplam alacaklanır: 101 Sermaye alacak 10 000",
+          "**Kayıt**:",
+          "| Hesap | Borç | Alacak |\n|---|---|---|\n| 512 Banka | 4 000 | |\n| 2182 Ulaşım malzemesi | 6 000 | |\n| 101 Sermaye | | 10 000 |",
+        ],
+        answer: "Yönteme bak.",
+      },
+      {
+        id: "ec-2",
+        title: "Kredili kırtasiye alımı",
+        emoji: "📋",
+        category: "Kredili alım",
+        prompt: "Kredili kırtasiye alımı: 165 € KDV harç, %20 KDV. Muhasebe kaydı?",
+        hint: "Kırtasiye = gider (606 Stoklanmayan alımlar). Alacak = 401 Tedarikçi.",
+        steps: [
+          "606 Stoklanmayan alımlar borç: **165 €** (KDV harç)",
+          "44566 İndirilebilir KDV borç: **33 €** (165 × 0,20)",
+          "401 Tedarikçi alacak: **198 €** (KDV dahil)",
+          "| Hesap | Borç | Alacak |\n|---|---|---|\n| 606 Stoklanmayan alımlar | 165 | |\n| 44566 İndirilebilir KDV | 33 | |\n| 401 Tedarikçi | | 198 |",
+        ],
+        answer: "606 + 44566 B; 401 A 198 €.",
+      },
+      {
+        id: "ec-3",
+        title: "Peşin satış",
+        emoji: "💸",
+        category: "Satış",
+        prompt: "Mamul satış: 1 200 € KDV harç, %20 KDV, banka transferiyle tahsil edildi. Kayıt?",
+        steps: [
+          "KDV dahil toplam = 1 200 × 1,20 = **1 440 €**",
+          "512 Banka borç: 1 440",
+          "701 Mamul satışı alacak: 1 200 (KDV harç)",
+          "44571 Tahsil KDV alacak: 240 (KDV)",
+          "| Hesap | Borç | Alacak |\n|---|---|---|\n| 512 Banka | 1 440 | |\n| 701 Mamul satışı | | 1 200 |\n| 44571 Tahsil KDV | | 240 |",
+        ],
+        answer: "512 B 1 440; 701 A 1 200; 44571 A 240.",
+      },
+      {
+        id: "ec-4",
+        title: "Bir çalışanın bordrosu",
+        emoji: "👷",
+        category: "Maaş",
+        prompt:
+          "Brüt maaş 2 000 €; çalışan primleri 440 €; işveren primleri 600 €.\n\nMuhasebe kayıtları (2 aşamada)?",
+        steps: [
+          "**1. Maaş kaydı (ayın 27'si)**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 641 Personel ücreti | 2 000 | |\n| 421 Personel — ödenecek ücret | | 1 560 |\n| 43 SGK ve diğer kuruluşlar | | 440 |",
+          "**2. İşveren primleri (aynı tarih)**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 645 SGK ücretleri | 600 | |\n| 43 SGK ve diğer kuruluşlar | | 600 |",
+          "**3. URSSAF'a prim ödemesi (sonraki ayın 10'u)**:\n| Hesap | Borç | Alacak |\n|---|---|---|\n| 43 SGK ve diğer kuruluşlar | 1 040 | |\n| 512 Banka | | 1 040 |",
+        ],
+        answer: "641 + 645 = gider, 43 = kurum borcu, 512 = ödeme.",
+      },
+      {
+        id: "ec-5",
+        title: "Sabit varlık alımı",
+        emoji: "🏗️",
+        category: "Kredili sabit varlık",
+        prompt: "Sanayi makinesi alımı: 50 000 € KDV harç, %20 KDV, kredili. Kayıt?",
+        hint: "Dikkat: 404 Sabit varlık tedarikçisi (≠ 401) ve 44562 sabit varlık üzerinde indirilebilir KDV (≠ 44566).",
+        steps: [
+          "215 Sanayi malzemesi borç: **50 000** (KDV harç)",
+          "44562 Sabit varlık üzerinde indirilebilir KDV borç: **10 000**",
+          "404 Sabit varlık tedarikçisi alacak: **60 000** (KDV dahil)",
+          "| Hesap | Borç | Alacak |\n|---|---|---|\n| 215 Sanayi malzemesi | 50 000 | |\n| 44562 Sabit varlık KDV | 10 000 | |\n| 404 Sabit varlık tedarikçisi | | 60 000 |",
+        ],
+        answer: "215 + 44562 B; 404 A 60 000.",
+      },
+    ],
+  },
+  {
+    slug: "tva",
+    title: "KDV ve faturalar",
+    emoji: "💸",
+    intro:
+      "İndirimler, KDV oranları, Net ödenecek hesabı. **Sıra**: Brüt KDV harç → ticari indirim → mali indirim → KDV → Net.",
+    formula: "\\text{Ödenecek KDV} = \\text{Tahsil KDV} - \\text{İndirilebilir KDV}",
+    exercises: [
+      {
+        id: "tva-1",
+        title: "İndirimli fatura",
+        emoji: "🧾",
+        category: "Basit net ödenecek",
+        prompt: "Brüt KDV harç = 6 910 €; %15 indirim; %19,6 KDV. Net ödeneceği hesapla.",
+        steps: [
+          "İndirim = 6 910 × 0,15 = **1 036,50 €**",
+          "Net ticari KDV harç = 6 910 − 1 036,50 = **5 873,50 €**",
+          "KDV = 5 873,50 × 0,196 = **1 151,21 €**",
+          "Net ödenecek = 5 873,50 + 1 151,21 = **7 024,71 €**",
+        ],
+        answer: "Net ödenecek ≈ 7 024,71 €",
+      },
+      {
+        id: "tva-2",
+        title: "İndirim + peşin ödeme indirimi",
+        emoji: "📝",
+        category: "Escompte ile",
+        prompt:
+          "Brüt KDV harç = 4 000 €; %5 indirim; %2 peşin ödeme indirimi; %20 KDV. Net ödeneceği hesapla.",
+        hint: "Peşin ödeme indirimi (mali) ticari indirimden SONRA, KDV'den ÖNCE uygulanır.",
+        steps: [
+          "Net ticari = 4 000 × 0,95 = **3 800 €**",
+          "Peşin ödeme indirimi = 3 800 × 0,02 = **76 €**",
+          "Net mali = 3 800 − 76 = **3 724 €**",
+          "KDV = 3 724 × 0,20 = **744,80 €**",
+          "Net ödenecek = 3 724 + 744,80 = **4 468,80 €**",
+        ],
+        answer: "Net ödenecek = 4 468,80 €",
+      },
+      {
+        id: "tva-3",
+        title: "Ödenecek KDV",
+        emoji: "🏛️",
+        category: "Aylık hesap",
+        prompt:
+          "Mart ayı: Satış KDV harç = 80 000 € (%20 KDV). Alım KDV harç = 50 000 € (%20 KDV). Devlete ödenecek KDV?",
+        steps: [
+          "Tahsil KDV = 80 000 × 0,20 = **16 000 €**",
+          "İndirilebilir KDV = 50 000 × 0,20 = **10 000 €**",
+          "Ödenecek KDV = 16 000 − 10 000 = **6 000 €**",
+        ],
+        answer: "Devlete 6 000 € ödenecek",
+      },
+      {
+        id: "tva-4",
+        title: "KDV alacağı",
+        emoji: "♻️",
+        category: "Özel durum",
+        prompt: "Tahsil KDV = 4 000 €; İndirilebilir KDV = 7 000 €. Ne olur?",
+        steps: [
+          "4 000 − 7 000 = **−3 000 €**",
+          "İşletme topladığından çok KDV ödedi.",
+          "→ **KDV alacağı**: sonraki beyannameye taşınabilir VEYA Devlet tarafından geri ödenebilir.",
+        ],
+        answer: "3 000 € KDV alacağı (taşı veya iade al).",
+      },
+    ],
+  },
+  {
+    slug: "amortissement",
+    title: "Amortismanlar",
+    emoji: "📉",
+    intro: "Doğrusal amortisman = değer kaybı muhasebe kaydı. **Nakit çıkışı yok**.",
+    formula: "\\text{Yıllık} = \\frac{\\text{Edinim değeri}}{\\text{Yararlı ömür}}",
+    exercises: [
+      {
+        id: "am-1",
+        title: "Basit yıllık",
+        emoji: "🚗",
+        category: "Doğrusal amortisman",
+        prompt:
+          "Ticari araç alımı 24 000 € KDV harç. Yararlı ömür 5 yıl. Yıllık amortismanı ve 3 yıl sonra VNC'yi hesapla.",
+        steps: [
+          "Yıllık = 24 000 / 5 = **4 800 €/yıl**",
+          "3 yılda kümül = 4 800 × 3 = **14 400 €**",
+          "VNC 3 yıl sonra = 24 000 − 14 400 = **9 600 €**",
+        ],
+        answer: "Yıllık = 4 800 €; VNC 3 yıl sonra = 9 600 €.",
+      },
+      {
+        id: "am-2",
+        title: "Amortisman tablosu",
+        emoji: "📋",
+        category: "3 yıl üzerinden",
+        prompt: "Bilişim malzemesi 6 000 € KDV harç, 3 yıl ömür. Amortisman tablosunu çiz.",
+        steps: [
+          "Yıllık = 6 000 / 3 = **2 000 €/yıl**",
+          "| Yıl | Yıllık | Kümül | VNC |\n|---|---|---|---|\n| 1 | 2 000 | 2 000 | 4 000 |\n| 2 | 2 000 | 4 000 | 2 000 |\n| 3 | 2 000 | 6 000 | 0 |",
+          "3 yıl sonunda mal tamamen amortise (VNC = 0), fiziksel olarak var olmaya devam etse bile.",
+        ],
+        answer: "Yıllık 2 000. VNC: 4000 → 2000 → 0.",
+      },
+      {
+        id: "am-3",
+        title: "Süre seçimi",
+        emoji: "🎯",
+        category: "Düşünce",
+        prompt:
+          "Bir işletme 500 000 € KDV harç bina alır. Mantıklı amortisman süresi ve yıllık nedir? Nakit etkisi?",
+        steps: [
+          "Tipik süre: **20-50 yıl**. 25 yıl alalım.",
+          "Yıllık = 500 000 / 25 = **20 000 €/yıl**",
+          "Etki: gider sonucu (ve IS'i) düşürür ama **nakit çıkmaz**.",
+          "→ Amortisman **öz finansman kapasitesi** üretir: nakit çıkmadan vergi tasarrufu.",
+        ],
+        answer: "25 yıl için yıllık 20 000 €. CAF üretir.",
+      },
+    ],
+  },
+  {
+    slug: "salaire-charges",
+    title: "Maaş ve işveren maliyeti",
+    emoji: "👥",
+    intro:
+      "Net maaş = brüt − çalışan primleri. İşveren maliyeti = brüt + işveren primleri.",
+    formula: "\\text{İşveren maliyeti} = \\text{Brüt} + \\text{İşveren primleri}",
+    exercises: [
+      {
+        id: "sal-1",
+        title: "Brütten net'e",
+        emoji: "💰",
+        category: "Aylık maaş",
+        prompt: "Brüt 2 800 €; çalışan primleri brütün %22'si. Net'i hesapla.",
+        steps: [
+          "Çalışan primi = 2 800 × 0,22 = **616 €**",
+          "Net = 2 800 − 616 = **2 184 €**",
+        ],
+        answer: "Net = 2 184 €",
+      },
+      {
+        id: "sal-2",
+        title: "Toplam işveren maliyeti",
+        emoji: "🏢",
+        category: "İşveren primleri",
+        prompt:
+          "Brüt 3 200 €; çalışan primleri %22; işveren primleri %30. Net ve toplam işveren maliyetini hesapla.",
+        steps: [
+          "Çalışan primi = 3 200 × 0,22 = 704 → **Net = 2 496 €**",
+          "İşveren primi = 3 200 × 0,30 = 960",
+          "**İşveren maliyeti = 3 200 + 960 = 4 160 €**",
+          "💡 İşveren 4 160 € öder, çalışan 2 496 € alır. Fark (1 664 €) sosyal kasalara gider.",
+        ],
+        answer: "Net = 2 496 €; işveren maliyeti = 4 160 €.",
+      },
+      {
+        id: "sal-3",
+        title: "Vergi kaması",
+        emoji: "📊",
+        category: "Düşünce",
+        prompt:
+          "Brüt 2 500 € ve işveren maliyeti 3 250 € ise, « vergi kaması » nedir (çalışan cebine girmeyen işveren maliyetinin %'si)?",
+        hint: "Vergi kaması = (İşveren maliyeti − Net) / İşveren maliyeti.",
+        steps: [
+          "Net doğrudan verilmedi. Çalışan primi %22 ise:",
+          "Net = 2 500 × 0,78 = 1 950 €",
+          "Vergi kaması = (3 250 − 1 950) / 3 250 = 1 300 / 3 250 ≈ **%40**",
+          "→ İşverenin ödediğinin %40'ı çalışana gitmez (sgk, emeklilik, işsizlik).",
+        ],
+        answer: "≈ %40 vergi kaması.",
+      },
+    ],
+  },
+];

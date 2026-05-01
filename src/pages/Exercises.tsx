@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { exerciseSectionsByLang } from "../data/exercises";
+import { useExerciseSections } from "../data/useSubjectData";
 import Markdown from "../components/Markdown";
 import { useLang } from "../i18n/context";
 
 export default function Exercises() {
-  const { lang, t } = useLang();
-  const sections = exerciseSectionsByLang[lang];
+  const { t } = useLang();
+  const sections = useExerciseSections();
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">

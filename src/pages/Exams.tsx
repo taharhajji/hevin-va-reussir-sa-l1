@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { examsByLang } from "../data/exams";
+import { useExams } from "../data/useSubjectData";
 import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 export default function Exams() {
-  const { lang, t } = useLang();
-  const exams = examsByLang[lang];
+  const { t } = useLang();
+  const { subject } = useSubject();
+  const exams = useExams();
+  const base = `/${subject ?? "macro"}`;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
@@ -17,7 +20,7 @@ export default function Exams() {
         {exams.map((e, i) => (
           <Link
             key={e.slug}
-            to={`/examens/${e.slug}`}
+            to={`${base}/examens/${e.slug}`}
             className={`card-tilt block rounded-2xl p-6 text-white shadow-md ${
               i === 0
                 ? "bg-gradient-to-br from-brand-500 to-violet-500"

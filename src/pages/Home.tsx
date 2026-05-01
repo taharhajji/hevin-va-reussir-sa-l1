@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { chaptersByLang } from "../data/chapters";
-import { examsByLang } from "../data/exams";
+import { useChapters, useExams } from "../data/useSubjectData";
 import { useLang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 import Markdown from "../components/Markdown";
 
 export default function Home() {
-  const { lang, t } = useLang();
-  const chapters = chaptersByLang[lang];
-  const exams = examsByLang[lang];
+  const { t } = useLang();
+  const { subject } = useSubject();
+  const chapters = useChapters();
+  const exams = useExams();
+  const base = `/${subject ?? "macro"}`;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -23,13 +25,13 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
-            to="/chapitres"
+            to={`${base}/chapitres`}
             className="bg-white text-brand-700 px-5 py-2.5 rounded-full font-semibold hover:bg-sun-400 hover:text-slate-900 transition shadow"
           >
             {t("ctaStartCourse")}
           </Link>
           <Link
-            to="/examens"
+            to={`${base}/examens`}
             className="bg-brand-800/40 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-brand-900/60 transition border border-white/20"
           >
             {t("ctaTryExam")}
@@ -46,7 +48,7 @@ export default function Home() {
           {chapters.map((c) => (
             <Link
               key={c.slug}
-              to={`/chapitres/${c.slug}`}
+              to={`${base}/chapitres/${c.slug}`}
               className={`card-tilt block rounded-2xl p-6 bg-gradient-to-br ${c.color} text-white shadow-md`}
             >
               <div className="text-4xl mb-2">{c.emoji}</div>
@@ -66,7 +68,7 @@ export default function Home() {
 
       <section className="mt-12 grid md:grid-cols-2 gap-5">
         <Link
-          to="/qcm"
+          to={`${base}/qcm`}
           className="card-tilt block rounded-2xl p-6 bg-white border-2 border-slate-200 hover:border-brand-400"
         >
           <div className="text-4xl mb-2">🧠</div>
@@ -74,7 +76,7 @@ export default function Home() {
           <p className="text-slate-600 mt-1">{t("qcmCardDesc")}</p>
         </Link>
         <Link
-          to="/examens"
+          to={`${base}/examens`}
           className="card-tilt block rounded-2xl p-6 bg-white border-2 border-slate-200 hover:border-brand-400"
         >
           <div className="text-4xl mb-2">📝</div>
@@ -84,7 +86,7 @@ export default function Home() {
           </p>
         </Link>
         <Link
-          to="/exercices"
+          to={`${base}/exercices`}
           className="card-tilt block rounded-2xl p-6 bg-white border-2 border-slate-200 hover:border-brand-400"
         >
           <div className="text-4xl mb-2">✍️</div>
@@ -92,7 +94,7 @@ export default function Home() {
           <p className="text-slate-600 mt-1">{t("exercisesCardDesc")}</p>
         </Link>
         <Link
-          to="/formules"
+          to={`${base}/formules`}
           className="card-tilt block rounded-2xl p-6 bg-white border-2 border-slate-200 hover:border-brand-400"
         >
           <div className="text-4xl mb-2">📐</div>
