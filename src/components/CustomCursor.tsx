@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  /** Source de l'image (PNG/JPG/SVG/GIF…). Par défaut : /cursor.jpg puis fallback emoji. */
+  /** Source de l'image. Par défaut : /cursor.jpg puis fallback emoji. */
   src?: string;
   /** Emoji de secours si l'image ne charge pas. */
   fallbackEmoji?: string;
@@ -12,15 +12,10 @@ type Props = {
 /**
  * Curseur custom qui suit la souris (desktop) ou apparaît au tap (mobile).
  *
- * Desktop : le PNG suit le pointeur en permanence, scale au hover des éléments
- *   cliquables. Le curseur natif est masqué.
+ * - Desktop : suit le pointeur, scale au hover des éléments cliquables.
+ * - Mobile : apparaît au tap, suit le doigt, fade out après le release.
  *
- * Mobile / tactile : à chaque toucher, le PNG apparaît à la position du doigt,
- *   suit le mouvement pendant le drag, puis disparaît en fondu après ~600 ms
- *   (ou immédiatement si nouveau tap). Plusieurs taps successifs = effet visuel
- *   à chaque pression.
- *
- * Pour remplacer le PNG, dépose ton fichier dans `public/cursor.png`.
+ * Pour remplacer le PNG : dépose ton fichier en `public/cursor.jpg` (ou .png).
  */
 export default function CustomCursor({
   src = "/cursor.jpg",
@@ -29,7 +24,7 @@ export default function CustomCursor({
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
-  const [hovering, setHovering] = useState(false);
+  const hoveringRef = useRef(false);
   const [imageOk, setImageOk] = useState(true);
   const [mode, setMode] = useState<"none" | "desktop" | "touch">("none");
   const fadeTimer = useRef<number | null>(null);
@@ -47,15 +42,27 @@ export default function CustomCursor({
       document.documentElement.classList.add(cls);
     }
 
-    function moveTo(x: number, y: number) {
+    function applyTransform(x: number, y: number) {
       const el = ref.current;
       if (!el) return;
-      el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      const s = hoveringRef.current ? 1.35 : 1;
+      // Tout dans une seule propriété transform, ordre = translate then scale
+      // around its own center. Aucune dépendance au scrolling (position fixed).
+      el.style.transform = `translate3d(${x - size / 2}px, ${y - size / 2}px, 0) scale(${s})`;
     }
 
-    // ---------- Desktop : suit la souris en permanence ----------
+    function setHovering(next: boolean) {
+      if (hoveringRef.current === next) return;
+      hoveringRef.current = next;
+      // Reflow uniquement si visible.
+      const el = ref.current;
+      if (!el) return;
+      el.classList.toggle("ccursor-hover", next);
+    }
+
+    // ---------- Desktop : suit la souris ----------
     const onMove = (e: MouseEvent) => {
-      moveTo(e.clientX, e.clientY);
+      applyTransform(e.clientX, e.clientY);
       if (!visible) setVisible(true);
       const target = e.target as Element | null;
       const interactive = !!target?.closest(
@@ -66,7 +73,7 @@ export default function CustomCursor({
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
 
-    // ---------- Tactile : apparaît au tap, suit, disparaît au release ----------
+    // ---------- Tactile : apparaît au tap, suit, fade out au release ----------
     const cancelFade = () => {
       if (fadeTimer.current != null) {
         window.clearTimeout(fadeTimer.current);
@@ -77,18 +84,16 @@ export default function CustomCursor({
       const t = e.touches[0];
       if (!t) return;
       cancelFade();
-      moveTo(t.clientX, t.clientY);
-      // Petit "boop" : scale-in en réutilisant l'état "hovering".
+      applyTransform(t.clientX, t.clientY);
       setHovering(true);
       setVisible(true);
     };
     const onTouchMove = (e: TouchEvent) => {
       const t = e.touches[0];
       if (!t) return;
-      moveTo(t.clientX, t.clientY);
+      applyTransform(t.clientX, t.clientY);
     };
     const onTouchEnd = () => {
-      // Reste affiché un court moment, puis fade out.
       setHovering(false);
       cancelFade();
       fadeTimer.current = window.setTimeout(() => {
@@ -119,7 +124,9 @@ export default function CustomCursor({
       window.removeEventListener("touchcancel", onTouchEnd);
       document.documentElement.classList.remove(cls);
     };
-  }, [mode, visible]);
+    // size est stable, on n'a pas besoin de re-bind à chaque visible
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, size]);
 
   if (mode === "none") return null;
 
@@ -127,6 +134,7 @@ export default function CustomCursor({
     <div
       ref={ref}
       aria-hidden
+      className="ccursor"
       style={{
         position: "fixed",
         top: 0,
@@ -136,10 +144,10 @@ export default function CustomCursor({
         pointerEvents: "none",
         zIndex: 9999,
         opacity: visible ? 1 : 0,
-        transition: "opacity 200ms ease, scale 150ms ease",
-        scale: hovering ? "1.4" : "1",
-        willChange: "transform, opacity",
+        transition: "opacity 200ms ease",
+        // pas de transform-origin sur le wrapper : on scale le child centré
         userSelect: "none",
+        willChange: "transform, opacity",
       }}
     >
       {imageOk ? (
@@ -156,12 +164,9 @@ export default function CustomCursor({
             display: "block",
             borderRadius: "50%",
             objectFit: "cover",
-            // Légère dé-zoom : on rétrécit l'image dans son cadre rond pour
-            // voir un peu plus que juste le visage centré.
-            transform: "scale(0.78)",
-            boxShadow: hovering
-              ? "0 6px 16px rgba(37,99,235,.45)"
-              : "0 2px 6px rgba(0,0,0,.25)",
+            transform: "scale(0.82)",
+            transformOrigin: "center",
+            transition: "filter 150ms ease",
           }}
         />
       ) : (
@@ -170,9 +175,8 @@ export default function CustomCursor({
             fontSize: size * 0.85,
             lineHeight: 1,
             display: "block",
-            filter: hovering
-              ? "drop-shadow(0 4px 8px rgba(37,99,235,.5))"
-              : "drop-shadow(0 2px 4px rgba(0,0,0,.2))",
+            textAlign: "center",
+            filter: "drop-shadow(0 2px 4px rgba(0,0,0,.2))",
           }}
         >
           {fallbackEmoji}
