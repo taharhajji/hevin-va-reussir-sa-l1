@@ -156,6 +156,9 @@ export default function CustomCursor({
             display: "block",
             borderRadius: "50%",
             objectFit: "cover",
+            // Légère dé-zoom : on rétrécit l'image dans son cadre rond pour
+            // voir un peu plus que juste le visage centré.
+            transform: "scale(0.78)",
             boxShadow: hovering
               ? "0 6px 16px rgba(37,99,235,.45)"
               : "0 2px 6px rgba(0,0,0,.25)",
