@@ -11,12 +11,19 @@ import Exercises from "./pages/Exercises";
 import Formules from "./pages/Formules";
 import Splash from "./pages/Splash";
 import { useSubject, type Subject } from "./subject/context";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function SubjectGate({ children, expected }: { children: React.ReactNode; expected: Subject }) {
   const { subject, setSubject } = useSubject();
+  // Only sync the URL's subject into context once, on mount. Otherwise the
+  // gate keeps "rescuing" the subject from null (e.g. when the user clicks
+  // "Changer de matière"), which prevents the navigation back to the splash.
+  const synced = useRef(false);
   useEffect(() => {
-    if (subject !== expected) setSubject(expected);
+    if (!synced.current) {
+      synced.current = true;
+      if (subject !== expected) setSubject(expected);
+    }
   }, [expected, subject, setSubject]);
   return <>{children}</>;
 }
