@@ -11,6 +11,12 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
 }
 
+/* Custom cursor — masque le curseur natif quand le composant est monté. */
+html.with-custom-cursor,
+html.with-custom-cursor * {
+  cursor: none !important;
+}
+
 .prose-ludic h2 { @apply text-2xl font-bold text-brand-800 mt-6 mb-2; font-family: 'Fraunces', serif; }
 .prose-ludic h3 { @apply text-xl font-semibold text-brand-700 mt-5 mb-2; }
 .prose-ludic p { @apply my-3 leading-relaxed; }

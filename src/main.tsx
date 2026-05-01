@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { LangProvider } from "./i18n/context";
 import { SubjectProvider } from "./subject/context";
+import CustomCursor from "./components/CustomCursor";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById("root")!).render(
       <SubjectProvider>
         <LangProvider>
           <App />
+          <CustomCursor />
         </LangProvider>
       </SubjectProvider>
     </BrowserRouter>
