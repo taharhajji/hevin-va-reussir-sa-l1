@@ -5,6 +5,7 @@ import App from "./App";
 import { LangProvider } from "./i18n/context";
 import { SubjectProvider } from "./subject/context";
 import CustomCursor from "./components/CustomCursor";
+import TransitionVideo from "./components/TransitionVideo";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
@@ -14,6 +15,7 @@ createRoot(document.getElementById("root")!).render(
         <LangProvider>
           <App />
           <CustomCursor />
+          <TransitionVideo />
         </LangProvider>
       </SubjectProvider>
     </BrowserRouter>
