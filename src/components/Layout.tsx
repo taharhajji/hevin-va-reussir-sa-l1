@@ -27,11 +27,20 @@ export default function Layout() {
     nav("/", { replace: false });
   }
 
-  const subjectBadge = subject === "gestion" ? t("subjectGestion") : t("subjectMacro");
+  const subjectBadge =
+    subject === "gestion"
+      ? t("subjectGestion")
+      : subject === "anglais"
+      ? t("subjectAnglais")
+      : t("subjectMacro");
   const subjectColor =
     subject === "gestion"
       ? "bg-emerald-100 text-emerald-800"
+      : subject === "anglais"
+      ? "bg-rose-100 text-rose-800"
       : "bg-brand-100 text-brand-800";
+  const subjectEmoji =
+    subject === "gestion" ? "📦" : subject === "anglais" ? "🇬🇧" : "📊";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -47,7 +56,7 @@ export default function Layout() {
           <span
             className={`ml-1 px-2 py-0.5 rounded-full font-semibold ${subjectColor}`}
           >
-            {subject === "gestion" ? "📦" : "📊"} {subjectBadge}
+            {subjectEmoji} {subjectBadge}
           </span>
         </div>
         <div className="max-w-6xl mx-auto px-4 pb-3 flex items-center gap-4 flex-wrap">

@@ -7,7 +7,7 @@ export default function Splash() {
   const { setSubject } = useSubject();
   const nav = useNavigate();
 
-  function pick(s: "macro" | "gestion") {
+  function pick(s: "macro" | "gestion" | "anglais") {
     setSubject(s);
     nav(`/${s}`, { replace: true });
   }
@@ -36,7 +36,7 @@ export default function Splash() {
             {t("splashSubtitle")}
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <button
               onClick={() => pick("macro")}
               className="card-tilt text-left rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-brand-500 via-brand-600 to-violet-600 text-white shadow-xl hover:shadow-2xl transition"
@@ -62,6 +62,23 @@ export default function Splash() {
               <p className="text-emerald-50 mb-3">{t("splashGestionDesc")}</p>
               <p className="text-xs text-emerald-50/90 mb-3">
                 {t("splashGestionStatus")}
+              </p>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full font-semibold">
+                {t("splashEnter")}
+              </div>
+            </button>
+
+            <button
+              onClick={() => pick("anglais")}
+              className="card-tilt text-left rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-rose-500 via-pink-500 to-orange-500 text-white shadow-xl hover:shadow-2xl transition sm:col-span-2 lg:col-span-1"
+            >
+              <div className="text-6xl mb-3">🇬🇧</div>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2">
+                {t("splashAnglaisTitle")}
+              </h2>
+              <p className="text-rose-50 mb-3">{t("splashAnglaisDesc")}</p>
+              <p className="text-xs text-rose-50/90 mb-3">
+                {t("splashAnglaisStatus")}
               </p>
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full font-semibold">
                 {t("splashEnter")}

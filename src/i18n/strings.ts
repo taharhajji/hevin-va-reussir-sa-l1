@@ -212,6 +212,16 @@ export const ui = {
     fr: "✨ 7 chapitres, 65 QCM, 2 examens blancs, exercices guidés.",
     tr: "✨ 7 bölüm, 65 soru, 2 deneme sınavı, rehberli alıştırmalar.",
   },
+
+  splashAnglaisTitle: { fr: "Anglais par la culture", tr: "Kültür yoluyla İngilizce" },
+  splashAnglaisDesc: {
+    fr: "Media, mass culture, international relations, economics. Cours en anglais avec aides en français.",
+    tr: "Media, mass culture, international relations, economics. Fransızca ipuçlarıyla İngilizce ders.",
+  },
+  splashAnglaisStatus: {
+    fr: "🚀 4 chapitres condensés, 40 QCM, 1 examen blanc — révision express avant l'exam.",
+    tr: "🚀 4 yoğun bölüm, 40 soru, 1 deneme sınavı — sınavdan önce hızlı tekrar.",
+  },
   splashEnter: { fr: "Entrer →", tr: "Giriş →" },
   splashHint: {
     fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
@@ -221,6 +231,7 @@ export const ui = {
   changeSubject: { fr: "← Changer de matière", tr: "← Ders değiştir" },
   subjectMacro: { fr: "Macro", tr: "Makro" },
   subjectGestion: { fr: "Gestion", tr: "Yönetim" },
+  subjectAnglais: { fr: "Anglais", tr: "İngilizce" },
 
   // Gestion placeholder
   gestionPlaceholderTitle: {

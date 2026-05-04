@@ -70,6 +70,7 @@ export default function App() {
 
       {makeSubjectRoutes("/macro", "macro")}
       {makeSubjectRoutes("/gestion", "gestion")}
+      {makeSubjectRoutes("/anglais", "anglais")}
 
       {/* Legacy redirects for the old /chapitres etc. URLs */}
       <Route path="/chapitres" element={<LegacyRedirect to="/macro/chapitres" />} />
