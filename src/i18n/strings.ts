@@ -222,6 +222,16 @@ export const ui = {
     fr: "🚀 4 chapitres condensés, 40 QCM, 1 examen blanc — révision express avant l'exam.",
     tr: "🚀 4 yoğun bölüm, 40 soru, 1 deneme sınavı — sınavdan önce hızlı tekrar.",
   },
+
+  splashDroitTitle: { fr: "Droit des institutions", tr: "Kurumsal hukuk" },
+  splashDroitDesc: {
+    fr: "Constitution, État, régimes, scrutins, Vème République, fédéralisme.",
+    tr: "Anayasa, devlet, rejimler, oy sistemleri, V. Cumhuriyet, federalizm.",
+  },
+  splashDroitStatus: {
+    fr: "⚖️ 6 chapitres carrés, 56 QCM, 1 examen blanc 40 questions — prêt pour ton partiel.",
+    tr: "⚖️ 6 sağlam bölüm, 56 soru, 1 deneme sınavı 40 soru — sınavın için hazır.",
+  },
   splashEnter: { fr: "Entrer →", tr: "Giriş →" },
   splashHint: {
     fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
@@ -232,6 +242,7 @@ export const ui = {
   subjectMacro: { fr: "Macro", tr: "Makro" },
   subjectGestion: { fr: "Gestion", tr: "Yönetim" },
   subjectAnglais: { fr: "Anglais", tr: "İngilizce" },
+  subjectDroit: { fr: "Droit", tr: "Hukuk" },
 
   // Gestion placeholder
   gestionPlaceholderTitle: {

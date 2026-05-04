@@ -7,7 +7,7 @@ export default function Splash() {
   const { setSubject } = useSubject();
   const nav = useNavigate();
 
-  function pick(s: "macro" | "gestion" | "anglais") {
+  function pick(s: "macro" | "gestion" | "anglais" | "droit") {
     setSubject(s);
     nav(`/${s}`, { replace: true });
   }
@@ -70,7 +70,7 @@ export default function Splash() {
 
             <button
               onClick={() => pick("anglais")}
-              className="card-tilt text-left rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-rose-500 via-pink-500 to-orange-500 text-white shadow-xl hover:shadow-2xl transition sm:col-span-2 lg:col-span-1"
+              className="card-tilt text-left rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-rose-500 via-pink-500 to-orange-500 text-white shadow-xl hover:shadow-2xl transition"
             >
               <div className="text-6xl mb-3">🇬🇧</div>
               <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2">
@@ -79,6 +79,23 @@ export default function Splash() {
               <p className="text-rose-50 mb-3">{t("splashAnglaisDesc")}</p>
               <p className="text-xs text-rose-50/90 mb-3">
                 {t("splashAnglaisStatus")}
+              </p>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full font-semibold">
+                {t("splashEnter")}
+              </div>
+            </button>
+
+            <button
+              onClick={() => pick("droit")}
+              className="card-tilt text-left rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-amber-500 via-yellow-500 to-orange-500 text-white shadow-xl hover:shadow-2xl transition sm:col-span-2 lg:col-span-1"
+            >
+              <div className="text-6xl mb-3">⚖️</div>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-2">
+                {t("splashDroitTitle")}
+              </h2>
+              <p className="text-amber-50 mb-3">{t("splashDroitDesc")}</p>
+              <p className="text-xs text-amber-50/90 mb-3">
+                {t("splashDroitStatus")}
               </p>
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full font-semibold">
                 {t("splashEnter")}

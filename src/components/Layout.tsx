@@ -32,15 +32,25 @@ export default function Layout() {
       ? t("subjectGestion")
       : subject === "anglais"
       ? t("subjectAnglais")
+      : subject === "droit"
+      ? t("subjectDroit")
       : t("subjectMacro");
   const subjectColor =
     subject === "gestion"
       ? "bg-emerald-100 text-emerald-800"
       : subject === "anglais"
       ? "bg-rose-100 text-rose-800"
+      : subject === "droit"
+      ? "bg-amber-100 text-amber-800"
       : "bg-brand-100 text-brand-800";
   const subjectEmoji =
-    subject === "gestion" ? "📦" : subject === "anglais" ? "🇬🇧" : "📊";
+    subject === "gestion"
+      ? "📦"
+      : subject === "anglais"
+      ? "🇬🇧"
+      : subject === "droit"
+      ? "⚖️"
+      : "📊";
 
   return (
     <div className="min-h-screen flex flex-col">
