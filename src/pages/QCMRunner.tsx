@@ -1,4 +1,4 @@
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useSearchParams } from "react-router-dom";
 import { useQCMSets } from "../data/useSubjectData";
 import QuizRunner from "../components/QuizRunner";
 import { useLang } from "../i18n/context";
@@ -8,6 +8,8 @@ export default function QCMRunner() {
   const { slug } = useParams();
   const { t } = useLang();
   const { subject } = useSubject();
+  const [params] = useSearchParams();
+  const shuffle = params.get("shuffle") === "1";
   const sets = useQCMSets();
   const base = `/${subject ?? "macro"}`;
   const chNum = slug?.replace(/^ch/, "");
@@ -15,11 +17,15 @@ export default function QCMRunner() {
   if (!set) return <Navigate to={`${base}/qcm`} replace />;
   return (
     <QuizRunner
-      title={`${set.emoji} ${t("navQCM")} — ${set.title}`}
-      subtitle={`${t("chapterLabel")} ${set.chapter} · ${t("qcmRunnerSubtitle")}`}
+      title={`${set.emoji} ${t("navQCM")} — ${set.title}${shuffle ? " 🎲" : ""}`}
+      subtitle={`${t("chapterLabel")} ${set.chapter} · ${t("qcmRunnerSubtitle")}${
+        shuffle ? " · ordre aléatoire" : ""
+      }`}
       questions={set.questions}
       mode="practice"
-      storageKey={`qcm-${subject ?? "macro"}-ch${set.chapter}`}
+      shuffle={shuffle}
+      // Storage key includes shuffle to avoid reusing answers between modes.
+      storageKey={`qcm-${subject ?? "macro"}-ch${set.chapter}${shuffle ? "-rnd" : ""}`}
     />
   );
 }

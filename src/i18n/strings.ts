@@ -244,6 +244,15 @@ export const ui = {
   subjectAnglais: { fr: "Anglais", tr: "İngilizce" },
   subjectDroit: { fr: "Droit", tr: "Hukuk" },
 
+  // Random / shuffle mode
+  randomModeOff: { fr: "🎲 Mode aléatoire", tr: "🎲 Rastgele mod" },
+  randomModeOn: { fr: "🎯 Mode classique", tr: "🎯 Klasik mod" },
+  randomModeHint: {
+    fr: "Mélange l'ordre des questions ET des options A/B/C/D — utile quand tu connais les emplacements par cœur.",
+    tr: "Soruların VE A/B/C/D seçeneklerinin sırasını karıştırır — konumları ezberlediğinde işe yarar.",
+  },
+  randomModeBadge: { fr: "Aléatoire activé", tr: "Rastgele aktif" },
+
   // Gestion placeholder
   gestionPlaceholderTitle: {
     fr: "📦 Cours de gestion — bientôt disponible",

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Question } from "../data/exams";
 import { useLang } from "../i18n/context";
+import { shuffleQuestions } from "../lib/shuffle";
 
 type Mode = "exam" | "practice"; // exam: grade only at end ; practice: instant feedback per Q
 
@@ -12,6 +13,8 @@ type Props = {
   durationMin?: number;
   passingScore?: number;
   storageKey?: string;
+  /** When true, randomize the question order AND each question's options. */
+  shuffle?: boolean;
 };
 
 const chapterEmoji: Record<number, string> = {
@@ -32,11 +35,12 @@ function fmtTime(ms: number) {
 export default function QuizRunner({
   title,
   subtitle,
-  questions,
+  questions: rawQuestions,
   mode = "exam",
   durationMin,
   passingScore,
   storageKey,
+  shuffle = false,
 }: Props) {
   const { t } = useLang();
   const [started, setStarted] = useState(false);
@@ -46,6 +50,16 @@ export default function QuizRunner({
   const [showOverviewAfter, setShowOverviewAfter] = useState(false);
   const [startedAt, setStartedAt] = useState<number | null>(null);
   const [now, setNow] = useState<number>(Date.now());
+  // Compute the working set of questions: either the original order, or a
+  // shuffled copy (with options reshuffled per-question). The shuffle is
+  // re-rolled whenever the storage key changes (i.e. new attempt) or the
+  // shuffle prop toggles.
+  const [shuffleSeed, setShuffleSeed] = useState(0);
+  const questions = useMemo(
+    () => (shuffle ? shuffleQuestions(rawQuestions) : rawQuestions),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [rawQuestions, shuffle, shuffleSeed]
+  );
 
   // Timer
   useEffect(() => {
@@ -132,6 +146,7 @@ export default function QuizRunner({
     setCurrent(0);
     setShowOverviewAfter(false);
     setStartedAt(null);
+    setShuffleSeed((s) => s + 1); // re-roll the shuffle on retry
     if (storageKey) localStorage.removeItem(storageKey);
   }
 
