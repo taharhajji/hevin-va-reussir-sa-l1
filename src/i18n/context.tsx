@@ -2,8 +2,9 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import { ui } from "./strings";
 import { playTransition } from "../components/TransitionVideo";
 
-const FR_TO_TR_VIDEO = "/fr-to-tr.mp4";
-const TR_TO_FR_VIDEO = "/tr-to-fr.mp4";
+// Images (3 s) qui remplacent les anciennes vidéos de transition.
+const FR_TO_TR_IMG = "/fr-to-tr.png";
+const TR_TO_FR_IMG = "/tr-to-fr.png";
 
 export type Lang = "fr" | "tr";
 
@@ -31,15 +32,15 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   function setLang(l: Lang) {
     if (l !== lang) {
-      if (lang === "fr" && l === "tr") playTransition(FR_TO_TR_VIDEO);
-      else if (lang === "tr" && l === "fr") playTransition(TR_TO_FR_VIDEO);
+      if (lang === "fr" && l === "tr") playTransition(FR_TO_TR_IMG, "image");
+      else if (lang === "tr" && l === "fr") playTransition(TR_TO_FR_IMG, "image");
     }
     setLangState(l);
   }
   function toggle() {
     const next = lang === "fr" ? "tr" : "fr";
-    if (lang === "fr" && next === "tr") playTransition(FR_TO_TR_VIDEO);
-    else if (lang === "tr" && next === "fr") playTransition(TR_TO_FR_VIDEO);
+    if (lang === "fr" && next === "tr") playTransition(FR_TO_TR_IMG, "image");
+    else if (lang === "tr" && next === "fr") playTransition(TR_TO_FR_IMG, "image");
     setLangState(next);
   }
   function t(key: keyof typeof ui) {

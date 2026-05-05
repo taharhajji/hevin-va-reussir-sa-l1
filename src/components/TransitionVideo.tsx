@@ -1,21 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 
-type Trigger = { src: string; key: number } | null;
+type Trigger = { src: string; key: number; type: "image" | "video" } | null;
 
 let listeners: Array<(t: Trigger) => void> = [];
 
-/** Lance la vidéo d'une transition (à appeler depuis un event handler user). */
-export function playTransition(src: string) {
-  const t: Trigger = { src, key: Date.now() };
-  // flushSync force React à committer le state immédiatement (et donc à
-  // monter la <video />) AVANT que le user-gesture stack ne se referme. Le
-  // useEffect peut alors appeler video.play() sans être bloqué par la
-  // policy d'autoplay du navigateur.
+/** Displays an image full-screen for 3 seconds (or a video). */
+export function playTransition(src: string, type: "image" | "video" = "image") {
+  const t: Trigger = { src, key: Date.now(), type };
   flushSync(() => {
     listeners.forEach((l) => l(t));
   });
 }
+
+const IMAGE_DURATION_MS = 3000;
 
 export default function TransitionVideo() {
   const [trigger, setTrigger] = useState<Trigger>(null);
@@ -31,27 +29,66 @@ export default function TransitionVideo() {
 
   useEffect(() => {
     if (!trigger) return;
+    if (trigger.type === "image") {
+      // Auto-close after the image duration.
+      const id = window.setTimeout(() => setTrigger(null), IMAGE_DURATION_MS);
+      return () => window.clearTimeout(id);
+    }
+    // Video path (legacy)
     const v = videoRef.current;
     if (!v) return;
     v.currentTime = 0;
-    v.muted = true; // requis pour autoplay sans interaction
+    v.muted = true;
     const p = v.play();
-    if (p && typeof p.catch === "function") {
-      // Si play() échoue, on garde l'overlay : l'utilisateur peut
-      // cliquer pour fermer. (Très rare avec muted=true.)
-      p.catch(() => {});
-    }
-    // Filet de sécurité : ferme l'overlay au bout de 12 s même si la
-    // vidéo n'envoie pas de "ended" (vidéo cassée, navigateur bloqué…).
-    const timeoutId = window.setTimeout(() => setTrigger(null), 12000);
-    return () => window.clearTimeout(timeoutId);
+    if (p && typeof p.catch === "function") p.catch(() => {});
+    const safety = window.setTimeout(() => setTrigger(null), 12000);
+    return () => window.clearTimeout(safety);
   }, [trigger]);
 
   if (!trigger) return null;
 
+  if (trigger.type === "image") {
+    return (
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 99999,
+          background: "black",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "none",
+          animation: "ttFade 3000ms ease both",
+        }}
+        onClick={() => setTrigger(null)}
+      >
+        <img
+          key={trigger.key}
+          src={trigger.src}
+          alt=""
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            objectFit: "contain",
+            background: "black",
+          }}
+          onError={() => setTrigger(null)}
+        />
+        <style>
+          {`@keyframes ttFade {
+              0% { opacity: 0; }
+              10% { opacity: 1; }
+              90% { opacity: 1; }
+              100% { opacity: 0; }
+            }`}
+        </style>
+      </div>
+    );
+  }
+
   return (
     <div
-      // Overlay plein écran, au-dessus de tout (cursor compris).
       style={{
         position: "fixed",
         inset: 0,
@@ -60,7 +97,6 @@ export default function TransitionVideo() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        // L'overlay capture les events pour que rien ne se passe derrière
         pointerEvents: "auto",
         cursor: "none",
       }}
@@ -74,7 +110,6 @@ export default function TransitionVideo() {
         muted
         playsInline
         onEnded={() => setTrigger(null)}
-        // onError ne ferme pas l'overlay : le filet de 12 s s'en charge.
         style={{
           width: "100%",
           height: "100%",
