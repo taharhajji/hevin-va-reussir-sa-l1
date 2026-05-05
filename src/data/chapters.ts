@@ -4,6 +4,19 @@ export type Section = {
   emoji?: string;
 };
 
+export type ChapterVideo = {
+  /** Titre court affiché sur la card. */
+  title: string;
+  /** ID YouTube (la partie après v= dans l'URL). */
+  youtubeId: string;
+  /** Auteur / chaîne. */
+  author?: string;
+  /** Durée approximative ("5 min", "12 min"…). */
+  duration?: string;
+  /** Description courte de ce que la vidéo couvre. */
+  description: string;
+};
+
 export type Chapter = {
   slug: string;
   number: number;
@@ -16,6 +29,8 @@ export type Chapter = {
   sections: Section[];
   keyPoints: string[];
   pieges: string[];
+  /** Vidéos optionnelles à visionner pour le chapitre. */
+  videos?: ChapterVideo[];
 };
 
 import { chaptersTr } from "./chapters.tr";

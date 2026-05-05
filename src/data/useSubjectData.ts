@@ -17,6 +17,7 @@ import { qcmByChapterDroit } from "./qcm.droit";
 import { exerciseSectionsByLang } from "./exercises";
 import { exerciseSectionsGestion } from "./exercises.gestion";
 import { exerciseSectionsGestionTr } from "./exercises.gestion.tr";
+import { exerciseSectionsGestionBonus } from "./exercises.gestion.bonus";
 import { useLang } from "../i18n/context";
 import { useSubject, type Subject } from "../subject/context";
 
@@ -44,7 +45,10 @@ const qcmBySubject = {
 
 const exercisesBySubject = {
   macro: exerciseSectionsByLang,
-  gestion: { fr: exerciseSectionsGestion, tr: exerciseSectionsGestionTr },
+  gestion: {
+    fr: [...exerciseSectionsGestion, ...exerciseSectionsGestionBonus],
+    tr: exerciseSectionsGestionTr,
+  },
   anglais: { fr: [], tr: [] },
   droit: { fr: [], tr: [] },
 } as const;

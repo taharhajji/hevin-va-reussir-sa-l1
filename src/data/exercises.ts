@@ -391,4 +391,12 @@ export const exerciseSections: ExerciseSection[] = [
 ];
 
 import { exerciseSectionsTr } from "./exercises.tr";
-export const exerciseSectionsByLang = { fr: exerciseSections, tr: exerciseSectionsTr } as const;
+import { exerciseSectionsBonus } from "./exercises.bonus";
+
+// On concatène les exercices bonus à la fin des sections existantes.
+const exerciseSectionsFull = [...exerciseSections, ...exerciseSectionsBonus];
+
+export const exerciseSectionsByLang = {
+  fr: exerciseSectionsFull,
+  tr: exerciseSectionsTr,
+} as const;

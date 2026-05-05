@@ -253,6 +253,14 @@ export const ui = {
   },
   randomModeBadge: { fr: "Aléatoire activé", tr: "Rastgele aktif" },
 
+  // Videos section
+  videosTitle: { fr: "🎥 Vidéos pour comprendre", tr: "🎥 Anlamak için videolar" },
+  videosIntro: {
+    fr: "Vidéos YouTube pertinentes pour ce chapitre. Clique pour les regarder directement sur le site (ton bloqueur de pubs prend le relais pour les pubs).",
+    tr: "Bu bölüm için ilgili YouTube videoları. Doğrudan sitede izlemek için tıkla (reklam engelleyici reklamları halleder).",
+  },
+  videoWatch: { fr: "▶️ Regarder", tr: "▶️ İzle" },
+
   // Gestion placeholder
   gestionPlaceholderTitle: {
     fr: "📦 Cours de gestion — bientôt disponible",

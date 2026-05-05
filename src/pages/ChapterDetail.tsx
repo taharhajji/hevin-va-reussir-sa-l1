@@ -1,8 +1,11 @@
 import { Link, useParams, Navigate } from "react-router-dom";
+import { useState } from "react";
 import { useChapters } from "../data/useSubjectData";
 import Markdown from "../components/Markdown";
+import VideoOverlay from "../components/VideoOverlay";
 import { useLang } from "../i18n/context";
 import { useSubject } from "../subject/context";
+import type { ChapterVideo } from "../data/chapters";
 
 export default function ChapterDetail() {
   const { slug } = useParams();
@@ -10,6 +13,7 @@ export default function ChapterDetail() {
   const { subject } = useSubject();
   const chapters = useChapters();
   const base = `/${subject ?? "macro"}`;
+  const [openVideo, setOpenVideo] = useState<ChapterVideo | null>(null);
   const idx = chapters.findIndex((c) => c.slug === slug);
   if (idx === -1) return <Navigate to={`${base}/chapitres`} replace />;
   const c = chapters[idx];
@@ -51,6 +55,51 @@ export default function ChapterDetail() {
           </section>
         ))}
       </div>
+
+      {c.videos && c.videos.length > 0 && (
+        <section className="mt-8 rounded-2xl bg-white border-2 border-slate-200 p-6 shadow-sm">
+          <h2 className="font-display text-xl font-bold text-slate-900 mb-2">
+            {t("videosTitle")}
+          </h2>
+          <p className="text-sm text-slate-600 mb-4">{t("videosIntro")}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {c.videos.map((v) => (
+              <button
+                key={v.youtubeId}
+                onClick={() => setOpenVideo(v)}
+                className="group text-left rounded-xl border border-slate-200 hover:border-brand-400 overflow-hidden transition shadow-sm hover:shadow-md"
+              >
+                <div className="relative aspect-video bg-slate-900 overflow-hidden">
+                  <img
+                    src={`https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`}
+                    alt=""
+                    className="w-full h-full object-cover group-hover:scale-105 transition"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                    <div className="bg-white/95 rounded-full w-14 h-14 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                      <span className="text-3xl pl-1">▶</span>
+                    </div>
+                  </div>
+                  {v.duration && (
+                    <span className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-0.5 rounded">
+                      {v.duration}
+                    </span>
+                  )}
+                </div>
+                <div className="p-3">
+                  <h3 className="font-semibold text-slate-900 leading-snug">
+                    {v.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-1 line-clamp-3">
+                    {v.description}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="grid sm:grid-cols-2 gap-5 mt-8">
         <section className="rounded-2xl bg-emerald-50 border-2 border-emerald-200 p-6">
@@ -109,6 +158,15 @@ export default function ChapterDetail() {
           )}
         </div>
       </div>
+
+      {openVideo && (
+        <VideoOverlay
+          youtubeId={openVideo.youtubeId}
+          title={openVideo.title}
+          author={openVideo.author}
+          onClose={() => setOpenVideo(null)}
+        />
+      )}
     </div>
   );
 }

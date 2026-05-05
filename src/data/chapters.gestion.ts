@@ -46,6 +46,22 @@ export const chaptersGestion: Chapter[] = [
       "« Entreprise » est un terme économique, « société » est juridique",
       "Une grande entreprise est rare : 99 % des entreprises ont < 250 salariés",
     ],
+    videos: [
+      {
+        title: "Qu'est-ce qu'une entreprise ?",
+        youtubeId: "4XmM__enObA",
+        duration: "≈ 8 min",
+        description:
+          "Réponse pédagogique à la question qui ouvre tous les cours d'introduction à la gestion : la définition juridique et économique de l'entreprise.",
+      },
+      {
+        title: "Rôle et structure de l'entreprise",
+        youtubeId: "F6eHIGgPSNQ",
+        duration: "≈ 12 min",
+        description:
+          "Introduction à la gestion financière : à quoi sert une entreprise et comment elle est organisée.",
+      },
+    ],
   },
   {
     slug: "ch2",
@@ -91,6 +107,15 @@ export const chaptersGestion: Chapter[] = [
       "Comptabilité générale ≠ analytique (la 1ʳᵉ est obligatoire, la 2ᵉ optionnelle)",
       "La comptabilité n'est pas un luxe : c'est une obligation légale",
       "Les pièces se gardent 10 ans, pas 5",
+    ],
+    videos: [
+      {
+        title: "Opérations comptables à maîtriser",
+        youtubeId: "As1vWjbc_Fg",
+        duration: "≈ 18 min",
+        description:
+          "Vue d'ensemble : Bilan, Journal, Grand-livre, Balance, Compte de résultat & TVA. Idéal pour comprendre les rôles de la comptabilité avant d'attaquer les chapitres techniques.",
+      },
     ],
   },
   {
@@ -140,6 +165,29 @@ export const chaptersGestion: Chapter[] = [
       "Le « capital » au bilan ≠ « capital social » de l'INSEE = même chose",
       "Les créances clients sont à l'ACTIF (on attend de l'argent)",
       "Les dettes fournisseurs sont au PASSIF (on doit de l'argent)",
+    ],
+    videos: [
+      {
+        title: "Comprendre un bilan comptable en 9 minutes",
+        youtubeId: "tOl0SnkTJaM",
+        duration: "9 min",
+        description:
+          "Le bilan expliqué avec un exemple simple. La meilleure intro pour saisir Actif = Passif et la logique d'ensemble.",
+      },
+      {
+        title: "ACTIF et PASSIF du bilan, simplement",
+        youtubeId: "oXmuhPQaWi8",
+        duration: "6 min",
+        description:
+          "Les deux notions fondamentales du bilan en 6 minutes : ce qu'on possède (actif) vs ce qu'on doit (passif).",
+      },
+      {
+        title: "Le bilan comptable — actif / passif (cours n°2)",
+        youtubeId: "rH5I1WuY2p4",
+        duration: "≈ 15 min",
+        description:
+          "Cours plus complet sur le bilan comptable, avec les sous-catégories (immobilisations, créances, dettes, capitaux propres).",
+      },
     ],
   },
   {
@@ -193,6 +241,29 @@ export const chaptersGestion: Chapter[] = [
       "Crédit ≠ « avoir des sous » en comptabilité — ça dépend du compte",
       "Le compte « Banque » à solde débiteur signifie qu'on a de l'argent ! (côté entreprise)",
       "Salaires bruts ≠ rémunération du personnel : on enregistre les primes et charges sociales séparément",
+    ],
+    videos: [
+      {
+        title: "DÉBIT et CRÉDIT en 5 minutes, simplement",
+        youtubeId: "zVSzkaMPQ64",
+        duration: "5 min",
+        description:
+          "L'essentiel du débit / crédit : démêle l'idée reçue que crédit = argent qui rentre. Indispensable avant les écritures.",
+      },
+      {
+        title: "Principe de la partie double : DÉBIT ET CRÉDIT",
+        youtubeId: "NRqCw2EOo0w",
+        duration: "≈ 12 min",
+        description:
+          "Initiation à la comptabilité (5/6) : pourquoi à chaque opération correspond un débit ET un crédit. Le cœur de la mécanique comptable.",
+      },
+      {
+        title: "Logique comptable : Débit-Crédit, partie double",
+        youtubeId: "wPgyynVzEWc",
+        duration: "≈ 14 min",
+        description:
+          "Pour ceux qui veulent vraiment ancrer la logique : comment comptabiliser une opération commerciale du début à la fin.",
+      },
     ],
   },
   {
@@ -248,6 +319,29 @@ export const chaptersGestion: Chapter[] = [
       "Salaire brut ≠ coût employeur — il faut ajouter les cotisations patronales (~25-42 %)",
       "La TVA collectée est une DETTE envers l'État, pas un produit",
     ],
+    videos: [
+      {
+        title: "Comment fonctionne la TVA ? (5 min chrono)",
+        youtubeId: "Hi1vf1Vy1r0",
+        duration: "5 min",
+        description:
+          "Le mécanisme TVA collectée → déductible → décaisser, expliqué pas-à-pas. Idéal pour démarrer.",
+      },
+      {
+        title: "TVA collectée, TVA déductible : qui paye réellement ?",
+        youtubeId: "fh2Uy5M1NS4",
+        duration: "≈ 4 min",
+        description:
+          "Dessine-moi l'éco : la TVA est-elle vraiment payée par les entreprises ? Anim claire et courte.",
+      },
+      {
+        title: "Comprendre la TVA en 5 MINUTES",
+        youtubeId: "mSnPJ7QysNo",
+        duration: "5 min",
+        description:
+          "Vue d'ensemble rapide : taux, mécanisme, déclaration. Bonne révision avant l'examen.",
+      },
+    ],
   },
   {
     slug: "ch6",
@@ -297,6 +391,15 @@ export const chaptersGestion: Chapter[] = [
       "Le crédit-bail : on n'est pas propriétaire pendant la location",
       "L'amortissement n'est pas un décaissement, c'est juste comptable",
     ],
+    videos: [
+      {
+        title: "Cours amortissement des immobilisations — intro",
+        youtubeId: "kUo5Zc-3vSk",
+        duration: "≈ 8 min",
+        description:
+          "Vidéo d'introduction qui explique ce qu'est une immobilisation et pourquoi on doit l'amortir. Bonne base avant le CH7.",
+      },
+    ],
   },
   {
     slug: "ch7",
@@ -345,6 +448,29 @@ export const chaptersGestion: Chapter[] = [
       "Provision ≠ amortissement : provision pour risque incertain ; amortissement pour usure certaine",
       "VNC peut tomber à 0 mais le bien continue d'exister physiquement",
       "Les annexes sont obligatoires : ce ne sont pas du « bonus »",
+    ],
+    videos: [
+      {
+        title: "Les amortissements comptables : l'amortissement linéaire",
+        youtubeId: "XXs2dzbJOdM",
+        duration: "≈ 10 min",
+        description:
+          "Méthode classique pas-à-pas : valeur d'origine, durée, annuité. Tout y est pour comprendre le calcul.",
+      },
+      {
+        title: "Amortissement linéaire — la méthode incontournable",
+        youtubeId: "AK7Y51Zn1SE",
+        duration: "≈ 8 min",
+        description:
+          "Vidéo synthétique avec exemple concret. Parfaite pour réviser avant l'examen.",
+      },
+      {
+        title: "Exercice corrigé : plan d'amortissement linéaire & accéléré",
+        youtubeId: "4-SZkFe-jF4",
+        duration: "≈ 15 min",
+        description:
+          "Un exercice corrigé en direct — utile pour t'entraîner sur des cas types comme ceux qui tombent en partiel.",
+      },
     ],
   },
 ];
