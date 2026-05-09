@@ -103,6 +103,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.3,
+        // Limite serrée pour rester dans le tier gratuit OpenRouter
+        // (1599 tokens max par requête). Largement assez pour un JSON
+        // de correction.
+        max_tokens: 1500,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
