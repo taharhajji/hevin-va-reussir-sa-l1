@@ -18,6 +18,7 @@ import { exerciseSectionsByLang } from "./exercises";
 import { exerciseSectionsGestion } from "./exercises.gestion";
 import { exerciseSectionsGestionTr } from "./exercises.gestion.tr";
 import { exerciseSectionsGestionBonus } from "./exercises.gestion.bonus";
+import { exerciseSectionsDroit } from "./exercises.droit";
 import { useLang } from "../i18n/context";
 import { useSubject, type Subject } from "../subject/context";
 
@@ -50,7 +51,7 @@ const exercisesBySubject = {
     tr: exerciseSectionsGestionTr,
   },
   anglais: { fr: [], tr: [] },
-  droit: { fr: [], tr: [] },
+  droit: { fr: exerciseSectionsDroit, tr: exerciseSectionsDroit },
 } as const;
 
 function effectiveSubject(s: Subject | null): "macro" | "gestion" | "anglais" | "droit" {

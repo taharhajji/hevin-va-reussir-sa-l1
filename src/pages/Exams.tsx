@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useExams } from "../data/useSubjectData";
 import { useLang } from "../i18n/context";
 import { useSubject } from "../subject/context";
+import { writtenExamsDroit } from "../data/writtenExams.droit";
 
 const STORAGE_KEY = "hevin-shuffle";
 
@@ -11,6 +12,7 @@ export default function Exams() {
   const { subject } = useSubject();
   const exams = useExams();
   const base = `/${subject ?? "macro"}`;
+  const writtenExams = subject === "droit" ? writtenExamsDroit : [];
   const [shuffle, setShuffle] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
     return localStorage.getItem(STORAGE_KEY) === "1";
@@ -94,6 +96,46 @@ export default function Exams() {
           </Link>
         ))}
       </div>
+
+      {writtenExams.length > 0 && (
+        <section className="mt-10">
+          <h2 className="font-display text-2xl font-bold text-slate-900 mb-2">
+            ✍️ Examens blancs avec rédaction
+          </h2>
+          <p className="text-slate-600 mb-4 text-sm">
+            Tu rédiges, l'IA Grok corrige : note, points forts, points
+            faibles, conseil méthodologique. Pour la dissert, le commentaire
+            d'arrêt et le cas pratique.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {writtenExams.map((e) => (
+              <Link
+                key={e.slug}
+                to={`${base}/redaction/${e.slug}`}
+                className="card-tilt block rounded-2xl p-6 text-white shadow-md bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500"
+              >
+                <div className="text-5xl">{e.emoji}</div>
+                <h3 className="font-display text-xl font-bold mt-3">{e.title}</h3>
+                <p className="text-amber-50 mt-1 text-sm">{e.subtitle}</p>
+                <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+                  <div className="bg-white/15 backdrop-blur rounded-lg p-2">
+                    <p className="opacity-80">Questions</p>
+                    <p className="font-bold text-base">{e.questions.length}</p>
+                  </div>
+                  <div className="bg-white/15 backdrop-blur rounded-lg p-2">
+                    <p className="opacity-80">Durée</p>
+                    <p className="font-bold text-base">{e.durationMin} min</p>
+                  </div>
+                  <div className="bg-white/15 backdrop-blur rounded-lg p-2">
+                    <p className="opacity-80">Correction</p>
+                    <p className="font-bold text-base">🤖 IA</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="mt-10 rounded-2xl bg-sun-400/15 border border-sun-400/40 p-5 text-sm text-amber-900">
         <p>{t("examsAdvice")}</p>

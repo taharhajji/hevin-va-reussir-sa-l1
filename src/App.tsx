@@ -10,6 +10,7 @@ import QCMRunner from "./pages/QCMRunner";
 import Exercises from "./pages/Exercises";
 import Formules from "./pages/Formules";
 import Splash from "./pages/Splash";
+import WrittenExamRunner from "./pages/WrittenExamRunner";
 import { useSubject, type Subject } from "./subject/context";
 import { useEffect, useRef } from "react";
 
@@ -57,6 +58,10 @@ function makeSubjectRoutes(prefix: string, expected: Subject) {
       <Route path={`${prefix}/qcm/:slug`} element={<QCMRunner />} />
       <Route path={`${prefix}/examens`} element={<Exams />} />
       <Route path={`${prefix}/examens/:slug`} element={<ExamRunner />} />
+      <Route
+        path={`${prefix}/redaction/:slug`}
+        element={<WrittenExamRunner />}
+      />
       <Route path={`${prefix}/exercices`} element={<Exercises />} />
       <Route path={`${prefix}/formules`} element={<Formules />} />
     </Route>
