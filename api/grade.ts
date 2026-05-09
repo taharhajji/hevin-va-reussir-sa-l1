@@ -1,35 +1,18 @@
-// Vercel Serverless Function — corrige une réponse rédigée via l'API Grok (xAI).
+// Vercel Serverless Function — corrige une réponse rédigée via OpenRouter
+// (qui route vers Grok 3 sur l'infrastructure xAI).
 //
 // Sécurité : la clé API est stockée dans la variable d'environnement
-// `GROK_API_KEY` (jamais en dur dans le code, jamais commit dans git).
+// `OPENROUTER_API_KEY` (jamais en dur dans le code, jamais commit).
 // À configurer dans Vercel : Settings → Environment Variables.
 //
-// Modèle utilisé : grok-2-latest (rapide et bon marché). Tu peux mettre
-// grok-3-latest pour de meilleurs résultats.
-//
-// Body attendu (POST application/json) :
-// {
-//   "question": "...",        // sujet de la question
-//   "userAnswer": "...",      // copie de l'étudiant
-//   "modelAnswer": "...",     // réponse de référence (sert d'ancre, pas révélée)
-//   "maxPoints": 4            // barème
-// }
-//
-// Réponse :
-// {
-//   "score": 3.5,
-//   "scoreOver": 4,
-//   "grade": "B+",            // appréciation
-//   "strengths": ["...", "..."],
-//   "weaknesses": ["...", "..."],
-//   "advice": "...",
-//   "missingPoints": ["..."]  // notions oubliées
-// }
+// Pourquoi OpenRouter plutôt que l'API xAI directe ? Pour éviter d'avoir à
+// gérer le crédit / billing xAI séparément, et pour pouvoir basculer sur
+// d'autres modèles (Claude, GPT-4, Llama…) en changeant juste GROK_MODEL.
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-const GROK_ENDPOINT = "https://api.x.ai/v1/chat/completions";
-const MODEL = process.env.GROK_MODEL || "grok-3-latest";
+const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+const MODEL = process.env.GROK_MODEL || "x-ai/grok-3";
 
 const SYSTEM_PROMPT = `Tu es un correcteur d'examen de droit niveau L2 LEA (étudiants non-juristes spécialisés). Tu corriges avec bienveillance mais rigueur, en restant accessible. La langue d'évaluation est le français.
 
@@ -79,11 +62,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.GROK_API_KEY;
+  // On accepte les 2 noms d'env var, OpenRouter en priorité.
+  const apiKey = process.env.OPENROUTER_API_KEY || process.env.GROK_API_KEY;
   if (!apiKey) {
     return res.status(500).json({
       error:
-        "Clé API manquante. Ajoute GROK_API_KEY dans les variables d'environnement Vercel.",
+        "Clé API manquante. Ajoute OPENROUTER_API_KEY dans les variables d'environnement Vercel.",
     });
   }
 
@@ -106,11 +90,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const response = await fetch(GROK_ENDPOINT, {
+    const response = await fetch(OPENROUTER_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
+        // OpenRouter recommande ces headers pour le tracking et pour
+        // apparaître dans le leaderboard public (optionnel).
+        "HTTP-Referer": "https://macroeco-site.vercel.app",
+        "X-Title": "Hevin va réussir sa L1",
       },
       body: JSON.stringify({
         model: MODEL,
@@ -129,7 +117,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!response.ok) {
       const text = await response.text();
       return res.status(502).json({
-        error: `API Grok (${response.status}) : ${text.slice(0, 300)}`,
+        error: `API OpenRouter (${response.status}) : ${text.slice(0, 300)}`,
       });
     }
 
