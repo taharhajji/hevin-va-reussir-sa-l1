@@ -29,7 +29,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const GROK_ENDPOINT = "https://api.x.ai/v1/chat/completions";
-const MODEL = process.env.GROK_MODEL || "grok-2-latest";
+const MODEL = process.env.GROK_MODEL || "grok-3-latest";
 
 const SYSTEM_PROMPT = `Tu es un correcteur d'examen de droit niveau L2 LEA (étudiants non-juristes spécialisés). Tu corriges avec bienveillance mais rigueur, en restant accessible. La langue d'évaluation est le français.
 
