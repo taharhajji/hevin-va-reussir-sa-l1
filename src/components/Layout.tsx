@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-do
 import { useEffect } from "react";
 import { useLang } from "../i18n/context";
 import { useSubject } from "../subject/context";
+import LovePopup from "./LovePopup";
 
 export default function Layout() {
   const loc = useLocation();
@@ -120,6 +121,8 @@ export default function Layout() {
       <footer className="border-t border-slate-200 bg-white/60 py-6 text-center text-sm text-slate-500">
         <p>{t("footer")}</p>
       </footer>
+
+      <LovePopup />
     </div>
   );
 }
