@@ -28,24 +28,19 @@ export default function LovePopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       aria-live="polite"
+      onClick={() => setOpen(false)}
+      role="button"
+      tabIndex={0}
     >
       {/* Voile très léger */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-auto" onClick={() => setOpen(false)} />
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Carte popup */}
+      {/* Carte popup — un clic n'importe où la ferme */}
       <div
-        className="relative pointer-events-auto max-w-md w-full rounded-3xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-600 text-white shadow-2xl p-6 sm:p-8 text-center animate-popin"
+        className="relative max-w-md w-full rounded-3xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-600 text-white shadow-2xl p-6 sm:p-8 text-center animate-popin cursor-pointer select-none"
       >
-        <button
-          onClick={() => setOpen(false)}
-          className="absolute top-2 right-3 text-white/80 hover:text-white text-2xl leading-none"
-          aria-label="Fermer"
-        >
-          ×
-        </button>
-
         <div className="text-5xl mb-3 animate-bounce">💖</div>
         <h2 className="font-display font-extrabold text-2xl sm:text-3xl tracking-tight drop-shadow">
           HEVIN
@@ -64,6 +59,8 @@ export default function LovePopup() {
           <span className="animate-pulse [animation-delay:450ms]">🌹</span>
           <span className="animate-pulse [animation-delay:600ms]">✨</span>
         </div>
+
+        <p className="mt-4 text-xs text-white/70 italic">(clique pour fermer)</p>
       </div>
 
       <style>{`
