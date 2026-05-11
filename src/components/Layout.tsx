@@ -34,6 +34,8 @@ export default function Layout() {
       ? t("subjectAnglais")
       : subject === "droit"
       ? t("subjectDroit")
+      : subject === "linguistique"
+      ? t("subjectLinguistique")
       : t("subjectMacro");
   const subjectColor =
     subject === "gestion"
@@ -42,6 +44,8 @@ export default function Layout() {
       ? "bg-rose-100 text-rose-800"
       : subject === "droit"
       ? "bg-amber-100 text-amber-800"
+      : subject === "linguistique"
+      ? "bg-fuchsia-100 text-fuchsia-800"
       : "bg-brand-100 text-brand-800";
   const subjectEmoji =
     subject === "gestion"
@@ -50,6 +54,8 @@ export default function Layout() {
       ? "🇬🇧"
       : subject === "droit"
       ? "⚖️"
+      : subject === "linguistique"
+      ? "🔤"
       : "📊";
 
   return (

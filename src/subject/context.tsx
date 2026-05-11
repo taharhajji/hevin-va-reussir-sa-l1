@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Subject = "macro" | "gestion" | "anglais" | "droit";
+export type Subject = "macro" | "gestion" | "anglais" | "droit" | "linguistique";
 
 type Ctx = {
   subject: Subject | null; // null = pas encore choisi
@@ -15,7 +15,11 @@ export function SubjectProvider({ children }: { children: ReactNode }) {
   const [subject, setSubjectState] = useState<Subject | null>(() => {
     if (typeof window === "undefined") return null;
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved === "macro" || saved === "gestion" || saved === "anglais" || saved === "droit"
+    return saved === "macro" ||
+      saved === "gestion" ||
+      saved === "anglais" ||
+      saved === "droit" ||
+      saved === "linguistique"
       ? saved
       : null;
   });

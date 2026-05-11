@@ -232,6 +232,19 @@ export const ui = {
     fr: "⚖️ 6 chapitres carrés, 56 QCM, 1 examen blanc 40 questions — prêt pour ton partiel.",
     tr: "⚖️ 6 sağlam bölüm, 56 soru, 1 deneme sınavı 40 soru — sınavın için hazır.",
   },
+
+  splashLinguistiqueTitle: {
+    fr: "Anglais linguistique",
+    tr: "İngilizce dilbilim",
+  },
+  splashLinguistiqueDesc: {
+    fr: "Grammaire express : SVO, négation, DI, temps, modaux, conditionnel, pronoms.",
+    tr: "Hızlı dilbilgisi: SVO, olumsuz, dolaylı, zamanlar, kipler, koşul, zamirler.",
+  },
+  splashLinguistiqueStatus: {
+    fr: "🔤 8 CM condensés, 40 QCM, 1 examen blanc — révision express partiel demain.",
+    tr: "🔤 8 yoğun ders, 40 soru, 1 deneme sınavı — yarınki sınav için hızlı tekrar.",
+  },
   splashEnter: { fr: "Entrer →", tr: "Giriş →" },
   splashHint: {
     fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
@@ -243,6 +256,7 @@ export const ui = {
   subjectGestion: { fr: "Gestion", tr: "Yönetim" },
   subjectAnglais: { fr: "Anglais", tr: "İngilizce" },
   subjectDroit: { fr: "Droit", tr: "Hukuk" },
+  subjectLinguistique: { fr: "Linguistique", tr: "Dilbilim" },
 
   // Random / shuffle mode
   randomModeOff: { fr: "🎲 Mode aléatoire", tr: "🎲 Rastgele mod" },
