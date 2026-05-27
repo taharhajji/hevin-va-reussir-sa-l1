@@ -22,6 +22,9 @@ import { exerciseSectionsDroit } from "./exercises.droit";
 import { chaptersLinguistique } from "./chapters.linguistique";
 import { qcmByChapterLinguistique } from "./qcm.linguistique";
 import { examsLinguistique } from "./exams.linguistique";
+import { chaptersPrincipes } from "./chapters.principes";
+import { qcmByChapterPrincipes } from "./qcm.principes";
+import { examsPrincipes } from "./exams.principes";
 import { useLang } from "../i18n/context";
 import { useSubject, type Subject } from "../subject/context";
 
@@ -32,6 +35,7 @@ const chaptersBySubject = {
   // Droit : juste FR (cours en français, examen en français)
   droit: { fr: chaptersDroit, tr: chaptersDroit },
   linguistique: { fr: chaptersLinguistique, tr: chaptersLinguistique },
+  principes: { fr: chaptersPrincipes, tr: chaptersPrincipes },
 } as const;
 
 const examsBySubject = {
@@ -40,6 +44,7 @@ const examsBySubject = {
   anglais: { fr: examsAnglais, tr: examsAnglais },
   droit: { fr: examsDroit, tr: examsDroit },
   linguistique: { fr: examsLinguistique, tr: examsLinguistique },
+  principes: { fr: examsPrincipes, tr: examsPrincipes },
 } as const;
 
 const qcmBySubject = {
@@ -48,6 +53,7 @@ const qcmBySubject = {
   anglais: { fr: qcmByChapterAnglais, tr: qcmByChapterAnglais },
   droit: { fr: qcmByChapterDroit, tr: qcmByChapterDroit },
   linguistique: { fr: qcmByChapterLinguistique, tr: qcmByChapterLinguistique },
+  principes: { fr: qcmByChapterPrincipes, tr: qcmByChapterPrincipes },
 } as const;
 
 const exercisesBySubject = {
@@ -59,11 +65,12 @@ const exercisesBySubject = {
   anglais: { fr: [], tr: [] },
   droit: { fr: exerciseSectionsDroit, tr: exerciseSectionsDroit },
   linguistique: { fr: [], tr: [] },
+  principes: { fr: [], tr: [] },
 } as const;
 
 function effectiveSubject(
   s: Subject | null,
-): "macro" | "gestion" | "anglais" | "droit" | "linguistique" {
+): "macro" | "gestion" | "anglais" | "droit" | "linguistique" | "principes" {
   return s ?? "macro";
 }
 

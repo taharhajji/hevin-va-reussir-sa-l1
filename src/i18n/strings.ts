@@ -242,9 +242,23 @@ export const ui = {
     tr: "Hızlı dilbilgisi: SVO, olumsuz, dolaylı, zamanlar, kipler, koşul, zamirler.",
   },
   splashLinguistiqueStatus: {
-    fr: "🔤 8 CM condensés, 40 QCM, 1 examen blanc — révision express partiel demain.",
-    tr: "🔤 8 yoğun ders, 40 soru, 1 deneme sınavı — yarınki sınav için hızlı tekrar.",
+    fr: "🔤 8 CM condensés, 40 QCM, 5 examens blancs — révision express partiel demain.",
+    tr: "🔤 8 yoğun ders, 40 soru, 5 deneme sınavı — yarınki sınav için hızlı tekrar.",
   },
+
+  splashPrincipesTitle: {
+    fr: "Principes d'économie",
+    tr: "Ekonomi ilkeleri",
+  },
+  splashPrincipesDesc: {
+    fr: "Microéco L1 : rareté, offre/demande, élasticités, défaillances de marché.",
+    tr: "L1 mikroekonomi: kıtlık, arz/talep, esneklikler, piyasa başarısızlıkları.",
+  },
+  splashPrincipesStatus: {
+    fr: "💡 4 chapitres complets, ~30 QCM officiels du prof, 3 examens blancs.",
+    tr: "💡 4 tam bölüm, ~30 hocanın resmi sorusu, 3 deneme sınavı.",
+  },
+
   splashEnter: { fr: "Entrer →", tr: "Giriş →" },
   splashHint: {
     fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
@@ -257,6 +271,7 @@ export const ui = {
   subjectAnglais: { fr: "Anglais", tr: "İngilizce" },
   subjectDroit: { fr: "Droit", tr: "Hukuk" },
   subjectLinguistique: { fr: "Linguistique", tr: "Dilbilim" },
+  subjectPrincipes: { fr: "Principes d'éco", tr: "Eko ilkeleri" },
 
   // Random / shuffle mode
   randomModeOff: { fr: "🎲 Mode aléatoire", tr: "🎲 Rastgele mod" },

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Subject = "macro" | "gestion" | "anglais" | "droit" | "linguistique";
+export type Subject = "macro" | "gestion" | "anglais" | "droit" | "linguistique" | "principes";
 
 type Ctx = {
   subject: Subject | null; // null = pas encore choisi
@@ -19,7 +19,8 @@ export function SubjectProvider({ children }: { children: ReactNode }) {
       saved === "gestion" ||
       saved === "anglais" ||
       saved === "droit" ||
-      saved === "linguistique"
+      saved === "linguistique" ||
+      saved === "principes"
       ? saved
       : null;
   });
