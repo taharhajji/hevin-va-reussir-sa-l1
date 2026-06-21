@@ -259,6 +259,19 @@ export const ui = {
     tr: "💡 4 tam bölüm, ~30 hocanın resmi sorusu, 3 deneme sınavı.",
   },
 
+  splashIntrodroitTitle: {
+    fr: "Introduction au droit",
+    tr: "Hukuka giriş",
+  },
+  splashIntrodroitDesc: {
+    fr: "Cours Ciccolini : notion de droit, sources, droit civil, organisation juridictionnelle.",
+    tr: "Ciccolini dersi: hukuk kavramı, kaynaklar, medeni hukuk, yargı düzeni.",
+  },
+  splashIntrodroitStatus: {
+    fr: "📖 4 chapitres complets, 79 QCM, 3 examens blancs — le cours entier.",
+    tr: "📖 4 tam bölüm, 79 soru, 3 deneme sınavı — bütün ders.",
+  },
+
   splashEnter: { fr: "Entrer →", tr: "Giriş →" },
   splashHint: {
     fr: "Tu pourras changer de matière à tout moment depuis le bandeau.",
@@ -272,6 +285,7 @@ export const ui = {
   subjectDroit: { fr: "Droit", tr: "Hukuk" },
   subjectLinguistique: { fr: "Linguistique", tr: "Dilbilim" },
   subjectPrincipes: { fr: "Principes d'éco", tr: "Eko ilkeleri" },
+  subjectIntrodroit: { fr: "Intro au droit", tr: "Hukuka giriş" },
 
   // Random / shuffle mode
   randomModeOff: { fr: "🎲 Mode aléatoire", tr: "🎲 Rastgele mod" },

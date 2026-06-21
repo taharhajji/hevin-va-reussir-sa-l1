@@ -25,6 +25,9 @@ import { examsLinguistique } from "./exams.linguistique";
 import { chaptersPrincipes } from "./chapters.principes";
 import { qcmByChapterPrincipes } from "./qcm.principes";
 import { examsPrincipes } from "./exams.principes";
+import { chaptersIntrodroit } from "./chapters.introdroit";
+import { qcmByChapterIntrodroit } from "./qcm.introdroit";
+import { examsIntrodroit } from "./exams.introdroit";
 import { useLang } from "../i18n/context";
 import { useSubject, type Subject } from "../subject/context";
 
@@ -36,6 +39,7 @@ const chaptersBySubject = {
   droit: { fr: chaptersDroit, tr: chaptersDroit },
   linguistique: { fr: chaptersLinguistique, tr: chaptersLinguistique },
   principes: { fr: chaptersPrincipes, tr: chaptersPrincipes },
+  introdroit: { fr: chaptersIntrodroit, tr: chaptersIntrodroit },
 } as const;
 
 const examsBySubject = {
@@ -45,6 +49,7 @@ const examsBySubject = {
   droit: { fr: examsDroit, tr: examsDroit },
   linguistique: { fr: examsLinguistique, tr: examsLinguistique },
   principes: { fr: examsPrincipes, tr: examsPrincipes },
+  introdroit: { fr: examsIntrodroit, tr: examsIntrodroit },
 } as const;
 
 const qcmBySubject = {
@@ -54,6 +59,7 @@ const qcmBySubject = {
   droit: { fr: qcmByChapterDroit, tr: qcmByChapterDroit },
   linguistique: { fr: qcmByChapterLinguistique, tr: qcmByChapterLinguistique },
   principes: { fr: qcmByChapterPrincipes, tr: qcmByChapterPrincipes },
+  introdroit: { fr: qcmByChapterIntrodroit, tr: qcmByChapterIntrodroit },
 } as const;
 
 const exercisesBySubject = {
@@ -66,11 +72,12 @@ const exercisesBySubject = {
   droit: { fr: exerciseSectionsDroit, tr: exerciseSectionsDroit },
   linguistique: { fr: [], tr: [] },
   principes: { fr: [], tr: [] },
+  introdroit: { fr: [], tr: [] },
 } as const;
 
 function effectiveSubject(
   s: Subject | null,
-): "macro" | "gestion" | "anglais" | "droit" | "linguistique" | "principes" {
+): "macro" | "gestion" | "anglais" | "droit" | "linguistique" | "principes" | "introdroit" {
   return s ?? "macro";
 }
 
