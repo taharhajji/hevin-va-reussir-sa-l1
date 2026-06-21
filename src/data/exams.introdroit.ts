@@ -1,4 +1,8 @@
 import type { Exam, Question } from "./exams";
+import { qcmByChapterIntrodroit } from "./qcm.introdroit";
+
+/** Banque complète des 79 QCM, à plat — sert à composer des examens thématiques. */
+const bank: Question[] = qcmByChapterIntrodroit.flatMap((c) => c.questions);
 
 /* ============================================================
    EXAMEN 1 — Standard (tous chapitres) — 30 Q / 45 min
@@ -642,6 +646,30 @@ const examCivilJuridictions: Question[] = [
   },
 ];
 
+/* ============================================================
+   EXAMEN 4 — Sources & Théorie du droit (Ch1 + Ch2) — 37 Q / 50 min
+   ============================================================ */
+const examTheorie: Question[] = bank
+  .filter((q) => q.chapter === 1 || q.chapter === 2)
+  .map((q, i) => ({ ...q, id: 9800 + i }));
+
+/* ============================================================
+   EXAMEN 5 — Pièges classiques (questions difficiles) — ~20 Q / 30 min
+   ============================================================ */
+const examPieges: Question[] = bank
+  .filter((q) => q.difficulty === "difficile")
+  .map((q, i) => ({ ...q, id: 9860 + i }));
+
+/* ============================================================
+   EXAMEN 6 — Blitz express (révision de dernière minute) — 15 Q / 15 min
+   ============================================================ */
+const examBlitz: Question[] = [
+  ...bank.filter((q) => q.chapter === 1 && q.difficulty !== "difficile").slice(0, 4),
+  ...bank.filter((q) => q.chapter === 2 && q.difficulty !== "difficile").slice(0, 4),
+  ...bank.filter((q) => q.chapter === 3 && q.difficulty !== "difficile").slice(0, 4),
+  ...bank.filter((q) => q.chapter === 4 && q.difficulty !== "difficile").slice(0, 3),
+].map((q, i) => ({ ...q, id: 9900 + i }));
+
 /* ============================================================ */
 
 export const examStandardIntrodroit: Exam = {
@@ -667,15 +695,48 @@ export const examMarathonIntrodroit: Exam = {
 export const examCivilIntrodroit: Exam = {
   slug: "examen-civil-juridictions",
   title: "Examen — Droit civil & Juridictions",
-  subtitle: "25 questions · 30 min · focus chapitres 3 et 4",
+  subtitle: "21 questions · 30 min · focus chapitres 3 et 4",
   emoji: "👤",
   durationMin: 30,
   passingScore: 15,
   questions: examCivilJuridictions,
 };
 
+export const examTheorieIntrodroit: Exam = {
+  slug: "examen-sources-theorie",
+  title: "Examen — Sources & Théorie du droit",
+  subtitle: "37 questions · 50 min · focus chapitres 1 et 2",
+  emoji: "📜",
+  durationMin: 50,
+  passingScore: 22,
+  questions: examTheorie,
+};
+
+export const examPiegesIntrodroit: Exam = {
+  slug: "examen-pieges",
+  title: "Examen — Pièges classiques",
+  subtitle: "Les questions difficiles que tout le monde rate · 30 min",
+  emoji: "🪤",
+  durationMin: 30,
+  passingScore: 12,
+  questions: examPieges,
+};
+
+export const examBlitzIntrodroit: Exam = {
+  slug: "examen-blitz",
+  title: "Examen Blitz express",
+  subtitle: "15 questions · 15 min · révision de dernière minute",
+  emoji: "⚡",
+  durationMin: 15,
+  passingScore: 9,
+  questions: examBlitz,
+};
+
 export const examsIntrodroit: Exam[] = [
   examStandardIntrodroit,
   examMarathonIntrodroit,
   examCivilIntrodroit,
+  examTheorieIntrodroit,
+  examPiegesIntrodroit,
+  examBlitzIntrodroit,
 ];
