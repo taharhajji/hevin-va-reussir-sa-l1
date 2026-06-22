@@ -1,4 +1,9 @@
 import type { Exam, Question } from "./exams";
+import { qcmByChapterPrincipes } from "./qcm.principes";
+
+/** Banque complète des 81 QCM, à plat — sert à composer des examens thématiques. */
+const bank: Question[] = qcmByChapterPrincipes.flatMap((c) => c.questions);
+const byChapter = (n: number) => bank.filter((q) => q.chapter === n);
 
 /* ============================================================
    EXAMEN 1 — Fondamentaux (Ch1-Ch2) — 25 questions / 30 min
@@ -798,6 +803,32 @@ const examMarathon: Question[] = [
   },
 ];
 
+/* ============================================================
+   EXAMENS THÉMATIQUES composés à partir de la banque de 81 QCM
+   ============================================================ */
+
+// Un examen par chapitre (entraînement ciblé en conditions d'examen)
+const examChap1: Question[] = byChapter(1).map((q, i) => ({ ...q, id: 9000 + i }));
+const examChap2: Question[] = byChapter(2).map((q, i) => ({ ...q, id: 9100 + i }));
+const examChap3: Question[] = byChapter(3).map((q, i) => ({ ...q, id: 9200 + i }));
+const examChap4: Question[] = byChapter(4).map((q, i) => ({ ...q, id: 9300 + i }));
+
+// Examen « pièges » : uniquement les questions difficiles
+const examPieges: Question[] = bank
+  .filter((q) => q.difficulty === "difficile")
+  .map((q, i) => ({ ...q, id: 9400 + i }));
+
+// Blitz : 15 questions équilibrées (faciles/moyennes) sur les 4 chapitres
+const examBlitz: Question[] = [
+  ...byChapter(1).filter((q) => q.difficulty !== "difficile").slice(0, 4),
+  ...byChapter(2).filter((q) => q.difficulty !== "difficile").slice(0, 4),
+  ...byChapter(3).filter((q) => q.difficulty !== "difficile").slice(0, 4),
+  ...byChapter(4).filter((q) => q.difficulty !== "difficile").slice(0, 3),
+].map((q, i) => ({ ...q, id: 9500 + i }));
+
+// Intégral : la totalité des 81 QCM
+const examIntegral: Question[] = bank.map((q, i) => ({ ...q, id: 9600 + i }));
+
 /* ============================================================ */
 
 export const examFondamentauxPrincipes: Exam = {
@@ -830,8 +861,85 @@ export const examMarathonPrincipes: Exam = {
   questions: examMarathon,
 };
 
+export const examChap1Principes: Exam = {
+  slug: "examen-chap1",
+  title: "Examen — Chapitre 1 : Fondations & courants",
+  subtitle: "20 questions · 25 min · rareté, agents, histoire de la pensée",
+  emoji: "💡",
+  durationMin: 25,
+  passingScore: 12,
+  questions: examChap1,
+};
+
+export const examChap2Principes: Exam = {
+  slug: "examen-chap2",
+  title: "Examen — Chapitre 2 : Offre, demande & équilibre",
+  subtitle: "20 questions · 25 min · marché, surplus, CPP",
+  emoji: "📈",
+  durationMin: 25,
+  passingScore: 12,
+  questions: examChap2,
+};
+
+export const examChap3Principes: Exam = {
+  slug: "examen-chap3",
+  title: "Examen — Chapitre 3 : Élasticités & politiques publiques",
+  subtitle: "20 questions · 25 min · élasticités, taxes, prix encadrés",
+  emoji: "📐",
+  durationMin: 25,
+  passingScore: 12,
+  questions: examChap3,
+};
+
+export const examChap4Principes: Exam = {
+  slug: "examen-chap4",
+  title: "Examen — Chapitre 4 : Défaillances de marché",
+  subtitle: "21 questions · 25 min · monopole, externalités, biens publics",
+  emoji: "⚠️",
+  durationMin: 25,
+  passingScore: 13,
+  questions: examChap4,
+};
+
+export const examPiegesPrincipes: Exam = {
+  slug: "examen-pieges",
+  title: "Examen — Pièges classiques",
+  subtitle: "Les 16 questions difficiles à ne pas rater · 25 min",
+  emoji: "🪤",
+  durationMin: 25,
+  passingScore: 10,
+  questions: examPieges,
+};
+
+export const examBlitzPrincipes: Exam = {
+  slug: "examen-blitz",
+  title: "Examen Blitz express",
+  subtitle: "15 questions · 15 min · révision de dernière minute",
+  emoji: "⚡",
+  durationMin: 15,
+  passingScore: 9,
+  questions: examBlitz,
+};
+
+export const examIntegralPrincipes: Exam = {
+  slug: "examen-integral",
+  title: "Examen Intégral — Les 81 questions",
+  subtitle: "81 questions · 100 min · le programme entier d'un coup",
+  emoji: "🏆",
+  durationMin: 100,
+  passingScore: 49,
+  questions: examIntegral,
+};
+
 export const examsPrincipes: Exam[] = [
   examFondamentauxPrincipes,
   examElasticitesPrincipes,
   examMarathonPrincipes,
+  examChap1Principes,
+  examChap2Principes,
+  examChap3Principes,
+  examChap4Principes,
+  examPiegesPrincipes,
+  examBlitzPrincipes,
+  examIntegralPrincipes,
 ];
