@@ -1,6 +1,7 @@
 import Markdown from "../components/Markdown";
 import { useLang } from "../i18n/context";
 import type { Lang } from "../i18n/context";
+import { useSubject } from "../subject/context";
 
 type Bilingual = { fr: string; tr: string };
 
@@ -248,12 +249,215 @@ const numbers: { label: Bilingual; value: string }[] = [
   { label: { fr: "UC", tr: "UC" }, value: "1 / 0,5 / 0,3" },
 ];
 
+// ============================================================
+//  PRINCIPES D'ÉCONOMIE (microéconomie) — jeu de formules dédié
+// ============================================================
+const principesFormulas: typeof formulas = [
+  {
+    section: { fr: "Élasticités", tr: "Esneklikler" },
+    emoji: "📐",
+    items: [
+      {
+        label: { fr: "Élasticité-prix de la demande", tr: "Talebin fiyat esnekliği" },
+        body: "$$ E_d = \\frac{\\Delta Q_d / Q_d}{\\Delta P / P} $$",
+      },
+      {
+        label: { fr: "Élasticité-revenu", tr: "Gelir esnekliği" },
+        body: "$$ E_R = \\frac{\\Delta Q_d / Q_d}{\\Delta R / R} $$",
+      },
+      {
+        label: { fr: "Élasticité-prix croisée", tr: "Çapraz fiyat esnekliği" },
+        body: "$$ E_{xy} = \\frac{\\Delta Q_x / Q_x}{\\Delta P_y / P_y} $$",
+      },
+      {
+        label: { fr: "Élasticité-prix de l'offre", tr: "Arzın fiyat esnekliği" },
+        body: "$$ E_o = \\frac{\\Delta Q_o / Q_o}{\\Delta P / P} $$",
+      },
+    ],
+  },
+  {
+    section: { fr: "Équilibre & surplus", tr: "Denge & artık" },
+    emoji: "⚖️",
+    items: [
+      {
+        label: { fr: "Équilibre de marché", tr: "Piyasa dengesi" },
+        body: "$$ Q_d(P^*) = Q_o(P^*) $$",
+      },
+      {
+        label: { fr: "Surplus du consommateur", tr: "Tüketici artığı" },
+        body: "$$ SC = \\tfrac{1}{2}\\, Q^* \\,(P_{max} - P^*) $$",
+      },
+      {
+        label: { fr: "Surplus du producteur", tr: "Üretici artığı" },
+        body: "$$ SP = \\tfrac{1}{2}\\, Q^* \\,(P^* - P_{min}) $$",
+      },
+      {
+        label: { fr: "Surplus total", tr: "Toplam artık" },
+        body: "$$ S_{total} = SC + SP $$",
+      },
+    ],
+  },
+  {
+    section: { fr: "Choix du consommateur", tr: "Tüketici seçimi" },
+    emoji: "🧮",
+    items: [
+      {
+        label: { fr: "Contrainte budgétaire", tr: "Bütçe kısıtı" },
+        body: "$$ P_x\\, x + P_y\\, y = R $$",
+      },
+      {
+        label: { fr: "Optimum du consommateur", tr: "Tüketici optimumu" },
+        body: "$$ \\frac{Um_x}{P_x} = \\frac{Um_y}{P_y} $$",
+      },
+      {
+        label: { fr: "Utilité marginale", tr: "Marjinal fayda" },
+        body: "$$ Um = \\frac{\\Delta U}{\\Delta Q} $$",
+      },
+    ],
+  },
+  {
+    section: { fr: "Producteur & marge", tr: "Üretici & marj" },
+    emoji: "🏭",
+    items: [
+      {
+        label: { fr: "Coût marginal", tr: "Marjinal maliyet" },
+        body: "$$ Cm = \\frac{\\Delta CT}{\\Delta Q} $$",
+      },
+      {
+        label: { fr: "Optimum du producteur", tr: "Üretici optimumu" },
+        body: "$$ Rm = Cm \\quad (P = Cm \\text{ en CPP}) $$",
+      },
+    ],
+  },
+  {
+    section: { fr: "Marx : plus-value", tr: "Marx: artı-değer" },
+    emoji: "⚒️",
+    items: [
+      {
+        label: { fr: "Valeur d'une marchandise", tr: "Bir malın değeri" },
+        body: "$$ V = c + v + pl $$",
+      },
+      {
+        label: { fr: "Taux de plus-value (exploitation)", tr: "Artı-değer oranı (sömürü)" },
+        body: "$$ \\frac{pl}{v} $$",
+      },
+      {
+        label: { fr: "Taux de profit", tr: "Kâr oranı" },
+        body: "$$ \\frac{pl}{c + v} $$",
+      },
+    ],
+  },
+  {
+    section: { fr: "Calculs de base", tr: "Temel hesaplar" },
+    emoji: "🧮",
+    items: [
+      {
+        label: { fr: "Variation en %", tr: "% değişim" },
+        body: "$$ \\frac{V_{arrivée} - V_{départ}}{V_{départ}} \\times 100 $$",
+      },
+    ],
+  },
+];
+
+const principesMnemos: typeof mnemos = [
+  {
+    code: "AHLTM",
+    title: { fr: "5 hypothèses de la CPP", tr: "Tam rekabetin 5 varsayımı" },
+    body: {
+      fr: "**A**tomicité · **H**omogénéité · **L**ibre entrée/sortie · **T**ransparence · **M**obilité des facteurs.",
+      tr: "**A**tomicité · **H**omogénéité · **L**ibre entrée/sortie · **T**ransparence · **M**obilité.",
+    },
+  },
+  {
+    code: "PEBI",
+    title: { fr: "4 défaillances de marché", tr: "4 piyasa başarısızlığı" },
+    body: {
+      fr: "**P**ouvoir de marché · **E**xternalités · **B**iens collectifs · **I**nformation imparfaite.",
+      tr: "**P**ouvoir de marché · **E**xternalités · **B**iens collectifs · **I**nformation imparfaite.",
+    },
+  },
+  {
+    code: "RPNAG",
+    title: { fr: "5 déterminants de la demande", tr: "Talebin 5 belirleyicisi" },
+    body: {
+      fr: "**R**evenu · **P**rix des biens liés · **N**ombre d'acheteurs · **A**nticipations · **G**oûts.",
+      tr: "**R**evenu · **P**rix liés · **N**ombre · **A**nticipations · **G**oûts.",
+    },
+  },
+  {
+    code: "CTAN",
+    title: { fr: "4 déterminants de l'offre", tr: "Arzın 4 belirleyicisi" },
+    body: {
+      fr: "**C**oûts de production · **T**echnologie · **A**nticipations · **N**ombre de vendeurs.",
+      tr: "**C**oûts · **T**echnologie · **A**nticipations · **N**ombre de vendeurs.",
+    },
+  },
+  {
+    code: "ER",
+    title: { fr: "Signe de l'élasticité-revenu", tr: "Gelir esnekliğinin işareti" },
+    body: {
+      fr: "**ER < 0** inférieur · **0 < ER < 1** nécessaire · **ER > 1** luxe.",
+      tr: "**ER < 0** düşük mal · **0 < ER < 1** zorunlu · **ER > 1** lüks.",
+    },
+  },
+  {
+    code: "Exy",
+    title: { fr: "Signe de l'élasticité croisée", tr: "Çapraz esnekliğin işareti" },
+    body: {
+      fr: "**Exy > 0** substituts (Pareils) · **Exy < 0** compléments · **= 0** indépendants.",
+      tr: "**Exy > 0** ikame · **Exy < 0** tamamlayıcı · **= 0** bağımsız.",
+    },
+  },
+  {
+    code: "PCR",
+    title: { fr: "3 solutions aux externalités", tr: "Dışsallıklara 3 çözüm" },
+    body: {
+      fr: "**P**igou (taxe/subvention) · **C**oase (négociation privée) · **R**églementation.",
+      tr: "**P**igou (vergi) · **C**oase (pazarlık) · **R**églementation (düzenleme).",
+    },
+  },
+  {
+    code: "SRSMK",
+    title: { fr: "Les grands auteurs", tr: "Büyük yazarlar" },
+    body: {
+      fr: "**S**mith (main invisible) · **R**icardo (avantages comparatifs) · **S**ay (débouchés) · **M**arx (plus-value) · **K**eynes (demande effective).",
+      tr: "**S**mith · **R**icardo · **S**ay · **M**arx · **K**eynes.",
+    },
+  },
+];
+
+const principesNumbers: typeof numbers = [
+  { label: { fr: "Demande élastique", tr: "Esnek talep" }, value: "|Ed| > 1" },
+  { label: { fr: "Demande inélastique", tr: "Esnek olmayan talep" }, value: "|Ed| < 1" },
+  { label: { fr: "Élasticité unitaire", tr: "Birim esneklik" }, value: "|Ed| = 1" },
+  { label: { fr: "Bien de luxe (revenu)", tr: "Lüks mal (gelir)" }, value: "ER > 1" },
+  { label: { fr: "Bien inférieur (revenu)", tr: "Düşük mal (gelir)" }, value: "ER < 0" },
+  { label: { fr: "Biens substituts (croisée)", tr: "İkame mallar" }, value: "Exy > 0" },
+  { label: { fr: "Biens compléments (croisée)", tr: "Tamamlayıcı mallar" }, value: "Exy < 0" },
+  { label: { fr: "Hypothèses de la CPP", tr: "Tam rekabet varsayımları" }, value: "5" },
+  { label: { fr: "Défaillances de marché", tr: "Piyasa başarısızlıkları" }, value: "4" },
+  { label: { fr: "Smith — Richesse des nations", tr: "Smith — Ulusların Zenginliği" }, value: "1776" },
+  { label: { fr: "Révolution marginaliste", tr: "Marjinalist devrim" }, value: "1870" },
+  { label: { fr: "Keynes — Théorie générale", tr: "Keynes — Genel Teori" }, value: "1936" },
+  { label: { fr: "Samuelson — typologie des biens", tr: "Samuelson — mal tipolojisi" }, value: "1954" },
+  { label: { fr: "Olson — passager clandestin", tr: "Olson — bedavacı" }, value: "1965" },
+  { label: { fr: "Hardin — tragédie des communs", tr: "Hardin — ortakların trajedisi" }, value: "1968" },
+  { label: { fr: "Coase — Nobel", tr: "Coase — Nobel" }, value: "1991" },
+  { label: { fr: "Ostrom — Nobel", tr: "Ostrom — Nobel" }, value: "2009" },
+  { label: { fr: "Tirole — Nobel", tr: "Tirole — Nobel" }, value: "2014" },
+];
+
 function pickB(b: Bilingual, lang: Lang) {
   return b[lang];
 }
 
 export default function Formules() {
   const { lang, t } = useLang();
+  const { subject } = useSubject();
+  const isPrincipes = subject === "principes";
+  const formulasData = isPrincipes ? principesFormulas : formulas;
+  const mnemosData = isPrincipes ? principesMnemos : mnemos;
+  const numbersData = isPrincipes ? principesNumbers : numbers;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
@@ -263,7 +467,7 @@ export default function Formules() {
       <p className="text-slate-600 mb-8">{t("formulasIntro")}</p>
 
       <section className="grid sm:grid-cols-2 gap-5">
-        {formulas.map((f) => (
+        {formulasData.map((f) => (
           <div key={pickB(f.section, lang)} className="bg-white border border-slate-200 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-2xl">{f.emoji}</span>
@@ -286,7 +490,7 @@ export default function Formules() {
       <section className="mt-10">
         <h2 className="font-display text-2xl font-bold text-slate-900 mb-4">{t("mnemoTitle")}</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {mnemos.map((m) => (
+          {mnemosData.map((m) => (
             <div key={m.code} className="bg-white border border-slate-200 rounded-xl p-4 card-tilt">
               <p className="font-mono text-brand-700 font-bold text-base">{m.code}</p>
               <p className="font-semibold text-slate-900 text-sm mt-1">{pickB(m.title, lang)}</p>
@@ -301,7 +505,7 @@ export default function Formules() {
       <section className="mt-10">
         <h2 className="font-display text-2xl font-bold text-slate-900 mb-4">{t("numbersTitle")}</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {numbers.map((n, i) => (
+          {numbersData.map((n, i) => (
             <div key={i} className="bg-white border-l-4 border-brand-500 px-4 py-2 rounded-r-xl shadow-sm">
               <p className="text-sm text-slate-600">{pickB(n.label, lang)}</p>
               <p className="font-bold text-slate-900">{n.value}</p>

@@ -28,6 +28,7 @@ import { examsPrincipes } from "./exams.principes";
 import { chaptersIntrodroit } from "./chapters.introdroit";
 import { qcmByChapterIntrodroit } from "./qcm.introdroit";
 import { examsIntrodroit } from "./exams.introdroit";
+import { exerciseSectionsPrincipes } from "./exercises.principes";
 import { useLang } from "../i18n/context";
 import { useSubject, type Subject } from "../subject/context";
 
@@ -71,7 +72,7 @@ const exercisesBySubject = {
   anglais: { fr: [], tr: [] },
   droit: { fr: exerciseSectionsDroit, tr: exerciseSectionsDroit },
   linguistique: { fr: [], tr: [] },
-  principes: { fr: [], tr: [] },
+  principes: { fr: exerciseSectionsPrincipes, tr: exerciseSectionsPrincipes },
   introdroit: { fr: [], tr: [] },
 } as const;
 
