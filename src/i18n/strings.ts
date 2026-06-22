@@ -255,8 +255,8 @@ export const ui = {
     tr: "L1 mikroekonomi: kıtlık, arz/talep, esneklikler, piyasa başarısızlıkları.",
   },
   splashPrincipesStatus: {
-    fr: "💡 4 chapitres, 81 QCM, 10 examens blancs, exercices corrigés + formulaire.",
-    tr: "💡 4 bölüm, 81 soru, 10 deneme sınavı, çözümlü alıştırmalar + formüller.",
+    fr: "💡 4 chapitres, 81 QCM + méga-QCM 80 calculs, 10 examens, exercices + formulaire.",
+    tr: "💡 4 bölüm, 81 soru + 80 hesaplama mega-testi, 10 sınav, alıştırmalar + formüller.",
   },
 
   splashIntrodroitTitle: {
