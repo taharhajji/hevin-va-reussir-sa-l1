@@ -200,8 +200,8 @@ export const ui = {
   },
   splashMacroTitle: { fr: "Macroéconomie", tr: "Makroekonomi" },
   splashMacroDesc: {
-    fr: "5 chapitres, 50 QCM, 2 examens blancs, exercices guidés. 100% prêt.",
-    tr: "5 bölüm, 50 soru, 2 deneme sınavı, rehberli alıştırmalar. %100 hazır.",
+    fr: "5 chapitres, 50 QCM, 12 examens blancs, exercices guidés. 100% prêt.",
+    tr: "5 bölüm, 50 soru, 12 deneme sınavı, rehberli alıştırmalar. %100 hazır.",
   },
   splashGestionTitle: { fr: "Gestion", tr: "Yönetim" },
   splashGestionDesc: {

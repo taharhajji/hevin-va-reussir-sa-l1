@@ -1185,6 +1185,10 @@ export const exam2: Exam = {
 export const exams: Exam[] = [exam1, exam2];
 
 import { exam1Tr, exam2Tr, examsTr } from "./exams.tr";
-export const examsByLang = { fr: exams, tr: examsTr } as const;
+import { extraExamsMacroFr, extraExamsMacroTr } from "./exams.macro.extra";
+export const examsByLang = {
+  fr: [...exams, ...extraExamsMacroFr],
+  tr: [...examsTr, ...extraExamsMacroTr],
+} as const;
 export const exam1ByLang = { fr: exam1, tr: exam1Tr } as const;
 export const exam2ByLang = { fr: exam2, tr: exam2Tr } as const;
